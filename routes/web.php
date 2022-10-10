@@ -24,6 +24,7 @@ Route::get('/login',function (){
     return view('front.login');
 });
 Route::post('login', [\App\Http\Controllers\frontController::class, 'login']);
+
 Route::post('registerUser', [\App\Http\Controllers\frontController::class, 'registerUser']);
 
 Route::get('register', [\App\Http\Controllers\frontController::class, 'register']);
@@ -31,6 +32,10 @@ Route::get('Search', [\App\Http\Controllers\frontController::class, 'Search']);
 Route::get('Hot-Deals', [\App\Http\Controllers\frontController::class, 'HotDeals']);
 Route::get('Contact',[\App\Http\Controllers\frontController::class,'Contact']);
 Route::get('Page/{id}',[\App\Http\Controllers\frontController::class,'Page']);
+
+Route::get('/Admin/Login',function (){
+    return view('auth.login');
+});
 
 Route::group(['middleware' => ['web']], function () {
 
@@ -57,7 +62,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
 });
-//Route::group(['middleware' => ['admin']], function () {
+Route::group(['middleware' => ['admin']], function () {
 //employee settings
 
     Route::get('Admin_setting', [\App\Http\Controllers\Admin\AdminController::class, 'index']);
@@ -162,7 +167,7 @@ Route::post('edit_setting', [\App\Http\Controllers\Admin\SettingController::clas
 
 
 
-//});
+});
 
 Route::get('lang/{lang}', function ($lang) {
 

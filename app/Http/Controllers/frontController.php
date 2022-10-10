@@ -22,11 +22,13 @@ class frontController extends Controller
     public function login(Request $request){
 
         $credentials = $request->only('email', 'password');
+        $credentials2 = $request->only('phone', 'password');
         $remember_me = $request->has('remember_me') ? true : false;
 
-        if (Auth::guard('admin')->attempt($credentials ,$remember_me)) {
+        if (Auth::guard('admin')->attempt($credentials2 ,$remember_me)) {
             // Authentication passed...
-            return redirect()->intended('/Dashboard');
+
+            return redirect()->intended('Admin_setting');
         }
         if (Auth::guard('web')->attempt($credentials ,$remember_me)) {
             // Authentication passed...

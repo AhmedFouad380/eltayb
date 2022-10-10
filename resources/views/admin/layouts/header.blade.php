@@ -27,7 +27,7 @@
                     <!--end::Heaeder menu toggle-->
                     <!--begin::Logo-->
                     <a href="{{ url('/') }}">
-                        <img alt="Logo" src="" class="h-25px h-lg-60px"/>
+                        <img alt="Logo" src="{{\App\Models\Setting::find(1)->logo}}" class="h-25px h-lg-60px"/>
                     </a>
                     <!--end::Logo-->
 
@@ -63,7 +63,7 @@
                                     <div class="menu-content d-flex align-items-center px-3">
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-50px me-5">
-                                            <img alt="Logo" src="{{asset('admin/assets/media/avatars/150-26.jpg')}}"/>
+                                            <img alt="Logo" src="{{\App\Models\Setting::find(1)->logo}}"/>
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Username-->

@@ -8,19 +8,19 @@
 
 @section('content')
 <!--begin::Authentication - Sign-in -->
-<div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-cover" style="background-size:cover;background-image: url({{asset('admin/faq-img.jpg')}}">
+<div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-cover" style="background-size:cover;background-image: url({{asset('admin/product-package-boxes-shopping-bag-cart-with-laptop-online-shopping-delivery-concept_38716-138.webp')}}">
 
     <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
 
         <!--begin::Wrapper-->
         <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
             <!--begin::Form-->
-            <form class="form w-100" novalidate="novalidate" id="" method="post" action="{{url('adminLogin')}}">
+            <form class="form w-100" novalidate="novalidate" id="" method="post" action="{{url('login')}}">
                 <!--begin::Heading-->@csrf
                 <div class="text-center mb-10">
                     <!--begin::Logo-->
-                    <a href="../../demo16/dist/index.html" class="mb-12">
-                        <img alt="Logo" src="{{\App\Models\Setting::findOrFail(1)->logo}}" class="h-150px" />
+                    <a href="{{url('/')}}" class="mb-12">
+                        <img alt="Logo" src="{{\App\Models\Setting::findOrFail(1)->logo}}" style="width: 100%" class="h-150px" />
                     </a>
                     <!--end::Logo-->
                     <!--begin::Title-->
