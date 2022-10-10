@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html direction="rtl" dir="rtl" style="direction: rtl">
     <head>
-        <title>دويدار</title>
+        <title>Eltib</title>
 
         <meta charset="utf-8" />
-		<meta name="description" content="دويدار" />
-		<meta name="keywords" content="دويدار" />
+		<meta name="description" content="Eltib" />
+		<meta name="keywords" content="Eltib" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
         @include('admin.layouts.head')

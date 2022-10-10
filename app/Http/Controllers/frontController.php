@@ -41,9 +41,12 @@ class frontController extends Controller
     }
 
     public function logout(){
+        if(Auth::guard('admin')->check()){
+            Auth::guard('admin')->logout();
 
+        }elseif(Auth::guard('web')->check()){
         Auth::guard('web')->logout();
-
+        }
             return redirect('/')->with('message','success');
     }
     public function register(){
