@@ -40,9 +40,9 @@ Route::get('/Admin/Login',function (){
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('cart',[\App\Http\Controllers\frontController::class,'cart']);
-    Route::get('addCart',[\App\Http\Controllers\frontController::class,'addCart']);
-    Route::get('qtyUp',[\App\Http\Controllers\frontController::class,'qtyUp']);
-    Route::get('qtyDown',[\App\Http\Controllers\frontController::class,'qtyUp']);
+    Route::get('add-cart',[\App\Http\Controllers\frontController::class,'addCart']);
+    Route::get('qty-up',[\App\Http\Controllers\frontController::class,'qtyUp']);
+    Route::get('qty-down',[\App\Http\Controllers\frontController::class,'qtyUp']);
     Route::get('delete-cart-item',[\App\Http\Controllers\frontController::class,'deleteCartItem']);
     Route::get('delete-All',[\App\Http\Controllers\frontController::class,'deleteALl']);
     Route::post('ApplyCoupon',[\App\Http\Controllers\frontController::class,'ApplyCoupon']);
@@ -58,6 +58,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('deleteAddress/{id}',[\App\Http\Controllers\AddressController::class,'deleteAddress']);
 
     Route::get('logout', [\App\Http\Controllers\frontController::class, 'logout']);
+    Route::post('StoreOrder', [\App\Http\Controllers\frontController::class, 'StoreOrder']);
 
 
 

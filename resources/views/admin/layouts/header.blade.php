@@ -146,6 +146,13 @@
                             </a>
                         </div>
                         <div
+                            class="menu-item   @if(Request::segment(1) == 'Orders' || Request::segment(1) == 'Order_detail' ) here show @endif menu-lg-down-accordion me-lg-1">
+                            <a class="menu-link py-3" href="{{url('Orders')}}">
+                                <span class="menu-title">قائمة الطلبات</span>
+                                <span class="menu-arrow d-lg-none"></span>
+                            </a>
+                        </div>
+                        <div
                             class="menu-item   @if(Request::segment(1) == 'Page_Setting' || Request::segment(1) == 'Page-edit' ) here show @endif menu-lg-down-accordion me-lg-1">
                             <a class="menu-link py-3" href="{{url('Page_Setting')}}">
                                 <span class="menu-title">الصفحات التعريفية</span>

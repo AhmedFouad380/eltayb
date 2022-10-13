@@ -55,7 +55,7 @@
                     <div class="d-flex flex-wrap flex-sm-nowrap mb-6">
                         <!--begin::Image-->
                         <div class="d-flex flex-center flex-shrink-0 bg-light rounded w-100px h-100px w-lg-150px h-lg-150px me-7 mb-4">
-                            <img class="mw-50px mw-lg-75px" src="{{$data->Restaurant->image}}" alt="image" />
+                            <img class="mw-100px mw-lg-100px" src="{{asset('admin\assets\media\avatars\blank.png')}}" alt="image" />
                         </div>
                         <!--end::Image-->
                         <!--begin::Wrapper-->
@@ -81,7 +81,6 @@
                                     </div>
                                     <!--end::Status-->
                                     <!--begin::Description-->
-                                    <div class="d-flex flex-wrap fw-bold mb-4 fs-5 text-gray-400"> اسم المطعم {{$data->Restaurant->name}}</div>
                                     <div class="d-flex flex-wrap fw-bold mb-4 fs-5 text-gray-400"> اسم العميل {{$data->User->name}}</div>
                                     <!--end::Description-->
                                 </div>
@@ -242,7 +241,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                {{$OrderDetails->price * $OrderDetails->count}}
+                                                {{$OrderDetails->price / $OrderDetails->count}}
                                             </div>
                                         </td>
 
@@ -251,7 +250,7 @@
                                             <div class="d-flex align-items-center">
 
                                                         <?php
-                                                        $total = $OrderDetails->price * $OrderDetails->count;
+                                                        $total = $OrderDetails->price ;
                                                         echo $total;
                                                         ?>
 
@@ -265,48 +264,17 @@
                                         </td>
 
                                     </tr>
-                                    @if($OrderDetails->Additions)
-                                        @foreach($OrderDetails->Additions as $Addition)
-                                        <tr>
-                                            <td>
-                                                <span class="fw-bold text-dark d-block fs-5"></span>
-                                            </td>
-                                            <td>
-                                                {{$Addition->title}}
-                                            </td>
-
-                                            <td>
-
-                                            </td>
-
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    {{$Addition->count}}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <?php $additionPrice[] = $Addition->price * $Addition->count ?>
-                                                    {{$Addition->price }}
-                                                </div>
-                                            </td>
-
-
-                                            <td>
-                                                {{$Addition->price * $Addition->count}}
-
-                                            </td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                </div>
-                                            </td>
-
-                                        </tr>
-                                        @endforeach
-                                        @endif
                                 @endforeach
                                 </tbody>
                                 <tfoot>
+                                @if(isset($data->coupon))
+                                    <tr style="color:red!important;">
+                                        <th colspan="4"> </th>
+                                        <th colspan="1">  كود الخصم  : {{$data->coupon->name}}</th>
+                                        <th colspan="2" > {{$data->coupon_percent}} - </th>
+                                    </tr>
+                                @endif
+
                                 <tr>
                                     <th colspan="4"> </th>
                                     <th colspan="1">الضرائب </th>
@@ -315,9 +283,9 @@
                                 <tr>
                                     <th colspan="4"> </th>
                                     <th colspan="1">خدمة توصيل </th>
-                                    <th colspan="2">{{$data->delivery_cost}}</th>
+                                    <th colspan="2">{{$data->delivery_fees}}</th>
                                 </tr>
-                                <tr>
+                                    <tr>
                                     <th colspan="4"> </th>
                                     <th colspan="1">اجمالي الفاتورة </th>
                                     <th colspan="2">{{$data->total_price + $data->tax + $data->delivery_cost   }}</th>

@@ -84,7 +84,7 @@
                                                             <tbody>
                                                             @foreach($Orders as $Order)
                                                                 <tr>
-                                                                    <td>{{$Order->id}}</td>
+                                                                    <td>{{$Order->order_num}}</td>
                                                                     <td>{{$Order->created_at->format('Y-m-d H:i')}}</td>
                                                                     <td>
                                                                         @if($Order->type == 'pending')

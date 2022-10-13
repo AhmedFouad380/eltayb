@@ -106,6 +106,8 @@
                         </div>
                     </div>
                     <div class="border p-md-4 cart-totals ml-30">
+                        <form method="post" action="{{url('StoreOrder')}}">
+                            @csrf
                         <div class="table-responsive">
                             <table class="table no-border">
                                 @if(Session::Has('coupon'))
@@ -127,12 +129,15 @@
                                             <div class="divider-2 mt-10 mb-10"></div>
                                         </td>
                                     </tr>
+
                                 <tr>
                                     <td class="cart_total_label">
 
                                         <h6 class="text-muted">{{__('lang.Coupon')}} : {{$coupon->name}}
                                         </h6>
                                         <Br>
+                                        <input type="hidden" name="coupon_id" class="form-control" value="{{$coupon->id}}">
+                                        <input type="hidden" name="payment_type" class="form-control" value="cash">
                                         <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
                                             <a href="{{url('removeCoupon')}}" style="
     padding: 0;
@@ -144,22 +149,31 @@
                                         </div>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h5 class="text-heading text-end">{{$coupon->percent}} %</h5>
+                                        <h5 class="text-heading text-end text-danger">- {{$coupon->percent}} %</h5>
                                     </td>
                                 </tr>
-                                    <tr>
-                                        <td class="cart_total_label">
-                                            <h6 class="text-muted">{{__('lang.Shipping')}}</h6>
-                                        </td>
-                                        <td class="cart_total_amount">
-                                            <h5 class="text-heading text-end">{{__('lang.Free')}}</h5>
-                                        </td>
-                                     </tr>
-                                    <tr>
-                                        <td scope="col" colspan="2">
-                                            <div class="divider-2 mt-10 mb-10"></div>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td class="cart_total_label">
+                                        <h6 class="text-muted">{{__('lang.Tax')}} : </h6>
+                                    </td>
+                                    <td class="cart_total_amount">
+                                        <h5 class="text-heading text-end">{{\App\Models\Setting::find(1)->tax}} KWD</h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cart_total_label">
+                                        <h6 class="text-muted">{{__('lang.delivery_fees')}} :</h6>
+                                    </td>
+                                    <td class="cart_total_amount">
+                                        <h5 class="text-heading text-end">{{\App\Models\Setting::find(1)->delivery_fees}} KWD</h5>
+                                    </td>
+                                </tr>
+
+{{--                                    <tr>--}}
+{{--                                        <td scope="col" colspan="2">--}}
+{{--                                            <div class="divider-2 mt-10 mb-10"></div>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
                                     <tr>
                                         <td class="cart_total_label">
                                             <h6 class="text-muted">{{__('lang.address')}}
@@ -167,11 +181,14 @@
                                             </h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                        <select >
-                                            <option value="1">home</option>
-                                            <option value="1">work</option>
+                                        <select name="address_id" class=""   >
+                                            @foreach(\App\Models\Address::where('user_id',Auth::guard('web')->id())->get() as $Address)
+                                            <option value="{{$Address->id}}">{{$Address->name}}</option>
+                                            @endforeach
                                         </select>
-                                        </td>                                      </tr> <tr>
+                                        </td>
+                                    </tr>
+                                    <tr>
 
                                     </tr>
                                     <tr>
@@ -184,7 +201,7 @@
                                             <h6 class="text-muted">{{__('lang.Total')}}</h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                            <h4 class="text-brand text-end">{{$totalWithCoupon}} KWD</h4>
+                                            <h4 class="text-brand text-end">{{$totalWithCoupon + \App\Models\Setting::find(1)->delivery_fees + \App\Models\Setting::find(1)->tax}} KWD</h4>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -205,12 +222,21 @@
                                     </tr>
                                     <tr>
                                         <td class="cart_total_label">
-                                            <h6 class="text-muted">{{__('lang.Shipping')}}</h6>
+                                            <h6 class="text-muted">{{__('lang.Tax')}} : </h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                            <h5 class="text-heading text-end">{{__('lang.Free')}}</h5>
+                                            <h5 class="text-heading text-end">{{\App\Models\Setting::find(1)->tax}} KWD</h5>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td class="cart_total_label">
+                                            <h6 class="text-muted">{{__('lang.delivery_fees')}} :</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h5 class="text-heading text-end">{{\App\Models\Setting::find(1)->delivery_fees}} KWD</h5>
+                                        </td>
+                                    </tr>
+
                                     <tr>
                                         <td scope="col" colspan="2">
                                             <div class="divider-2 mt-10 mb-10"></div>
@@ -241,7 +267,7 @@
                                             <h6 class="text-muted">{{__('lang.Total')}}</h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                            <h4 class="text-brand text-end">{{array_sum($total)}} KWD</h4>
+                                            <h4 class="text-brand text-end">{{array_sum($total) + \App\Models\Setting::find(1)->delivery_fees + \App\Models\Setting::find(1)->tax }} KWD</h4>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -249,7 +275,8 @@
                                 @endif
                             </table>
                         </div>
-                        <a href="#" class="btn mb-20 w-100">{{__('lang.Proceed To CheckOut')}}<i class="fi-rs-sign-out ml-15"></i></a>
+                        <button type="submit"  class="btn mb-20 w-100">{{__('lang.Proceed To CheckOut')}}<i class="fi-rs-sign-out ml-15"></i></button>
+                    </form>
                     </div>
                 </div>
             </div>

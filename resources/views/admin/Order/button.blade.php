@@ -57,48 +57,22 @@
                              data-kt-scroll-offset="300px">
 
                             <!--begin::Input group-->
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class=" fw-bold fs-6 mb-2"> المطعم</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <select class="form-control" name="restaurant_id">
-                                    <option value="0">الكل</option>
-                                    @foreach(\App\Models\Restaurant::all() as $restaurant)
-                                        <option @if(Request::get('restaurant_id') == $restaurant->id) selected @endif value="{{$restaurant->id}}">{{$restaurant->name}} - (
-                                            {{$restaurant->phone}} }</option>
-                                    @endforeach
-                                </select>
-                                <!--end::Input-->
-                            </div>
+
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class=" fw-bold fs-6 mb-2"> العميل</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select class="form-control" name="user_id">
+                                <select class="form-control js-example-basic-single" name="user_id">
                                     <option value="0">الكل</option>
                                 @foreach(\App\Models\User::all() as $user)
-                                        <option @if(Request::get('user_id') == $user->id) selected @endif  value="{{$user->id}}">{{$user->name}} - (
-                                            {{$user->phone}} }</option>
+                                        <option @if(Request::get('user_id') == $user->id) selected @endif  value="{{$user->id}}">{{$user->name}} -
+                                            {{$user->phone}} </option>
                                     @endforeach
                                 </select>
                                 <!--end::Input-->
                             </div>
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class=" fw-bold fs-6 mb-2"> السائق</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <select class="form-control" name="delivery_id">
-                                    <option value="0">الكل</option>
-                                    @foreach(\App\Models\DeliveryMan::all() as $deliveryMan)
-                                        <option @if(Request::get('delivery_id') == $deliveryMan->id) selected @endif value="{{$deliveryMan->id}}">{{$deliveryMan->name}} - (
-                                            {{$deliveryMan->phone}} }</option>
-                                    @endforeach
-                                </select>
-                                <!--end::Input-->
-                            </div>
+
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class=" fw-bold fs-6 mb-2"> حالة الطلب</label>
@@ -122,7 +96,18 @@
                                     <option value="0">الكل</option>
                                     <option @if(Request::get('payment_type') == 'cash') selected @endif  value="cash">كاش</option>
                                     <option @if(Request::get('payment_type') == 'credit') selected @endif value="credit">فيزا</option>
-                                    <option @if(Request::get('payment_type') == 'wallet') selected @endif  value="wallet">محفظة </option>
+                                </select>
+                                <!--end::Input-->
+                            </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class=" fw-bold fs-6 mb-2"> حالة الدفع</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <select class="form-control" name="is_payed">
+                                    <option value="0">الكل</option>
+                                    <option @if(Request::get('is_payed') == 0) selected @endif  value="cash">لم يتم الدفع</option>
+                                    <option @if(Request::get('is_payed') == 1) selected @endif value="credit">تم الدفع</option>
                                 </select>
                                 <!--end::Input-->
                             </div>
@@ -167,6 +152,11 @@
 
 
 <script type="text/javascript">
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2({
+            dropdownParent: $('.modal-body')
+        });
+    });
 
     $("#delete").on("click", function () {
         var dataList = [];

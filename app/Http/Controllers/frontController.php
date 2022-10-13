@@ -7,8 +7,10 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Order;
+use App\Models\OrderDetails;
 use App\Models\Page;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\Shape;
 use App\Models\User;
 use Carbon\Carbon;
@@ -49,9 +51,11 @@ class frontController extends Controller
         }
             return redirect('/')->with('message','success');
     }
+
     public function register(){
         return view('front.register');
     }
+
     public function registerUser(Request $request){
         $data = $this->validate(request(), [
             'name' => 'required|string',
@@ -70,6 +74,7 @@ class frontController extends Controller
         return redirect('/')->with('message', 'تم التعديل بنجاح ');
 
     }
+
     public function UpdateProfile(Request $request){
         $data = $this->validate(request(), [
             'name' => 'required|string',
@@ -306,8 +311,8 @@ class frontController extends Controller
         foreach($Carts as $Cart){
                 $Item = Product::findOrFail($Cart->product_id);
                 $ItemShape = Shape::findOrFail($Cart->shape_id);
-                $OrderDetail = new OrderDetail();
-                $OrderDetail->item_id=$Cart->item_id;
+                $OrderDetail = new OrderDetails();
+                $OrderDetail->product_id=$Cart->product_id;
                 $OrderDetail->shape_id=$Cart->shape_id;
                 $OrderDetail->user_id=Auth::guard('web')->id();
                 $OrderDetail->note=$Cart->note;
@@ -321,8 +326,6 @@ class frontController extends Controller
                 $OrderDetail->save();
                  $total_price[] = $Cart->count *  $ItemShape->price;
         }
-        $total_price[]=Setting::find(1)->tax;
-        $total_price[]=Setting::find(1)->delivery_fees;
         if(session()->get('coupon')){
             $coupon = Coupon::findOrFail(session()->get('coupon'));
             $total = array_sum($total_price) - ((array_sum($total_price) * $coupon->percent )/ 100);
@@ -330,13 +333,13 @@ class frontController extends Controller
             $total = array_sum($total_price);
         }
 
-        $Order->total_price=$total;
+        $Order->total_price=$total +  Setting::find(1)->tax + Setting::find(1)->delivery_fees;
         $Order->save();
 
 
         Cart::where('user_id',Auth::guard('web')->id())->delete();
 
-        return redirect('/MyOrder')->with('Message','success');
+        return redirect('/Profile/Orders')->with('Message','success');
     }
 
     public function profile(){

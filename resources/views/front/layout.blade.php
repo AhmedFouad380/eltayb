@@ -16,12 +16,13 @@
     <meta property="og:image" content="" />
     <!-- Favicon -->
     @if(Session('lang') == 'ar')
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('website/assets_ar/imgs/theme/favicon.svg')}}" />
+        <link rel="shortcut icon" href="{{asset('admin/assets/icon.png')}}" />
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('website/assets_ar/css/plugins/slider-range.css')}}" />
         <link rel="stylesheet" href="{{asset('website/assets_ar/css/main.css?v=4.0')}}" />
     @else
-        <link rel="shortcut icon" type="image/x-icon" href="{{asset('website/assets/imgs/theme/favicon.svg')}}" />
+        <link rel="shortcut icon" href="{{asset('admin/assets/icon.png')}}" />
         <!-- Template CSS -->
         <link rel="stylesheet" href="{{asset('website/assets/css/plugins/slider-range.css')}}" />
         <link rel="stylesheet" href="{{asset('website/assets/css/main.css?v=4.0')}}" />

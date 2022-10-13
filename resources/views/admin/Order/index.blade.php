@@ -64,13 +64,12 @@
                             </th>
 
                             <th class="min-w-125px">رقم الطلب  </th>
-                            <th class="min-w-125px">اسم المطعم </th>
-                            <th class="min-w-125px">رقم جوال المطعم </th>
                             <th class="min-w-125px">اسم العميل </th>
                             <th class="min-w-125px">رقم الجوال العميل</th>
                             <th class="min-w-125px">حالة الطلب </th>
                             <th class="min-w-125px">طريقة الدفع </th>
-                            <th class="min-w-125px"> </th>
+                            <th class="min-w-125px">اجمالي المبلغ  </th>
+                            <th class="min-w-125px"> تفاصيل  الطلب  </th>
                         </tr>
                         <!--end::Table row-->
                         </thead>
@@ -124,15 +123,11 @@
                 ajax: {
                     url: '{{ route('Order.datatable.data') }}',
                     data: {
-                        @if(Request::get('restaurant_id'))
-                        restaurant_id:"{{Request::get('restaurant_id')}}",
-                        @endif
+
                         @if(Request::get('user_id'))
                         user_id:"{{Request::get('user_id')}}",
                         @endif
-                        @if(Request::get('delivery_id'))
-                        delivery_id:"{{Request::get('delivery_id')}}",
-                        @endif
+
                         @if(Request::get('type'))
                         type:"{{Request::get('type')}}",
                         @endif
@@ -141,9 +136,6 @@
                         @endif
                             @if(Request::get('to'))
                         to:"{{Request::get('to')}}",
-                        @endif
-                            @if(isset($restaurant_id))
-                        restaurant_id: {{$restaurant_id}},
                         @endif
                             @if(isset($user_id))
                         user_id:"{{$user_id}}",
@@ -155,12 +147,11 @@
                 columns: [
                     {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
                     {data: 'order_num', name: 'order_num', "searchable": true, "orderable": true},
-                    {data: 'restaurant_name', name: 'restaurant_name', "searchable": true, "orderable": true},
-                    {data: 'restaurant_phone', name: 'restaurant_phone', "searchable": true, "orderable": true},
                     {data: 'user_name', name: 'user_name', "searchable": true, "orderable": true},
                     {data: 'user_phone', name: 'user_phone', "searchable": true, "orderable": true},
                     {data: 'type', name: 'type', "searchable": true, "orderable": true},
                     {data: 'payment_type', name: 'payment_type', "searchable": true, "orderable": true},
+                    {data: 'total_price', name: 'payment_type', "searchable": true, "orderable": true},
                     {data: 'actions', name: 'actions', "searchable": false, "orderable": false},
 
                 ]

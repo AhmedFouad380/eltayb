@@ -402,5 +402,6 @@ return [
     'All Categories'=>'All Categories',
     'BrowseCategories' => ' Categories Browse',
     'New products'=>'New Products',
+    'delivery_fees'=>'Delivery fees',
 
 ];

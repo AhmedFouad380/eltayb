@@ -405,4 +405,5 @@ return [
     'All Categories'=>'كل الاقسام',
     'BrowseCategories' => 'عرض الاقسام',
     'New products'=>'المنتجات الجديدة',
+    'delivery_fees'=>'مصاريف الشحن',
 ];

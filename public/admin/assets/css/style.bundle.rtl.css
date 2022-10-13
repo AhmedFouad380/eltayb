@@ -39733,7 +39733,7 @@ code:not([class*=language-]) {
 .dropdown.show > .form-control.form-control-solid, .form-control.form-control-solid:active, .form-control.form-control-solid.active, .form-control.form-control-solid:focus, .form-control.form-control-solid.focus {
   background-color: #eef3f7;
   border-color: #eef3f7;
-  
+
   color: #5E6278;
   transition: color 0.2s ease, background-color 0.2s ease;
 }
@@ -47640,7 +47640,7 @@ body {
   }
 }
 .header .header-menu-container {
-  background-color: #bf1e2e;
+  background-color: #477b1d;
 }
 .header .btn-nav {
   color: #84859A;
@@ -47744,7 +47744,7 @@ body {
     z-index: 2;
     height: 180px;
     transition: right ease;
-    background-color: #000000;
+    background-color: #FFF;
   }
   .header .header-logo {
     padding: 0;
@@ -47807,7 +47807,7 @@ body {
     height: 70px;
     position: relative;
     z-index: 3;
-    background-color: #1F1E2E;
+    background-color: #FFF;
   }
   .header .separator,
 .header .header-menu-container {

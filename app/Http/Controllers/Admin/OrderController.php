@@ -64,6 +64,15 @@ class OrderController extends Controller
 
                 return $type;
             })
+            ->editColumn('is_payed', function ($row) {
+                if($row->is_payed == 0){
+                    $type = '<div class="badge badge-info fw-bolder"> لم يتم الدفع </div>';
+                }elseif($row->is_payed == 1){
+                    $type = '<div class="badge badge-light-success fw-bolder"> تم الدفع</div>';
+                }
+
+                return $type;
+            })
             ->editColumn('type', function ($row) {
                 if($row->type == 'pending'){
                     $type = '<div class="badge badge-warning fw-bolder"> طلب جديد</div>';
@@ -90,7 +99,7 @@ class OrderController extends Controller
             })
 
 
-            ->rawColumns(['actions', 'checkbox', 'name', 'type','payment_type'])
+            ->rawColumns(['actions', 'checkbox', 'name', 'type','payment_type','is_payed'])
             ->make();
 
     }
