@@ -723,9 +723,12 @@
                 title: "{{__('lang.error')}}",
                 text: "{{ __('lang.PleaseLogin') }}",
                 type: "error",
-                timer: 3000,
-                showConfirmButton: false
-            });
+                timer: 5000,
+                confirmButtonText: '{{__('lang.login')}}',
+            }).then(function (result) {
+                window.location.href = "{{url('login')}}";
+            } );
+
 
         }
     })

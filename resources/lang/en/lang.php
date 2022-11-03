@@ -428,7 +428,7 @@ return [
     'Need help? Call Us'=>'Need help? Call Us',
     'Daily Best Sells'=>'Daily Best Sells',
     'Shop by Categories'=>'Shop by Categories',
-    'PleaseLogin'=>'Please Login First To Buy',
+    'PleaseLogin'=>'You have To login First',
     'error'=> 'Sorry !',
     'Don`t have an account'=>'Don`t have an account',
     'Forgot password'=>'Forgot Password',
