@@ -46,7 +46,7 @@
 
                 <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                     <!--begin::Form-->
-                    <form id="" class="form" enctype="multipart/form-data" method="get" action="{{url('Orders')}}">
+                    <form id="" class="form" enctype="multipart/form-data" method="get" >
                     <!--begin::Scroll-->
                         <div class="d-flex flex-column scroll-y me-n7 pe-7"
                              id="kt_modal_add_user_scroll" data-kt-scroll="true"
@@ -105,13 +105,29 @@
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <select class="form-control" name="is_payed">
-                                    <option value="0">الكل</option>
-                                    <option @if(Request::get('is_payed') == 0) selected @endif  value="cash">لم يتم الدفع</option>
-                                    <option @if(Request::get('is_payed') == 1) selected @endif value="credit">تم الدفع</option>
+                                    <option value="3">الكل</option>
+                                    <option @if(Request::get('is_payed') == 0) selected @endif  value="0">لم يتم الدفع</option>
+                                    <option @if(Request::get('is_payed') == 1) selected @endif value="1">تم الدفع</option>
                                 </select>
                                 <!--end::Input-->
                             </div>
 
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class=" fw-bold fs-6 mb-2"> من تاريخ </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <!--end::Input-->
+                                <input type="date" name="from" class="form-control">
+                            </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class=" fw-bold fs-6 mb-2"> الى تاريخ</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="date" name="to" class="form-control">
+                                <!--end::Input-->
+                            </div>
                             <!--end::Input group-->
 
                         <!--end::Scroll-->

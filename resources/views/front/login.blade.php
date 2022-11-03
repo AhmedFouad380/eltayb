@@ -1,11 +1,14 @@
 ﻿@extends('front.layout')
+@section('title')
+    {{__('lang.login')}}
+@endsection
 @section('content')
         <main class="main pages">
             <div class="page-header breadcrumb-wrap">
                 <div class="container">
                     <div class="breadcrumb">
-                        <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                        <span></span> Pages <span></span> My Account
+                        <a href="{{url('/')}}" rel="nofollow"><i class="fi-rs-home mr-5"></i>{{__('lang.Home')}}</a>
+                        <span></span> {{__('lang.login')}}
                     </div>
                 </div>
             </div>
@@ -21,13 +24,13 @@
                                     <div class="login_wrap widget-taber-content background-white">
                                         <div class="padding_eight_all bg-white">
                                             <div class="heading_s1">
-                                                <h1 class="mb-5">Login</h1>
-                                                <p class="mb-30">Don't have an account? <a href="page-register.html">Create here</a></p>
+                                                <h1 class="mb-5"> {{__('lang.login')}} </h1>
+                                                <p class="mb-30">{{__('lang.Don`t have an account')}}? <a href="{{url('register')}}">{{__('lang.register')}}</a></p>
                                             </div>
                                             <form method="post" action="{{url('login')}}">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <input type="text" required="" name="email" placeholder="email *" />
+                                                    <input type="email" required="" name="email" placeholder="email *" />
                                                 </div>
                                                 <div class="form-group">
                                                     <input required="" type="password" name="password" placeholder="Your password *" />
@@ -37,13 +40,13 @@
                                                     <div class="chek-form">
                                                         <div class="custome-checkbox">
                                                             <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
-                                                            <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
+                                                            <label class="form-check-label" for="exampleCheckbox1"><span>{{__('lang.Remember me')}}</span></label>
                                                         </div>
                                                     </div>
-                                                    <a class="text-muted" href="#">Forgot password?</a>
+                                                    <a class="text-muted" href="#">{{__('lang.Forgot password')}}?</a>
                                                 </div>
                                                 <div class="form-group">
-                                                    <button type="submit" class="btn btn-heading btn-block hover-up" name="login">Log in</button>
+                                                    <button type="submit" class="btn btn-heading btn-block hover-up" name="login">{{__('lang.Log in')}}</button>
                                                 </div>
                                             </form>
                                         </div>

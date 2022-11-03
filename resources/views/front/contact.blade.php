@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-xl-10 col-lg-12 m-auto">
                             <section class="row align-items-end mb-50">
-                                <div class="col-lg-4 mb-lg-0 mb-md-5 mb-sm-5">
+                                <div class="col-lg-6 mb-lg-0 mb-md-5 mb-sm-5">
                                     <h4 class="mb-20 text-brand">{{__('lang.How can help you ?')}}</h4>
                                     <h1 class="mb-30">{{__('lang.Let us know how we can help you')}}</h1>
                                 </div>
@@ -41,65 +41,66 @@
                     <div class="row">
                         <div class="col-xl-10 col-lg-12 m-auto">
                             <section class="mb-50">
-                                <div class="row mb-60">
-                                    <div class="col-md-4 mb-4 mb-md-0">
-                                        <h4 class="mb-15 text-brand">brunch</h4>
-                                        205 North Michigan Avenue, Suite 810<br />
-                                        Chicago, 60601, USA<br />
-                                        <abbr title="Phone">Phone:</abbr> (123) 456-7890<br />
-                                        <abbr title="Email">Email: </abbr>contact@Evara.com<br />
-                                        <a class="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i class="fi-rs-marker mr-5"></i>View map</a>
-                                    </div>
-                                    <div class="col-md-4 mb-4 mb-md-0">
-                                        <h4 class="mb-15 text-brand">Studio</h4>
-                                        205 North Michigan Avenue, Suite 810<br />
-                                        Chicago, 60601, USA<br />
-                                        <abbr title="Phone">Phone:</abbr> (123) 456-7890<br />
-                                        <abbr title="Email">Email: </abbr>contact@Evara.com<br />
-                                        <a class="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i class="fi-rs-marker mr-5"></i>View map</a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h4 class="mb-15 text-brand">Shop</h4>
-                                        205 North Michigan Avenue, Suite 810<br />
-                                        Chicago, 60601, USA<br />
-                                        <abbr title="Phone">Phone:</abbr> (123) 456-7890<br />
-                                        <abbr title="Email">Email: </abbr>contact@Evara.com<br />
-                                        <a class="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i class="fi-rs-marker mr-5"></i>View map</a>
-                                    </div>
-                                </div>
+{{--                                <div class="row mb-60">--}}
+{{--                                    <div class="col-md-4 mb-4 mb-md-0">--}}
+{{--                                        <h4 class="mb-15 text-brand">brunch</h4>--}}
+{{--                                        205 North Michigan Avenue, Suite 810<br />--}}
+{{--                                        Chicago, 60601, USA<br />--}}
+{{--                                        <abbr title="Phone">Phone:</abbr> (123) 456-7890<br />--}}
+{{--                                        <abbr title="Email">Email: </abbr>contact@Evara.com<br />--}}
+{{--                                        <a class="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i class="fi-rs-marker mr-5"></i>View map</a>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-4 mb-4 mb-md-0">--}}
+{{--                                        <h4 class="mb-15 text-brand">Studio</h4>--}}
+{{--                                        205 North Michigan Avenue, Suite 810<br />--}}
+{{--                                        Chicago, 60601, USA<br />--}}
+{{--                                        <abbr title="Phone">Phone:</abbr> (123) 456-7890<br />--}}
+{{--                                        <abbr title="Email">Email: </abbr>contact@Evara.com<br />--}}
+{{--                                        <a class="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i class="fi-rs-marker mr-5"></i>View map</a>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-4">--}}
+{{--                                        <h4 class="mb-15 text-brand">Shop</h4>--}}
+{{--                                        205 North Michigan Avenue, Suite 810<br />--}}
+{{--                                        Chicago, 60601, USA<br />--}}
+{{--                                        <abbr title="Phone">Phone:</abbr> (123) 456-7890<br />--}}
+{{--                                        <abbr title="Email">Email: </abbr>contact@Evara.com<br />--}}
+{{--                                        <a class="btn btn-sm font-weight-bold text-white mt-20 border-radius-5 btn-shadow-brand hover-up"><i class="fi-rs-marker mr-5"></i>View map</a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="row">
                                     <div class="col-xl-8">
                                         <div class="contact-from-area padding-20-row-col">
-                                            <h5 class="text-brand mb-10">Contact form</h5>
-                                            <h2 class="mb-10">Drop Us a Line</h2>
-                                            <p class="text-muted mb-30 font-sm">Your email address will not be published. Required fields are marked *</p>
-                                            <form class="contact-form-style mt-30" id="contact-form" action="#" method="post">
+                                            <h5 class="text-brand mb-10">{{__('lang.Contact form')}}</h5>
+                                            <h2 class="mb-10">{{__('lang.Drop Us a Line')}}</h2>
+{{--                                            <p class="text-muted mb-30 font-sm">Your email address will not be published. Required fields are marked *</p>--}}
+                                            <form class="contact-form-style mt-30" id="contact-form" action="{{url('contactForm')}}" method="post">
+                                                @csrf
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="input-style mb-20">
-                                                            <input name="name" placeholder="First Name" type="text" />
+                                                            <input name="name" placeholder="{{__('lang.name')}}" type="text"   required/>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="input-style mb-20">
-                                                            <input name="email" placeholder="Your Email" type="email" />
+                                                            <input name="email" placeholder="{{__('lang.email')}}" type="email" />
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="input-style mb-20">
-                                                            <input name="telephone" placeholder="Your Phone" type="tel" />
+                                                            <input name="phone" placeholder="{{__('lang.phone')}}" type="tel" />
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
                                                         <div class="input-style mb-20">
-                                                            <input name="subject" placeholder="Subject" type="text" />
+                                                            <input name="subject" placeholder="{{__('lang.subject')}}" type="text" />
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 col-md-12">
                                                         <div class="textarea-style mb-30">
-                                                            <textarea name="message" placeholder="Message"></textarea>
+                                                            <textarea name="message" placeholder="{{__('lang.message')}}"></textarea>
                                                         </div>
-                                                        <button class="submit submit-auto-width" type="submit">Send message</button>
+                                                        <button class="submit submit-auto-width" type="submit">{{__('lang.Send Message')}}</button>
                                                     </div>
                                                 </div>
                                             </form>

@@ -33,11 +33,11 @@
 {{--                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox11" value="">--}}
 {{--                                        <label class="form-check-label" for="exampleCheckbox11"></label>--}}
 {{--                                    </th>--}}
-                                    <th scope="col" colspan="2">Product</th>
-                                    <th scope="col">Unit Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Subtotal</th>
-                                    <th scope="col" class="end">Remove</th>
+                                    <th scope="col" colspan="2">{{__('lang.name')}}</th>
+                                    <th scope="col">{{__('lang.Unit Price')}}</th>
+                                    <th scope="col">{{__('lang.Quantity')}}</th>
+                                    <th scope="col">{{__('lang.Subtotal')}}</th>
+                                    <th scope="col" class="end">{{__('lang.Delete')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,7 +55,13 @@
                                         </div>
                                     </td>
                                     <td class="price" data-title="Price">
-                                        <h4 class="text-body"> {{$Cart->Shape->price}} </h4>
+                                        <h4 class="text-body">
+                                            @if($Cart->Product->is_discount == 'active')
+                                                {{ $Cart->Shape->StorageAvaliable->sell_price - ($Cart->Shape->StorageAvaliable->sell_price * $Cart->Product->discount_value ) / 100 }}
+                                            @else
+                                            {{$Cart->Shape->StorageAvaliable->sell_price}}
+                                                @endif
+                                        </h4>
                                     </td>
                                     <td class="text-center detail-info" data-title="Stock">
                                         <div class="detail-extralink mr-15">
@@ -67,12 +73,22 @@
                                         </div>
                                     </td>
                                     <td class="price" data-title="Price">
-                                        <h4 class="text-brand"> {{$Cart->Shape->price * $Cart->count}} </h4>
+                                        <h4 class="text-brand">
+                                            @if($Cart->Product->is_discount == 'active')
+                                                {{ ( $Cart->Shape->StorageAvaliable->sell_price - ($Cart->Shape->StorageAvaliable->sell_price * $Cart->Product->discount_value ) / 100  ) * $Cart->count}}
+                                            @else
+                                                {{$Cart->Shape->StorageAvaliable->sell_price * $Cart->count}}
+                                            @endif
+                                        </h4>
                                     </td>
                                     <td class="action  text-center"  data-title="Remove"><a  data-id="{{$Cart->id}}" href="#" class=" delete text-body"><i class="fi-rs-trash"></i></a></td>
                                 </tr>
                                 <?php
-                                $total[] = $Cart->Shape->price * $Cart->count
+                                    if($Cart->Product->is_discount == 'active'){
+                                   $total[] =  ( $Cart->Shape->StorageAvaliable->sell_price - ($Cart->Shape->StorageAvaliable->sell_price * $Cart->Product->discount_value ) / 100   ) * $Cart->count;
+                                }else{
+                                   $total[] = $Cart->Shape->StorageAvaliable->sell_price * $Cart->count;
+                                }
                                 ?>
                             @endforeach
                                 </tbody>

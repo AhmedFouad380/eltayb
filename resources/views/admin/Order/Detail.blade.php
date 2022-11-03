@@ -93,6 +93,11 @@
                                     الموقع
                                 </button>
 
+                                <button type="button" class="btn btn-sm btn-light-dark me-3" data-bs-toggle="modal"
+                                        data-bs-target="#kt_modal_add_user2">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    تعديل حالة الطلب
+                                </button>
 
                                 <!--end::Actions-->
                             </div>
@@ -360,6 +365,86 @@
                         </small>
                     </div>
                 </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <div class="modal fade" id="kt_modal_add_user2" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder">تعديل حالة الطلب</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                         data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                         viewBox="0 0 24 24" fill="none">
+                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                              transform="rotate(-45 6 17.3137)" fill="black"/>
+                        <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                              transform="rotate(45 7.41422 6)" fill="black"/>
+                    </svg>
+                </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <form id="" class="form" enctype="multipart/form-data" method="post" action="{{url('update-Order-states')}}">
+                    @csrf
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    <!--begin::Form-->
+                    <!--end::Form-->
+                    <div class="fv-row mb-7">
+                        <!--begin::Label-->
+                        <label class=" fw-bold fs-6 mb-2"> حالة الطلب</label>
+                        <!--end::Label-->
+                        <!--begin::Input-->
+                        <input type="hidden" value="{{$data->id}}" name="id">
+                        <select class="form-control" name="type">
+                            <option @if($data->type == 'pending') selected @endif value="pending">طلب جديد</option>
+                            <option @if($data->type == 'preparing') selected @endif value="preparing">جاري التحضر</option>
+                            <option @if($data->type == 'on_way') selected @endif value="on_way">جاري التوصيل </option>
+                            <option @if($data->type == 'delivered') selected @endif value="delivered">تم التوصيل</option>
+                            <option @if($data->type == 'canceled') selected @endif value="canceled">تم الالغاء</option>
+                        </select>
+                        <!--end::Input-->
+                    </div>
+
+                    <div class="fv-row mb-7">
+                        <!--begin::Label-->
+                        <label class=" fw-bold fs-6 mb-2"> حالة الدفع</label>
+                        <!--end::Label-->
+                        <!--begin::Input-->
+                        <select class="form-control" name="is_payed">
+                            <option @if($data->is_payed == 0) selected @endif  value="0">لم يتم الدفع</option>
+                            <option @if($data->is_payed == 1) selected @endif value="1">تم الدفع</option>
+                        </select>
+                        <!--end::Input-->
+                    </div>
+                    <div class="text-center pt-15">
+                        <button type="reset" class="btn btn-light me-3"
+                                data-bs-dismiss="modal">ألغاء
+                        </button>
+                        <button type="submit" class="btn btn-primary"
+                                data-kt-users-modal-action="submit">
+                            <span class="indicator-label">بحث</span>
+                            <span class="indicator-progress">برجاء الانتظار
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                </div>
+                </form>
                 <!--end::Modal body-->
             </div>
             <!--end::Modal content-->

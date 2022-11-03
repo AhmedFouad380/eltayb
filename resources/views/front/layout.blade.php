@@ -55,16 +55,18 @@
 <!-- Quick view -->
 <header class="header-area header-style-1 header-height-2">
     <div class="mobile-promotion">
-        <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>
+{{--        <span>Grand opening, <strong>up to 15%</strong> off all items. Only <strong>3 days</strong> left</span>--}}
     </div>
     <div class="header-top header-top-ptb-1 d-none d-lg-block">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
+                        @if(Auth::guard('web')->check())
                         <ul>
                             <li><a href="{{url('Profile','Orders')}}">{{__('lang.Order Tracking')}}</a></li>
                         </ul>
+                            @endif
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-4">
@@ -81,19 +83,19 @@
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info header-info-right">
                         <ul>
-                            <li>Need help? Call Us:  <strong class="text-brand"> {{\App\Models\Setting::findOrFail(1)->customer_phone}} </strong></li>
+                            <li>{{__('lang.Need help? Call Us')}}:  <strong class="text-brand"> {{\App\Models\Setting::findOrFail(1)->customer_phone}} </strong></li>
                             @if(Session('lang') == 'en')
                             <li>
                                 <a class="language-dropdown-active" href="#">English <i class="fi-rs-angle-small-down"></i></a>
                                 <ul class="language-dropdown"   >
                                     <li>
-                                        <a href="{{url('lang/ar')}}"><img src="{{asset('website/assets/imgs/theme/ksa.png')}}" alt="" />Arabic</a>
+                                        <a href="{{url('lang/ar')}}"><img src="{{asset('website/assets/imgs/theme/ksa.png')}}" alt="" />العربية</a>
                                     </li>
                                 </ul>
                             </li>
                             @else
                                 <li>
-                                    <a class="language-dropdown-active" href="#">Arabic <i class="fi-rs-angle-small-down"></i></a>
+                                    <a class="language-dropdown-active" href="#">العربية <i class="fi-rs-angle-small-down"></i></a>
                                     <ul class="language-dropdown">
                                         <li>
                                             <a href="{{url('lang/en')}}"><img src="{{asset('website/assets/imgs/theme/flag-us.png')}}" alt="" />English</a>
@@ -410,10 +412,10 @@
                     <div class="position-relative newsletter-inner">
                         <div class="newsletter-content">
                             <h2 class="mb-20">
-                                Stay home & get your daily <br />
-                                needs from our shop
+                                {{__('lang.Stay home & get your daily')}} <br />
+                                {{__('lang.needs from our shop')}}
                             </h2>
-                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">eltayeb Mart</span></p>
+                            <p class="mb-45">{{__('lang.Start Your Daily Shopping with')}} <span class="text-brand">Eltayeb </span></p>
                             <form class="form-subcriber d-flex">
                                 <input type="email" placeholder="Your emaill address" />
                                 <button class="btn" type="submit">Subscribe</button>
@@ -434,8 +436,8 @@
                             <img src="{{asset('website/assets/imgs/theme/icons/icon-1.svg')}}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Best prices & offers</h3>
-                            <p>Orders $50 or more</p>
+                            <h3 class="icon-box-title">{{__('lang.Best prices & offers')}}</h3>
+                            <p>{{__('lang.Orders 5 KWD or more')}}</p>
                         </div>
                     </div>
                 </div>
@@ -445,8 +447,8 @@
                             <img src="{{asset('website/assets/imgs/theme/icons/icon-2.svg')}}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Free delivery</h3>
-                            <p>24/7 amazing services</p>
+                            <h3 class="icon-box-title">{{__('lang.Free delivery')}}</h3>
+                            <p> {{__('lang.amazing services')}}</p>
                         </div>
                     </div>
                 </div>
@@ -456,8 +458,8 @@
                             <img src="{{asset('website/assets/imgs/theme/icons/icon-3.svg')}}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Great daily deal</h3>
-                            <p>When you sign up</p>
+                            <h3 class="icon-box-title">{{__('lang.Great daily deal')}}</h3>
+                            <p>{{__('lang.When you sign up')}}</p>
                         </div>
                     </div>
                 </div>
@@ -467,8 +469,8 @@
                             <img src="{{asset('website/assets/imgs/theme/icons/icon-4.svg')}}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Wide assortment</h3>
-                            <p>Mega Discounts</p>
+                            <h3 class="icon-box-title">{{__('lang.Wide assortment')}}</h3>
+                            <p>{{__('lang.Mega Discounts')}}</p>
                         </div>
                     </div>
                 </div>
@@ -478,8 +480,8 @@
                             <img src="{{asset('website/assets/imgs/theme/icons/icon-5.svg')}}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Easy returns</h3>
-                            <p>Within 30 days</p>
+                            <h3 class="icon-box-title">{{__('lang.Easy returns')}}</h3>
+                            <p>{{__('lang.Within 30 days')}}</p>
                         </div>
                     </div>
                 </div>
@@ -504,27 +506,27 @@
                     <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0">
                         <div class="logo mb-30">
                             <a href="index.html" class="mb-15"><img src="{{\App\Models\Setting::findOrFail(1)->logo}}" alt="{{\App\Models\Setting::findOrFail(1)->name}}" /></a>
-                            <p class="font-lg text-heading">Awesome grocery store website template</p>
+{{--                            <p class="font-lg text-heading">Awesome grocery store website template</p>--}}
                         </div>
                         <ul class="contact-infor">
-                            <li><img src="{{asset('website/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>Address: </strong> <span>{{\App\Models\Setting::findOrFail(1)->address}}</span></li>
-                            <li><img src="{{asset('website/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>Call Us:</strong><span>{{\App\Models\Setting::findOrFail(1)->phone}}</span></li>
-                            <li><img src="{{asset('website/assets/imgs/theme/icons/icon-email-2.svg')}}" alt="" /><strong>Email:</strong><span>{{\App\Models\Setting::findOrFail(1)->email}}</span></li>
-                            <li><img src="{{asset('website/assets/imgs/theme/icons/icon-clock.svg')}}" alt="" /><strong>Hours:</strong><span>{{\App\Models\Setting::findOrFail(1)->hours}}</span></li>
+                            <li><img src="{{asset('website/assets/imgs/theme/icons/icon-location.svg')}}" alt="" /><strong>{{__('lang.address')}}  :  </strong> <span>{{\App\Models\Setting::findOrFail(1)->address}}</span></li>
+                            <li><img src="{{asset('website/assets/imgs/theme/icons/icon-contact.svg')}}" alt="" /><strong>{{__('lang.phone')}}  :  </strong><span>{{\App\Models\Setting::findOrFail(1)->phone}}</span></li>
+                            <li><img src="{{asset('website/assets/imgs/theme/icons/icon-email-2.svg')}}" alt="" /><strong>{{__('lang.email')}}  :  </strong><span>{{\App\Models\Setting::findOrFail(1)->email}}</span></li>
+                            <li><img src="{{asset('website/assets/imgs/theme/icons/icon-clock.svg')}}" alt="" /><strong>  </strong><span>{{\App\Models\Setting::findOrFail(1)->hours}}</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="footer-link-widget col">
-                    <h4 class="widget-title">Pages</h4>
+{{--                    <h4 class="widget-title">{{__('lang.Pages')}}</h4>--}}
                     <ul class="footer-list mb-sm-5 mb-md-0">
                         @foreach(\App\Models\Page::where('is_active','active')->where('position','footer')->get() as $page)
                         <li><a href="{{url('Page',$page->id)}}">{{$page->title}}</a></li>
                         @endforeach
-                        <li><a href="{{url('Contact')}}">Contacts</a></li>
+                        <li><a href="{{url('Contact')}}">{{__('lang.Contacts')}}</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-widget col">
-                    <h4 class="widget-title">Categories</h4>
+{{--                    <h4 class="widget-title">{{__('lang.Categories')}}</h4>--}}
                     <ul class="footer-list mb-sm-5 mb-md-0">
                         @foreach(\App\Models\Category::where('is_active','active')->limit(6)->InRandomOrder()->get() as $page)
                             <li><a href="{{url('Category',$page->id)}}">{{$page->title}}</a></li>
@@ -534,18 +536,18 @@
                 </div>
 
                 <div class="footer-link-widget col">
-                    <h4 class="widget-title">Account</h4>
+{{--                    <h4 class="widget-title">{{__('lang.Account')}}</h4>--}}
                     <ul class="footer-list mb-sm-5 mb-md-0">
                         @if(Auth::guard('web')->check())
                             <li><a href="{{url('Profile')}}">{{__('lang.Profile')}}</a></li>
                             <li><a href="{{url('register')}}">{{__('lang.Register')}}</a></li>
                             <li><a href="#">My Wishlist</a></li>
-                            <li><a href="{{url('contact')}}">Contacts</a></li>
+                            <li><a href="{{url('Contact')}}">{{__('lang.Contacts')}}</a></li>
                         @else
                         <li><a href="{{url('login')}}">{{__('lang.login')}}</a></li>
                         <li><a href="{{url('register')}}">{{__('lang.register')}}</a></li>
                         <li><a href="#">My Wishlist</a></li>
-                        <li><a href="{{url('contact')}}">Contacts</a></li>
+                            <li><a href="{{url('Contact')}}">{{__('lang.Contacts')}}</a></li>
                             @endif
                     </ul>
                 </div>
@@ -556,7 +558,7 @@
 {{--                        <a href="#" class="hover-up mb-sm-2 mb-lg-0"><img class="active" src="{{asset('website/assets/imgs/theme/app-store.jpg')}}" alt="" /></a>--}}
 {{--                        <a href="#" class="hover-up mb-sm-2"><img src="{{asset('website/assets/imgs/theme/google-play.jpg')}}" alt="" /></a>--}}
 {{--                    </div>--}}
-                    <p class="mb-20">Secured Payment Gateways</p>
+                    <p class="mb-20">{{__('lang.Secured Payment Gateways')}}</p>
                     <img class="wow fadeIn animated" src="{{asset('website/assets/imgs/theme/payment-method.png')}}" alt="" />
                 </div>
             </div>
@@ -691,6 +693,12 @@
     $(".add").click(function () {
         var id = $(this).data('id')
         var shape = $(this).data('shape')
+        @if(Auth::guard('web')->check())
+            var check = true;
+            @else
+        var check = false;
+        @endif
+            if(check){
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             type: "GET",
@@ -709,6 +717,17 @@
 
             }
         })
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: "{{__('lang.error')}}",
+                text: "{{ __('lang.PleaseLogin') }}",
+                type: "error",
+                timer: 3000,
+                showConfirmButton: false
+            });
+
+        }
     })
 
 

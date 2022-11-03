@@ -10,7 +10,7 @@ class Slider extends Model
 {
     use HasFactory;
 
-    protected $appends = ['title'];
+    protected $appends = ['title','description'];
 
     public function getTitleAttribute()
     {
@@ -20,6 +20,15 @@ class Slider extends Model
             return $this->en_title;
         }
     }
+    public function getDescriptionAttribute()
+    {
+        if ($locale = App::currentLocale() == "ar") {
+            return $this->ar_description;
+        } else {
+            return $this->en_description;
+        }
+    }
+
     public function getImageAttribute($image)
     {
         if (!empty($image)) {

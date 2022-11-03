@@ -114,7 +114,6 @@ input[type=number]:focus,
   -webkit-box-shadow: none;
           box-shadow: none;
 }
-
 input:focus::-moz-placeholder {
   opacity: 0;
   -webkit-transition: .4s;

@@ -13,11 +13,8 @@
                                 <h1 class="display-2 mb-40">
                                     {{$Slider->title}}
                                 </h1>
-                                <p class="mb-65">Sign up for the daily newsletter</p>
-                                <form class="form-subcriber d-flex">
-                                    <input type="email" placeholder="Your emaill address" />
-                                    <button class="btn" type="submit">Subscribe</button>
-                                </form>
+                                <p class="mb-65"> {{$Slider->description}}</p>
+
                             </div>
                         </div>
                         @endforeach
@@ -87,11 +84,11 @@
                                                         <div class="product-price">
 
                                                             @if($Product->is_discount == 'active')
-                                                            <span>{{ $Product->DefaultShape->price - ( ( $Product->DefaultShape->price * $Product->discount_value ) / 100 ) }} KWD</span>
+                                                            <span>{{ $Product->DefaultShape->StorageAvaliable->sell_price - ( ( $Product->DefaultShape->StorageAvaliable->sell_price * $Product->discount_value ) / 100 ) }} KWD</span>
 
-                                                            <span class="old-price">{{$Product->DefaultShape->price}} KWD</span>
+                                                            <span class="old-price">{{$Product->DefaultShape->l}} KWD</span>
                                                             @else
-                                                                <span>{{$Product->DefaultShape->price}} KWD</span>
+                                                                <span>{{$Product->DefaultShape->StorageAvaliable->sell_price}} KWD</span>
                                                             @endif
                                                         </div>
                                                         <div class="add-cart">
@@ -185,111 +182,107 @@
                     </div>
                 </div>
             </div>
-            <section class="popular-categories section-padding">
+
+                    <section class="popular-categories section-padding">
                 <div class="container">
                     <div class="section-title">
                         <div class="title">
-                            <h3>Shop by Categories</h3>
-                            <a class="show-all" href="shop-grid-right.html">
-                                All Categories
-                                <i class="fi-rs-angle-right"></i>
-                            </a>
+                            <h3>{{__('lang.Shop by Categories')}}</h3>
+{{--                            <a class="show-all" href="shop-grid-right.html">--}}
+{{--                                All Categories--}}
+{{--                                <i class="fi-rs-angle-right"></i>--}}
+{{--                            </a>--}}
                         </div>
                         <div class="slider-arrow slider-arrow-2 flex-right carausel-8-columns-arrow" id="carausel-8-columns-arrows"></div>
                     </div>
                     <div class="carausel-8-columns-cover position-relative">
                         <div class="carausel-8-columns" id="carausel-8-columns">
+                            @foreach(\App\Models\Category::where('is_active','active')->get() as $Cat)
                             <div class="card-1">
                                 <figure class="img-hover-scale overflow-hidden">
-                                    <a href="shop-grid-right.html"><img src="{{asset('website/assets/imgs/theme/icons/category-1.svg')}}" alt="" /></a>
+                                    <a href="{{url('Category',$Cat->id)}}"><img src="{{$Cat->icon}}" alt="" /></a>
                                 </figure>
                                 <h6>
-                                    <a href="shop-grid-right.html">Milks and <br />Dairies</a>
+                                    <a href="{{url('Category',$Cat->id)}}">{{$Cat->title}}</a>
                                 </h6>
                             </div>
-                            <div class="card-1">
-                                <figure class="img-hover-scale overflow-hidden">
-                                    <a href="shop-grid-right.html"><img src="{{asset('website/assets/imgs/theme/icons/category-2.svg')}}" alt="" /></a>
-                                </figure>
-                                <h6>
-                                    <a href="shop-grid-right.html"
-                                        >Wines & <br />
-                                        Alcohol</a
-                                    >
-                                </h6>
-                            </div>
-                            <div class="card-1">
-                                <figure class="img-hover-scale overflow-hidden">
-                                    <a href="shop-grid-right.html"><img src="{{asset('website/assets/imgs/theme/icons/category-3.svg')}}" alt="" /></a>
-                                </figure>
-                                <h6>
-                                    <a href="shop-grid-right.html">Clothing & <br />Beauty</a>
-                                </h6>
-                            </div>
-                            <div class="card-1">
-                                <figure class="img-hover-scale overflow-hidden">
-                                    <a href="shop-grid-right.html"><img src="{{asset('website/assets/imgs/theme/icons/category-4.svg')}}" alt="" /></a>
-                                </figure>
-                                <h6>
-                                    <a href="shop-grid-right.html">Pet Foods <br />& Toy</a>
-                                </h6>
-                            </div>
-                            <div class="card-1">
-                                <figure class="img-hover-scale overflow-hidden">
-                                    <a href="shop-grid-right.html"><img src="{{asset('website/assets/imgs/theme/icons/category-5.svg')}}" alt="" /></a>
-                                </figure>
-                                <h6>
-                                    <a href="shop-grid-right.html">Packaged <br />fast food</a>
-                                </h6>
-                            </div>
-                            <div class="card-1">
-                                <figure class="img-hover-scale overflow-hidden">
-                                    <a href="shop-grid-right.html"><img src="{{asset('website/assets/imgs/theme/icons/category-6.svg')}}" alt="" /></a>
-                                </figure>
-                                <h6>
-                                    <a href="shop-grid-right.html">Baking <br />material</a>
-                                </h6>
-                            </div>
-                            <div class="card-1">
-                                <figure class="img-hover-scale overflow-hidden">
-                                    <a href="shop-grid-right.html"><img src="{{asset('website/assets/imgs/theme/icons/category-7.svg')}}" alt="" /></a>
-                                </figure>
-                                <h6>
-                                    <a href="shop-grid-right.html">Vegetables <br />& tubers</a>
-                                </h6>
-                            </div>
-                            <div class="card-1">
-                                <figure class="img-hover-scale overflow-hidden">
-                                    <a href="shop-grid-right.html"><img src="{{asset('website/assets/imgs/theme/icons/category-8.svg')}}" alt="" /></a>
-                                </figure>
-                                <h6>
-                                    <a href="shop-grid-right.html">Fresh <br />Seafood</a>
-                                </h6>
-                            </div>
-                            <div class="card-1">
-                                <figure class="img-hover-scale overflow-hidden">
-                                    <a href="shop-grid-right.html"><img src="{{asset('website/assets/imgs/theme/icons/category-9.svg')}}" alt="" /></a>
-                                </figure>
-                                <h6>
-                                    <a href="shop-grid-right.html">Noodles <br />Rice</a>
-                                </h6>
-                            </div>
-                            <div class="card-1">
-                                <figure class="img-hover-scale overflow-hidden">
-                                    <a href="shop-grid-right.html"><img src="{{asset('website/assets/imgs/theme/icons/category-10.svg')}}" alt="" /></a>
-                                </figure>
-                                <h6><a href="shop-grid-right.html">Fastfood</a></h6>
-                            </div>
-                            <div class="card-1">
-                                <figure class="img-hover-scale overflow-hidden">
-                                    <a href="shop-grid-right.html"><img src="{{asset('website/assets/imgs/theme/icons/category-11.svg')}}" alt="" /></a>
-                                </figure>
-                                <h6><a href="shop-grid-right.html">Ice cream</a></h6>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
             </section>
+            <div class="container mb-30">
+
+                <div class="row">
+                    <div class="section-title wow animate__animated animate__fadeIn">
+                        <h3 class="">{{__('lang.Daily Best Sells')}}</h3>
+
+                    </div>
+                    <div class="col-lg-12 col-md-12 wow animate__animated animate__fadeIn" data-wow-delay=".4s">
+                        <div class="tab-content" id="myTabContent-1">
+                            <div class="tab-pane fade show active" id="tab-one-1" role="tabpanel" aria-labelledby="tab-one-1">
+                                <div class="carausel-4-columns-cover arrow-center position-relative">
+                                    <div class="slider-arrow slider-arrow-2 carausel-4-columns-arrow" id="carausel-4-columns-arrows"></div>
+                                    <div class="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
+                                        <!--End product Wrap-->
+                                        @foreach(\App\Models\Product::where('is_active','active')->where('is_discount','active')->limit(10)->InRandomOrder()->get() as  $Product)
+
+                                        <div class="product-cart-wrap">
+                                            <div class="product-img-action-wrap">
+                                                <div class="product-img product-img-zoom">
+                                                    <a href="shop-product-right.html">
+                                                        <img class="default-img"  src="{{$Product->image}}" alt="{{$Product->title}}"  />
+{{--                                                        <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="" />--}}
+                                                    </a>
+                                                </div>
+                                                <div class="product-action-1">
+                                                    <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                                    <a aria-label="Quick view" class="action-btn product-view " data-id="{{$Product->id}}"><i class="fi-rs-eye"></i></a>
+                                                </div>
+                                                <div class="product-badges product-badges-position product-badges-mrg">
+                                                    <span class="sale">{{__('lang.sale')}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content-wrap">
+                                                <div class="product-category">
+                                                    <a href="{{url('Category',$Product->category_id)}}">{{$Product->Category->title}}</a>
+                                                </div>
+                                                <h2><a href="{{url('product_details',$Product->id)}}"></a> {{$Product->title}}</h2>
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 80%"></div>
+                                                </div>
+                                                <div class="product-price">
+
+                                                    @if($Product->is_discount == 'active')
+                                                        <span>{{ $Product->DefaultShape->StorageAvaliable->sell_price - ( ( $Product->DefaultShape->StorageAvaliable->sell_price * $Product->discount_value ) / 100 ) }} KWD</span>
+
+                                                        <span class="old-price">{{$Product->DefaultShape->l}} KWD</span>
+                                                    @else
+                                                        <span>{{$Product->DefaultShape->StorageAvaliable->sell_price}} KWD</span>
+                                                    @endif
+                                                </div>
+
+
+                                                <div class="sold mt-15 mb-15">
+                                                    <div class="progress mb-5">
+                                                        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <span class="font-xs text-heading"> </span>
+                                                </div>
+                                                <a  data-id="{{$Product->id}}" data-shape="{{$Product->DefaultShape->id}}" class="add btn w-100 hover-up"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                            </div>
+                                        </div>
+
+                                    @endforeach
+                                        <!--End product Wrap-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!--End category slider-->
             <!--End 4 columns-->
         </main>

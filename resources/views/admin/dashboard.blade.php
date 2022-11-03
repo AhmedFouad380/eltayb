@@ -10,383 +10,389 @@
 @endsection
 
 @section('content')
+
+
     <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
         <!--begin::Post-->
         <div class="content flex-row-fluid" id="kt_content">
             <!--begin::Row-->
-            <div class="row g-5 g-lg-10">
-                <!--begin::Col-->
-                <div class="col-xl-4 mb-xl-10 mb-5">
-                    <!--begin::Mixed Widget 2-->
-                    <div class="card card-xl-stretch mb-5 mb-xl-8">
-                        <!--begin::Header-->
-                        <div class="card-header border-0 bg-primary py-5">
-                            <h3 class="card-title fw-bolder text-white"> اجمالي الايردات </h3>
-                            <div class="card-toolbar">
-                                <!--begin::Menu-->
+            <div class="row g-5 ">
+                <div class="col-xl-3">
+                    <!--begin::Stats Widget 29-->
+                    <div style="background-color:#FFF!important; border-radius: 35px; "
+                         class="card card-custom bgi-no-repeat card-stretch gutter-b"
+                         style="background-position: right top; background-size: 30% auto; background-image: url(assets/media/svg/shapes/abstract-1.svg)">
+                        <!--begin::Body-->
+                        <div class="card-body">
+												<span class="svg-icon svg-icon-2x svg-icon-info">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-opened.svg-->
+														<svg xmlns="http://www.w3.org/2000/svg"
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                             height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<polygon points="0 0 24 0 24 24 0 24"/>
+															<path
+                                                                d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
+                                                                fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+															<path
+                                                                d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
+                                                                fill="#000000" fill-rule="nonzero"/>
+														</g>
+													</svg>
+                                                    <!--end::Svg Icon-->
+												</span>
+                            @inject('Admins','App\Models\Admin')
+                            <span
+                                class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$Admins->count()}}</span>
+                            <span class="font-weight-bold text-muted font-size-sm">مستخدمي النظام </span>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::Stats Widget 29-->
+                </div>
+                <div class="col-xl-3">
+                    <!--begin::Stats Widget 31-->
+                    <div style="background-color:#FFF!important; border-radius: 35px; "
+                         class="card card-custom bg-danger card-stretch gutter-b">
+                        <!--begin::Body-->
+                        <div class="card-body">
+												<span class="svg-icon svg-icon-2x svg-icon-info">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-opened.svg-->
+														<svg xmlns="http://www.w3.org/2000/svg"
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                             height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<polygon points="0 0 24 0 24 24 0 24"/>
+															<path
+                                                                d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z"
+                                                                fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+															<path
+                                                                d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z"
+                                                                fill="#000000" fill-rule="nonzero"/>
+														</g>
+													</svg>
+                                                    <!--end::Svg Icon-->
+												</span>
+                            @inject('User','App\Models\User')
+                            <span
+                                class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$User->count()}}</span>
+                            <span class="font-weight-bold text-muted font-size-sm">العملاء
+                            </span>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::Stats Widget 31-->
+                </div>
 
-                                <!--end::Menu-->
+                <div class="col-xl-3">
+                    <!--begin::Stats Widget 32-->
+                    <div style="background-color:#FFF!important; border-radius: 35px; "
+                         class="card card-custom bg-dark card-stretch gutter-b">
+                        <!--begin::Body-->
+                        <div class="card-body">
+												<span class="svg-icon svg-icon-2x svg-icon-danger">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
+														<svg xmlns="http://www.w3.org/2000/svg"
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                             height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<rect fill="#000000" opacity="0.3" x="13" y="4" width="3"
+                                                                  height="16" rx="1.5"/>
+															<rect fill="#000000" x="8" y="9" width="3" height="11"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="18" y="11" width="3" height="9"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="3" y="13" width="3" height="7"
+                                                                  rx="1.5"/>
+														</g>
+													</svg>
+                                                    <!--end::Svg Icon-->
+												</span>
+                            @inject('Order','App\Models\Order')
+                            <span
+                                class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$Order->where('type','delivered')->count()}}</span>
+                            <span class="font-weight-bold text-muted font-size-sm">الطلبات المكتملة</span>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::Stats Widget 32-->
+                </div>
+                <div class="col-xl-3">
+                    <!--begin::Stats Widget 32-->
+                    <div style="background-color:#FFF!important; border-radius: 35px; "
+                         class="card card-custom bg-dark card-stretch gutter-b">
+                        <!--begin::Body-->
+                        <div class="card-body">
+												<span class="svg-icon svg-icon-2x svg-icon-danger">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
+														<svg xmlns="http://www.w3.org/2000/svg"
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                             height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<rect fill="#000000" opacity="0.3" x="13" y="4" width="3"
+                                                                  height="16" rx="1.5"/>
+															<rect fill="#000000" x="8" y="9" width="3" height="11"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="18" y="11" width="3" height="9"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="3" y="13" width="3" height="7"
+                                                                  rx="1.5"/>
+														</g>
+													</svg>
+                                                    <!--end::Svg Icon-->
+												</span>
+                            <span
+                                class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$Order->where('type','!=','canceled')->where('type','!=','delivered')->count()}}</span>
+                            <span class="font-weight-bold text-muted font-size-sm">الطلابات الغير مكتملة </span>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::Stats Widget 32-->
+                </div>
+            </div>
+            <div class="row g-5 ">
+                <div class="col-xl-3">
+                    <!--begin::Stats Widget 25-->
+                    <div style="background-color:#FFF!important; border-radius: 35px; "
+                         class="card card-custom bg-light-success card-stretch gutter-b">
+                        <!--begin::Body-->
+                        <div class="card-body">
+												<span class="svg-icon svg-icon-2x svg-icon-success">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-opened.svg-->
+														<svg xmlns="http://www.w3.org/2000/svg"
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                             height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<rect fill="#000000" opacity="0.3" x="13" y="4" width="3"
+                                                                  height="16" rx="1.5"/>
+															<rect fill="#000000" x="8" y="9" width="3" height="11"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="18" y="11" width="3" height="9"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="3" y="13" width="3" height="7"
+                                                                  rx="1.5"/>
+														</g>
+													</svg>
+                                                    <!--end::Svg Icon-->
+												</span>
+                            @inject('MainCategory','App\Models\Category')
+                            <span
+                                class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$MainCategory->count()}}</span>
+                            <span
+                                class="font-weight-bold text-muted font-size-sm">الاقسام</span>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::Stats Widget 25-->
+                </div>
+                <div class="col-xl-3">
+                    <!--begin::Stats Widget 27-->
+                    <div style="background-color:#FFF!important; border-radius: 35px; "
+                         class="card card-custom bg-light-info card-stretch gutter-b">
+                        <!--begin::Body-->
+                        <div class="card-body">
+														<span class="svg-icon svg-icon-2x svg-icon-success">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-opened.svg-->
+														<svg xmlns="http://www.w3.org/2000/svg"
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                             height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<rect fill="#000000" opacity="0.3" x="13" y="4" width="3"
+                                                                  height="16" rx="1.5"/>
+															<rect fill="#000000" x="8" y="9" width="3" height="11"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="18" y="11" width="3" height="9"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="3" y="13" width="3" height="7"
+                                                                  rx="1.5"/>
+														</g>
+													</svg>
+                                                            <!--end::Svg Icon-->
+												</span>
+                            @inject('Product','App\Models\Product')
+                            <span
+                                class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$Product->count()}}</span>
+                            <span class="font-weight-bold text-muted font-size-sm">المنتجات</span>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::Stats Widget 27-->
+                </div>
+                <div class="col-xl-3">
+                    <!--begin::Stats Widget 26-->
+                    <div style="background-color:#FFF!important; border-radius: 35px; "
+                         class="card card-custom bg-light-danger card-stretch gutter-b">
+                        <!--begin::ody-->
+                        <div class="card-body">
+												<span class="svg-icon svg-icon-2x svg-icon-danger">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group.svg-->
+														<svg xmlns="http://www.w3.org/2000/svg"
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                             height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<rect fill="#000000" opacity="0.3" x="13" y="4" width="3"
+                                                                  height="16" rx="1.5"/>
+															<rect fill="#000000" x="8" y="9" width="3" height="11"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="18" y="11" width="3" height="9"
+                                                                  rx="1.5"/>
+															<rect fill="#000000" x="3" y="13" width="3" height="7"
+                                                                  rx="1.5"/>
+														</g>
+													</svg>
+                                                    <!--end::Svg Icon-->
+												</span>
+                            @inject('SubCategory','App\Models\Coupon')
+                            <span
+                                class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{$SubCategory->where('is_active','active')->count()}}</span>
+                            <span class="font-weight-bold text-muted font-size-sm">اكواد الخصم المفعله</span>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::Stats Widget 26-->
+                </div>
+
+                <div class="col-xl-3">
+                    <!--begin::Stats Widget 28-->
+                    <div style="background-color:#FFF!important; border-radius: 35px; "
+                         class="card card-custom bg-light-warning card-stretch gutter-b">
+                        <!--begin::Body-->
+                        <div class="card-body">
+												<span class="svg-icon svg-icon-2x svg-icon-warning">
+													<!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Group-chat.svg-->
+													<svg xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                         height="24px" viewBox="0 0 24 24" version="1.1">
+														<g stroke="none" stroke-width="1" fill="none"
+                                                           fill-rule="evenodd">
+															<rect x="0" y="0" width="24" height="24"/>
+															<path
+                                                                d="M16,15.6315789 L16,12 C16,10.3431458 14.6568542,9 13,9 L6.16183229,9 L6.16183229,5.52631579 C6.16183229,4.13107011 7.29290239,3 8.68814808,3 L20.4776218,3 C21.8728674,3 23.0039375,4.13107011 23.0039375,5.52631579 L23.0039375,13.1052632 L23.0206157,17.786793 C23.0215995,18.0629336 22.7985408,18.2875874 22.5224001,18.2885711 C22.3891754,18.2890457 22.2612702,18.2363324 22.1670655,18.1421277 L19.6565168,15.6315789 L16,15.6315789 Z"
+                                                                fill="#000000"/>
+															<path
+                                                                d="M1.98505595,18 L1.98505595,13 C1.98505595,11.8954305 2.88048645,11 3.98505595,11 L11.9850559,11 C13.0896254,11 13.9850559,11.8954305 13.9850559,13 L13.9850559,18 C13.9850559,19.1045695 13.0896254,20 11.9850559,20 L4.10078614,20 L2.85693427,21.1905292 C2.65744295,21.3814685 2.34093638,21.3745358 2.14999706,21.1750444 C2.06092565,21.0819836 2.01120804,20.958136 2.01120804,20.8293182 L2.01120804,18.32426 C1.99400175,18.2187196 1.98505595,18.1104045 1.98505595,18 Z M6.5,14 C6.22385763,14 6,14.2238576 6,14.5 C6,14.7761424 6.22385763,15 6.5,15 L11.5,15 C11.7761424,15 12,14.7761424 12,14.5 C12,14.2238576 11.7761424,14 11.5,14 L6.5,14 Z M9.5,16 C9.22385763,16 9,16.2238576 9,16.5 C9,16.7761424 9.22385763,17 9.5,17 L11.5,17 C11.7761424,17 12,16.7761424 12,16.5 C12,16.2238576 11.7761424,16 11.5,16 L9.5,16 Z"
+                                                                fill="#000000" opacity="0.3"/>
+														</g>
+													</svg>
+                                                    <!--end::Svg Icon-->
+												</span>
+                            <span
+                                class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">{{\App\Models\ContactForm::where('is_read',0)->count()}}</span>
+                            <span class="font-weight-bold text-muted font-size-sm">الرسائل الجديدة</span>
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::Stat: Widget 28-->
+                </div>
+            </div>
+
+
+            <div class="row g-5 g-xl-8">
+                <div class="col-xl-12">
+                    <!--begin::Charts Widget 3-->
+                    <div class="card card-xl-stretch mb-xl-8">
+                        <!--begin::Header-->
+                        <div class="card-header border-0 pt-5">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bolder fs-3 mb-1">الطلبات</span>
+                                <span class="text-muted fw-bold fs-7">                            الاجمالي :
+                        {{$Order->whereYear('created_at',date('Y'))->count()}}</span>
+                            </h3>
+                            <!--begin::Toolbar-->
+                            <div class="card-toolbar" data-kt-buttons="true">
+{{--                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="kt_charts_widget_3_year_btn">Year</a>--}}
+{{--                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="kt_charts_widget_3_month_btn">Month</a>--}}
+{{--                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_3_week_btn">Week</a>--}}
                             </div>
+                            <!--end::Toolbar-->
                         </div>
                         <!--end::Header-->
                         <!--begin::Body-->
-                        <div class="card-body p-0">
+                        <div class="card-body">
                             <!--begin::Chart-->
-                            <div class="mixed-widget-2-chart card-rounded-bottom bg-primary" data-kt-color="primary"
-                                 style="height: 200px"></div>
+                            <div id="kt_charts_widget_3_chart" style="height: 350px"></div>
                             <!--end::Chart-->
-                            <!--begin::Stats-->
-                            <div class="card-p mt-n20 position-relative">
-                                <!--begin::Row-->
-                                <div class="row g-0">
-                                    <!--begin::Col-->
-                                    <div class="col bg-light-warning px-6 py-8 rounded-2 me-7 mb-7">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen032.svg-->
-                                        <span class="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none">
-                                            <rect x="8" y="9" width="3" height="10" rx="1.5" fill="black"/>
-                                            <rect opacity="0.5" x="13" y="5" width="3" height="14" rx="1.5"
-                                                  fill="black"/>
-                                            <rect x="18" y="11" width="3" height="8" rx="1.5" fill="black"/>
-                                            <rect x="3" y="13" width="3" height="6" rx="1.5" fill="black"/>
-                                        </svg>
-                                    </span>
-                                        <!--end::Svg Icon-->
-                                        <a href="#" class="text-warning fw-bold fs-6">الطلبات الجديده</a>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col bg-light-primary px-6 py-8 rounded-2 mb-7">
-                                        <!--begin::Svg Icon | path: icons/duotune/finance/fin006.svg-->
-                                        <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none">
-                                            <rect x="8" y="9" width="3" height="10" rx="1.5" fill="black"/>
-                                            <rect opacity="0.5" x="13" y="5" width="3" height="14" rx="1.5"
-                                                  fill="black"/>
-                                            <rect x="18" y="11" width="3" height="8" rx="1.5" fill="black"/>
-                                            <rect x="3" y="13" width="3" height="6" rx="1.5" fill="black"/>
-                                        </svg>
-                                    </span>
-                                        <!--end::Svg Icon-->
-                                        <a href="#" class="text-primary fw-bold fs-6">الطلبات المنهية</a>
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
-                                <!--begin::Row-->
-                                <div class="row g-0">
-                                    <!--begin::Col-->
-                                    <div class="col bg-light-danger px-6 py-8 rounded-2 me-7">
-                                        <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
-                                        <span class="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none">
-                                            <path opacity="0.3"
-                                                  d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
-                                                  fill="black"/>
-                                            <path
-                                                d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
-                                                fill="black"/>
-                                        </svg>
-                                    </span>
-                                        <!--end::Svg Icon-->
-                                        <a href="#" class="text-danger fw-bold fs-6 mt-2">الطلبات الملغية </a>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col bg-light-success px-6 py-8 rounded-2">
-                                        <!--begin::Svg Icon | path: icons/duotune/communication/com010.svg-->
-                                        <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                               viewBox="0 0 24 24" fill="none">
-                                            <path opacity="0.3"
-                                                  d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
-                                                  fill="black"/>
-                                            <path
-                                                d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
-                                                fill="black"/>
-                                        </svg>
-                                    </span>
-                                        <!--end::Svg Icon-->
-                                        <a href="#" class="text-success fw-bold fs-6 mt-2">شكاوي العملاء </a>
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
-                            </div>
-                            <!--end::Stats-->
                         </div>
                         <!--end::Body-->
                     </div>
-                    <!--end::Mixed Widget 2-->
+                    <!--end::Charts Widget 3-->
                 </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-xl-4 mb-5">
-                    <!--begin::Row-->
-                    <div class="row g-5 g-lg-10">
-                        <!--begin::Col-->
-                        <div class="col-lg-6 mb-5 mb-lg-10">
-                            <!--begin::Tiles Widget 5-->
-                            <a href="#" class="card bg-primary h-150px">
-                                <!--begin::Body-->
-                                <div class="card-body d-flex flex-column justify-content-between">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                    <span class="svg-icon svg-icon-white svg-icon-2hx ms-n1 flex-grow-1">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M6 8.725C6 8.125 6.4 7.725 7 7.725H14L18 11.725V12.925L22 9.725L12.6 2.225C12.2 1.925 11.7 1.925 11.4 2.225L2 9.725L6 12.925V8.725Z"
-                                                fill="black"/>
-                                            <path opacity="0.3"
-                                                  d="M22 9.72498V20.725C22 21.325 21.6 21.725 21 21.725H3C2.4 21.725 2 21.325 2 20.725V9.72498L11.4 17.225C11.8 17.525 12.3 17.525 12.6 17.225L22 9.72498ZM15 11.725H18L14 7.72498V10.725C14 11.325 14.4 11.725 15 11.725Z"
-                                                  fill="black"/>
-                                        </svg>
-                                </span>
-                                    <!--end::Svg Icon-->
-                                    <div class="d-flex flex-column">
-                                        <div class="text-white fw-bolder fs-1 mb-0 mt-5"> 100 </div>
-                                        <div class="text-white fw-bold fs-6">المطاهم الجدد</div>
-                                    </div>
-                                </div>
-                                <!--end::Body-->
-                            </a>
-                            <!--end::Tiles Widget 5-->
-                        </div>
-                        <div class="col-lg-6 mb-5 mb-lg-10">
-                            <!--begin::Tiles Widget 5-->
-                            <a href="{{url('Requests')}}" class="card bg-dark h-150px">
-                                <!--begin::Body-->
-                                <div class="card-body d-flex flex-column justify-content-between">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                    <span class="svg-icon svg-icon-white svg-icon-2hx ms-n1 flex-grow-1">
-
-                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                      width="24" height="24"
-                                                                                      viewBox="0 0 24 24" fill="none">
-                                            <path opacity="0.3"
-                                                  d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
-                                                  fill="black"/>
-                                            <path
-                                                d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
-                                                fill="black"/>
-                                        </svg>
-
-                                </span>
-                                    <!--end::Svg Icon-->
-                                    <div class="d-flex flex-column">
-                                        @inject('Driver','App\Models\User')
-                                        <div
-                                            class="text-white fw-bolder fs-1 mb-0 mt-5">{{$Driver->count()}}</div>
-                                        <div class="text-white  fs-6" style="font-size: 12px!important">العملاء
-                                            الجدد
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end::Body-->
-                            </a>
-                            <!--end::Tiles Widget 5-->
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <!--end::Col-->
-                    </div>
-                    <div class="row g-5 g-lg-10">
-                        <!--begin::Col-->
-                        <div class="col-lg-6 mb-5 mb-lg-10">
-                            <!--begin::Tiles Widget 5-->
-                            <a href="#" class="card bg-danger  h-150px">
-                                <!--begin::Body-->
-                                <div class="card-body d-flex flex-column justify-content-between">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                    <span class="svg-icon svg-icon-white svg-icon-2hx ms-n1 flex-grow-1">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none">
-                                            <rect x="8" y="9" width="3" height="10" rx="1.5" fill="black"/>
-                                            <rect opacity="0.5" x="13" y="5" width="3" height="14" rx="1.5"
-                                                  fill="black"/>
-                                            <rect x="18" y="11" width="3" height="8" rx="1.5" fill="black"/>
-                                            <rect x="3" y="13" width="3" height="6" rx="1.5" fill="black"/>
-                                        </svg>
-                                </span>
-                                    <!--end::Svg Icon-->
-                                    <div class="d-flex flex-column">
-                                        <div
-                                            class="text-white fw-bolder fs-1 mb-0 mt-5">1</div>
-                                        <div class="text-white  fs-6" style="font-size: 12px!important">المنجات الاكثر طلب </div>
-                                    </div>
-                                </div>
-                                <!--end::Body-->
-                            </a>
-                            <!--end::Tiles Widget 5-->
-                        </div>
-                        <div class="col-lg-6 mb-5 mb-lg-10">
-                            <!--begin::Tiles Widget 5-->
-                            <a href="#" class="card bg-danger  h-150px">
-                                <!--begin::Body-->
-                                <div class="card-body d-flex flex-column justify-content-between">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                    <span class="svg-icon svg-icon-white svg-icon-2hx ms-n1 flex-grow-1">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none">
-                                            <rect x="8" y="9" width="3" height="10" rx="1.5" fill="black"/>
-                                            <rect opacity="0.5" x="13" y="5" width="3" height="14" rx="1.5"
-                                                  fill="black"/>
-                                            <rect x="18" y="11" width="3" height="8" rx="1.5" fill="black"/>
-                                            <rect x="3" y="13" width="3" height="6" rx="1.5" fill="black"/>
-                                        </svg>
-                                </span>
-                                    <!--end::Svg Icon-->
-                                    <div class="d-flex flex-column">
-                                        <div
-                                            class="text-white fw-bolder fs-1 mb-0 mt-5"></div>
-                                        <div class="text-white  fs-6" style="font-size: 12px!important">الكوبونات</div>
-                                    </div>
-                                </div>
-                                <!--end::Body-->
-                            </a>
-                            <!--end::Tiles Widget 5-->
-                        </div>
-
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <!--end::Col-->
-                    </div>
-                    <!--end::Row-->
-                    <!--begin::Row-->
-                    <!--end::Row-->
-                    <!--begin::Engage widget 4-->
-
-                    <!--end::Engage widget 4-->
-                </div>
-                <!--end::Col-->
-                <!--begin::Col-->
-                <div class="col-xl-4 mb-xl-10 mb-5">
-                    <!--begin::Mixed Widget 1-->
-                    <div class="card h-md-100">
-                        <!--begin::Body-->
-                        <div class="card-body p-0">
-                            <!--begin::Header-->
-                            <div class="px-9 pt-7 card-rounded h-275px w-100 bg-info">
-                                <!--begin::Heading-->
-                                <div class="d-flex flex-stack">
-                                    <div class="card-toolbar">
-                                        <!--begin::Menu-->
-                                        <button type="button"
-                                                class="btn btn-sm btn-light btn-color-primary btn-active-light-primary"
-                                                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
-                                         viewBox="0 0 24 24">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000"/>
-                                            <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000"
-                                                  opacity="0.3"/>
-                                            <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000"
-                                                  opacity="0.3"/>
-                                            <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000"
-                                                  opacity="0.3"/>
-                                        </g>
-                                    </svg>
-                                </span>
-                                            <!--end::Svg Icon-->
-                                        </button>
-                                        <!--begin::Menu 1-->
-                                        <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px"
-                                             data-kt-menu="true" id="kt_menu_61a08bf50cf89">
-                                            <!--begin::Header-->
-                                            <form>
-                                                <div class="px-7 py-5">
-                                                </div>
-                                                <!--end::Header-->
-                                                <!--begin::Menu separator-->
-                                                <div class="separator border-gray-200"></div>
-                                                <!--end::Menu separator-->
-                                                <!--begin::Form-->
-                                                <div class="px-7 py-5">
-                                                    <!--begin::Input group-->
-                                                    <div class="mb-10">
-                                                        <!--begin::Label-->
-                                                        <label class="form-label fw-bold">من </label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Input-->
-                                                        <div>
-                                                            <input type="date" id="to" class="form-control">
-                                                        </div>
-                                                        <!--end::Input-->
-                                                    </div>
-                                                    <div class="mb-10">
-                                                        <!--begin::Label-->
-                                                        <label class="form-label fw-bold">الى </label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Input-->
-                                                        <div>
-                                                            <input type="date" id="from" class="form-control">
-                                                        </div>
-                                                        <!--end::Input-->
-                                                    </div>
-
-                                                    <!--end::Input group-->
-                                                    <!--begin::Actions-->
-                                                    <div class="d-flex justify-content-end">
-                                                        <button type="reset"
-                                                                class="btn btn-sm btn-light btn-active-light-primary me-2"
-                                                                data-kt-menu-dismiss="true">الغاء
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-primary"
-                                                                id="getMoney" data-kt-menu-dismiss="true">بحث
-                                                        </button>
-                                                    </div>
-                                                    <!--end::Actions-->
-                                                </div>
-                                            </form>
-
-                                            <!--end::Form-->
-                                        </div>
-                                        <!--end::Menu 1-->
-                                        <!--end::Menu-->
-                                    </div>
-
-                                </div>
-                                <!--end::Heading-->
-                                <!--begin::Balance-->
-                                <div class="d-flex text-center flex-column text-white pt-8">
-                                    <span class="fw-bold "
-                                          style="font-size: 20px; ">اجمالي دخل التطبيق حسب الطلبات  </span>
-                                </div>
-
-                                <!--end::Balance-->
-                            </div>
-                            <!--end::Header-->
-                            <!--begin::Items-->
-                            <div id="MoneyData"
-                                 class="bg-body shadow-sm card-rounded mx-9 mb-9 px-6 py-9 position-relative z-index-1"
-                                 style="margin-top: -100px">
-                                <!--begin::Item-->
-                                <div class="d-flex text-center flex-column text-white pt-8">
-                                    <span class="fw-bold fs-7" style="color:#000">اجمالي دخل التطبيق  </span>
-                                    <span class="fw-bolder fs-2x pt-1"
-                                          style="color:#000"> 100 </span>
-                                </div>
-
-                                <!--end::Item-->
-                            </div>
-                            <!--end::Items-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Mixed Widget 1-->
-                </div>
-                <!--end::Col-->
             </div>
+
             <!--end::Row-->
 
+            <div class="row g-5 g-xl-8">
+                <div class="col-xl-12">
+                    <!--begin::Charts Widget 3-->
+                    <div class="card card-xl-stretch mb-xl-8">
+                        <!--begin::Header-->
+                        <div class="card-header border-0 pt-5">
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="card-label fw-bolder fs-3 mb-1"> الطلبات الجديدة</span>
+                                <span class="text-muted fw-bold fs-7">                            الاجمالي :
+                        {{$Order->whereDate('created_at',date('Y-m-d'))->count()}}</span>
+                            </h3>
+                            <!--begin::Toolbar-->
+                            <div class="card-toolbar" data-kt-buttons="true">
+                                {{--                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="kt_charts_widget_3_year_btn">Year</a>--}}
+                                {{--                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="kt_charts_widget_3_month_btn">Month</a>--}}
+                                {{--                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_3_week_btn">Week</a>--}}
+                            </div>
+                            <!--end::Toolbar-->
+                        </div>
+                        <!--end::Header-->
+                        <!--begin::Body-->
+                        <div class="card-body">
+                            <!--begin::Chart-->
+                            <!--end::Chart-->
+                            <table class="table align-middle table-row-dashed fs-4 gy-5" id="users_table">
+                                <!--begin::Table head-->
+                                <thead>
+                                <!--begin::Table row-->
+
+                                <tr class="text-start text-muted fw-bolder fs-5 text-uppercase gs-0">
+                                    <th class="w-10px pe-2">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                            <input class="form-check-input" type="checkbox" data-kt-check="true"
+                                                   data-kt-check-target="#users_table .form-check-input" value="1"/>
+                                        </div>
+                                    </th>
+
+                                    <th class="min-w-125px">رقم الطلب  </th>
+                                    <th class="min-w-125px">اسم العميل </th>
+                                    <th class="min-w-125px">رقم الجوال العميل</th>
+                                    <th class="min-w-125px">حالة الطلب </th>
+                                    <th class="min-w-125px">طريقة الدفع </th>
+                                    <th class="min-w-125px">اجمالي المبلغ  </th>
+                                    <th class="min-w-125px"> تفاصيل  الطلب  </th>
+                                </tr>
+                                <!--end::Table row-->
+                                </thead>
+                                <!--end::Table head-->
+                                <!--begin::Table body-->
+
+
+                                <!--end::Table body-->
+                            </table>
+
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                    <!--end::Charts Widget 3-->
+                </div>
+            </div>
             <!--begin::Row-->
             <!--end::Row-->
 
@@ -396,83 +402,15 @@
         </div>
         <!--end::Post-->
     </div>
-    <div class="modal fade" id="kt_modal_new_card" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header">
-                    <!--begin::Modal title-->
-                    <h2>اضافة حدث</h2>
-                    <!--end::Modal title-->
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                        <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none">
-                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
-                                          transform="rotate(-45 6 17.3137)" fill="black"/>
-                                    <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                          transform="rotate(45 7.41422 6)" fill="black"/>
-                                </svg>
-                            </span>
-                        <!--end::Svg Icon-->
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--end::Modal header-->
-                <!--begin::Modal body-->
-                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                    <!--begin::Form-->
-                    <form action="{{url('store_event')}}" method="post">
-
-                        <div class="modal-body">
-                            @csrf
-                            <div class="form-group">
-                                <label> العنوان</label>
-                                <input type="text" name="title" class="form-control">
-
-                            </div>
-                            <div class="form-group">
-                                <label> التاريخ</label>
-                                <input type="date" name="date" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label> الوقت</label>
-                                <input type="time" name="time" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label> الوصف</label>
-                                <textarea name="description" class="form-control" rows="6"></textarea>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary"
-                                    data-dismiss="modal">الغاء
-                            </button>
-                            <button type="submit" class="btn btn-primary">حفظ</button>
-                        </div>
-                    </form>
-                    <!--end::Form-->
-                </div>
-                [
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
 
 
 @endsection
 
 @section('script')
     <script src="{{asset('admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js')}}"></script>
-    <script src="{{asset('admin/assets/js/custom/widgets.js')}}"></script>
+{{--    <script src="{{asset('admin/assets/js/custom/widgets.js')}}"></script>--}}
     <script src="{{asset('admin/assets/js/custom/apps/chat/chat.js')}}"></script>
+{{--    <script src="{{asset('admin/assets/js/custom/documentation/charts/apexcharts.js')}}"></script>--}}
 
     <script src="{{asset('admin/assets/js/custom/modals/create-app.js')}}"></script>
     <script src="{{asset('admin/assets/js/custom/modals/upgrade-plan.js')}}"></script>
@@ -484,6 +422,56 @@
     <script src="{{asset('admin/assets/js/custom/modals/create-project/files.js')}}"></script>
     <script src="{{asset('admin/assets/js/custom/modals/create-project/complete.js')}}"></script>
     <script src="{{asset('admin/assets/js/custom/modals/create-project/main.js')}}"></script>
+    <script src="{{ URL::asset('admin/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var table = $('#users_table').DataTable({
+                processing: true,
+                serverSide: true,
+                autoWidth: false,
+                responsive: true,
+                aaSorting: [],
+                "dom": "<'card-header border-0 p-0 pt-6'<'card-title' <'d-flex align-items-center position-relative my-1'f> r> <'card-toolbar' <'d-flex justify-content-end add_button'B> r>>  <'row'l r> <''t><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
+                lengthMenu: [[10, 25, 50, 100, 250, -1], [10, 25, 50, 100, 250, "الكل"]],
+                "language": {
+                    search: '<i class="fa fa-eye" aria-hidden="true"></i>',
+                    searchPlaceholder: 'بحث سريع',
+                    "url": "{{ url('admin/assets/ar.json') }}"
+                },
+                buttons: [
+                    {extend: 'print', className: 'btn btn-light-primary me-3', text: '<i class="bi bi-printer-fill fs-2x"></i>'},
+                    // {extend: 'pdf', className: 'btn btn-raised btn-danger', text: 'PDF'},
+                    {extend: 'excel', className: 'btn btn-light-primary me-3', text: '<i class="bi bi-file-earmark-spreadsheet-fill fs-2x"></i>'},
+                    // {extend: 'colvis', className: 'btn secondary', text: 'إظهار / إخفاء الأعمدة '}
+                ],
+                ajax: {
+                    url: '{{ route('Order.datatable.data') }}',
+                    data: {
+                        to:"{{date('Y-m-d')}}"
+
+                    }
+                },
+                columns: [
+                    {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
+                    {data: 'order_num', name: 'order_num', "searchable": true, "orderable": true},
+                    {data: 'user_name', name: 'user_name', "searchable": true, "orderable": true},
+                    {data: 'user_phone', name: 'user_phone', "searchable": true, "orderable": true},
+                    {data: 'type', name: 'type', "searchable": true, "orderable": true},
+                    {data: 'payment_type', name: 'payment_type', "searchable": true, "orderable": true},
+                    {data: 'total_price', name: 'payment_type', "searchable": true, "orderable": true},
+                    {data: 'actions', name: 'actions', "searchable": false, "orderable": false},
+
+                ]
+            });
+            {{--$.ajax({--}}
+            {{--    url: "{{ URL::to('/add-button-Order')}}",--}}
+            {{--    success: function (data) { $('.add_button').append(data); },--}}
+            {{--    dataType: 'html'--}}
+            {{--});--}}
+        });
+    </script>
+
     <script>
 
         $("#getMoney").click(function () {
@@ -576,5 +564,69 @@
 
     @endif
 
+    <script>
+        (function () {
+            var e = document.getElementById("kt_charts_widget_3_chart"),
+                t = (parseInt(KTUtil.css(e, "height")), KTUtil.getCssVariableValue("--bs-gray-500")),
+                a = KTUtil.getCssVariableValue("--bs-gray-200"),
+                o = KTUtil.getCssVariableValue("--bs-info"),
+                s = KTUtil.getCssVariableValue("--bs-light-info");
+            e &&
+            new ApexCharts(e, {
+                series: [{
+                    name: 'الطلبات المكتملة',
+                    data: [
+                        @inject('uses','App\Models\Order')
+                            @for($x=1; $x<=12; $x++)
+                            "{{$uses->whereYear('created_at',date('Y'))->where('type','Delivered')->whereMonth('created_at','=',$x)->count()}}",
+                        @endfor
+                    ],
+
+                },
+                    {
+                        name: 'الطلابات الغير مكتملة ',
+                        data: [
+                            @inject('uses','App\Models\Order')
+                                @for($x=1; $x<=12; $x++)
+                                "{{$uses->whereYear('created_at',date('Y'))->where('type','!=','Delivered')->whereMonth('created_at','=',$x)->count()}}",
+                            @endfor
+                        ]
+                    }
+                ],
+                chart: { fontFamily: "inherit", type: "area", height: 350, toolbar: { show: !1 } },
+                plotOptions: {},
+                legend: { show: !1 },
+                dataLabels: { enabled: !1 },
+                fill: { type: "solid", opacity: 1 },
+                stroke: { curve: "smooth", show: !0, width: 3, colors: [s,o] },
+                xaxis: {
+                    categories: [
+                        @for($x=1; $x<=12; $x++)
+                            "{{date('Y')}}-{{$x}}-1",
+                        @endfor
+                    ],
+                    axisBorder: { show: !1 },
+                    axisTicks: { show: !1 },
+                    labels: { style: { colors: t, fontSize: "12px" } },
+                    crosshairs: { position: "front", stroke: { color: o, width: 1, dashArray: 3 } },
+                    tooltip: { enabled: !0, formatter: void 0, offsetY: 0, style: { fontSize: "12px" } },
+                },
+                yaxis: { labels: { style: { colors: t, fontSize: "12px" } } },
+                states: { normal: { filter: { type: "none", value: 0 } }, hover: { filter: { type: "none", value: 0 } }, active: { allowMultipleDataPointsSelection: !1, filter: { type: "none", value: 0 } } },
+                tooltip: {
+                    style: { fontSize: "12px" },
+                    y: {
+                        formatter: function (e) {
+                            return  e;
+                        },
+                    },
+                },
+                colors: [s],
+                grid: { borderColor: a, strokeDashArray: 4, yaxis: { lines: { show: !0 } } },
+                markers: { strokeColor: o, strokeWidth: 3 },
+            }).render();
+        })()
+
+    </script>
 @endsection
 

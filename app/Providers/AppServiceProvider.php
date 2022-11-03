@@ -30,14 +30,9 @@ class AppServiceProvider extends ServiceProvider
         date_default_timezone_set('Asia/Kuwait');
 
 
-
-        $lang = request()->header('lang');
-        if ($lang) {
-            if (in_array($lang, $languages)) {
-                App::setLocale($lang);
-            } else {
-                App::setLocale('ar');
-            }
+        if (!session()->has('lang')) {
+            session()->put('lang', 'en');
         }
+
     }
 }

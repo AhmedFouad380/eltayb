@@ -12667,4 +12667,13 @@ footer .hotline img {
     font-size: 35px;
   }
 }
+
+input[type=email]{
+    direction: rtl!important;
+}
+
+
+input[type=tel]{
+    direction: rtl!important;
+}
 /*# sourceMappingURL=main.css.map */

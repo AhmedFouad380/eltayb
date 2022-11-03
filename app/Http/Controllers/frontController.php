@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\ContactForm;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderDetails;
@@ -21,23 +22,28 @@ use Session;
 
 class frontController extends Controller
 {
+
+    public function home(){
+        return view('front.index');
+    }
     public function login(Request $request){
 
         $credentials = $request->only('email', 'password');
         $credentials2 = $request->only('phone', 'password');
         $remember_me = $request->has('remember_me') ? true : false;
 
+
+        if (Auth::guard('web')->attempt($credentials ,$remember_me)) {
+            // Authentication passed...
+            return redirect()->intended('/');
+        }
         if (Auth::guard('admin')->attempt($credentials2 ,$remember_me)) {
             // Authentication passed...
 
             return redirect()->intended('Admin_setting');
         }
-        if (Auth::guard('web')->attempt($credentials ,$remember_me)) {
-            // Authentication passed...
-            return redirect()->intended('/');
-        }
         else {
-            return back()->with('message', 'Failed');
+            return back()->with('message', 'error');
         }
 
     }
@@ -46,7 +52,8 @@ class frontController extends Controller
         if(Auth::guard('admin')->check()){
             Auth::guard('admin')->logout();
 
-        }elseif(Auth::guard('web')->check()){
+        }
+        if(Auth::guard('web')->check()){
         Auth::guard('web')->logout();
         }
             return redirect('/')->with('message','success');
@@ -321,10 +328,11 @@ class frontController extends Controller
                 $OrderDetail->en_title=$Item->en_title;
                 $OrderDetail->ar_title_shape=$ItemShape->ar_title;
                 $OrderDetail->en_title_shape=$ItemShape->en_title;
-                $OrderDetail->price=$ItemShape->price * $Cart->count;
+                $OrderDetail->price=$ItemShape->StorageAvaliable->sell_price * $Cart->count;
+                $OrderDetail->storage_id=$ItemShape->torageAvaliable->id;
                 $OrderDetail->order_id=$Order->id;
                 $OrderDetail->save();
-                 $total_price[] = $Cart->count *  $ItemShape->price;
+                 $total_price[] = $Cart->count *  $ItemShape->StorageAvaliable->sell_price;
         }
         if(session()->get('coupon')){
             $coupon = Coupon::findOrFail(session()->get('coupon'));
@@ -350,6 +358,29 @@ class frontController extends Controller
         return view('front.page-account',compact('data','Orders','addresses'));
     }
 
+    public function contactForm(Request $request){
+        $this->validate(request(), [
+            'name'=>'required',
+            'phone'=>'required',
+            'email'=>'required',
+            'subject'=>'required',
+            'message'=>'required',
+        ]);
 
 
+        $data = new ContactForm();
+        $data->name=$request->name;
+        $data->phone=$request->phone;
+        $data->email=$request->email;
+        $data->subject=$request->subject;
+        $data->message=$request->message;
+        $data->save();
+
+        return back()->with('message','success');
+    }
+
+    public function ShapeView(Request $request){
+        $data = Shape::findOrFail($request->id);
+        return view('front.shape-view',compact('data'));
+    }
 }

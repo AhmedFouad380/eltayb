@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('front.index');
-});
+//
+//Route::get('/', function () {
+//    return view('front.index');
+//});
+Route::get('/',[\App\Http\Controllers\frontController::class,'home']);
 
 Route::get('product_model',[\App\Http\Controllers\frontController::class,'product_model']);
 Route::get('product_details/{id}',[\App\Http\Controllers\frontController::class,'product_details']);
@@ -36,6 +37,7 @@ Route::get('Page/{id}',[\App\Http\Controllers\frontController::class,'Page']);
 Route::get('/Admin/Login',function (){
     return view('auth.login');
 });
+
 
 Route::group(['middleware' => ['web']], function () {
 
@@ -65,7 +67,9 @@ Route::group(['middleware' => ['web']], function () {
 });
 Route::group(['middleware' => ['admin']], function () {
 //employee settings
-
+Route::get('Dashboard',function (){
+    return view('admin.dashboard');
+});
     Route::get('Admin_setting', [\App\Http\Controllers\Admin\AdminController::class, 'index']);
     Route::get('Admin_datatable', [\App\Http\Controllers\Admin\AdminController::class, 'datatable'])->name('Admin.datatable.data');
     Route::get('delete-Admin', [\App\Http\Controllers\Admin\AdminController::class, 'destroy']);
@@ -129,7 +133,28 @@ Route::get('/add-button-Product', function () {
 });
 
 
-Route::get('Shapes/{id}', [\App\Http\Controllers\Admin\ShapeController::class, 'index']);
+    Route::get('ProductImages/{id}', [\App\Http\Controllers\Admin\ProductImagesController::class, 'index']);
+    Route::get('ProductImages_datatable', [\App\Http\Controllers\Admin\ProductImagesController::class, 'datatable'])->name('ProductImages.datatable.data');
+    Route::get('delete-ProductImages', [\App\Http\Controllers\Admin\ProductImagesController::class, 'destroy']);
+    Route::post('store-ProductImages', [\App\Http\Controllers\Admin\ProductImagesController::class, 'store']);
+    Route::get('/add-button-ProductImages/{id}', function ($id) {
+        return view('admin/ProductImages/button',compact('id'));
+    });
+
+
+    Route::get('Storage_Setting/{id?}', [\App\Http\Controllers\Admin\StorageController::class, 'index']);
+    Route::get('Storage_datatable', [\App\Http\Controllers\Admin\StorageController::class, 'datatable'])->name('Storage.datatable.data');
+    Route::get('delete-Storage', [\App\Http\Controllers\Admin\StorageController::class, 'destroy']);
+    Route::post('store-Storage', [\App\Http\Controllers\Admin\StorageController::class, 'store']);
+    Route::get('Storage-edit/{id}', [\App\Http\Controllers\Admin\StorageController::class, 'edit']);
+    Route::post('update-Storage', [\App\Http\Controllers\Admin\StorageController::class, 'update']);
+    Route::get('/add-button-Storage/{id?}', function ($id = null) {
+        return view('admin/Storage/button',compact('id'));
+    });
+
+
+    Route::get('get-Shapes/{id}', [\App\Http\Controllers\Admin\ShapeController::class, 'getShapes']);
+    Route::get('Shapes/{id}', [\App\Http\Controllers\Admin\ShapeController::class, 'index']);
 Route::get('Shapes_datatable', [\App\Http\Controllers\Admin\ShapeController::class, 'datatable'])->name('Shapes.datatable.data');
 Route::get('delete-Shapes', [\App\Http\Controllers\Admin\ShapeController::class, 'destroy']);
 Route::post('store-Shapes', [\App\Http\Controllers\Admin\ShapeController::class, 'store']);
@@ -162,12 +187,18 @@ Route::get('delete-Order', [\App\Http\Controllers\Admin\OrderController::class, 
 Route::get('/add-button-Order', function () {
     return view('admin/Order/button');
 });
+    Route::post('update-Order-states', [\App\Http\Controllers\Admin\OrderController::class, 'updateOrderStates']);
+
 
 Route::get('General_Setting', [\App\Http\Controllers\Admin\SettingController::class, 'index']);
 Route::post('edit_setting', [\App\Http\Controllers\Admin\SettingController::class, 'update']);
 
 
+    Route::get('Order_Reports',[\App\Http\Controllers\Admin\ReportController::class,'OrderReports']);
+    Route::get('datatable-Order-Reports',[\App\Http\Controllers\Admin\ReportController::class,'datatableOrderReports'])->name('datatableOrderReports');
 
+    Route::get('Product_Reports',[\App\Http\Controllers\Admin\ProductController::class,'report']);
+    Route::get('datatable-Product_Reports',[\App\Http\Controllers\Admin\ProductController::class,'datatableProduct_Reports'])->name('datatableProduct_Reports');
 });
 
 Route::get('lang/{lang}', function ($lang) {
@@ -184,3 +215,6 @@ Route::get('lang/{lang}', function ($lang) {
 
     return back();
 });
+
+Route::post('contactForm',[\App\Http\Controllers\frontController::class,'contactForm']);
+Route::get('ShapeView',[\App\Http\Controllers\frontController::class,'ShapeView']);

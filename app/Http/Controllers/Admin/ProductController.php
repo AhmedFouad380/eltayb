@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\Shape;
 use Illuminate\Http\Request;
@@ -69,6 +70,7 @@ class ProductController extends Controller
             })
             ->addColumn('actions', function ($row) {
                 $actions = ' <a href="' . url("Shapes/" . $row->id) . '" class="btn btn-light-dark"><i class="bi bi-alt"></i> الاحجام </a>';
+                $actions .= ' <a href="' . url("ProductImages/" . $row->id) . '" class="btn btn-light-dark"><i class="bi bi-alt"></i> صور المنتج </a>';
                 $actions .= ' <a href="' . url("Product-edit/" . $row->id) . '" class="btn btn-light-dark"><i class="bi bi-pin-angle"></i> تعديل </a>';
                 return $actions;
 
@@ -140,6 +142,35 @@ class ProductController extends Controller
 
         return redirect()->back()->with('message', 'تم الاضافة بنجاح ');
 
+
+    }
+
+    public function datatableProduct_Reports(Request $request)
+    {
+        $data = Product::orderBy('id', 'asc');
+        return DataTables::of($data)
+            ->addColumn('checkbox', function ($row) {
+                $checkbox = '';
+                $checkbox .= '<div class="form-check form-check-sm form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" value="' . $row->id . '" />
+                                </div>';
+                return $checkbox;
+            })
+
+            ->AddColumn('SellCount', function ($row) {
+                return $row->OrderDetails->sum('count');
+            })
+            ->AddColumn('availableCount', function ($row) {
+                return $row->Storage->sum('available_quantity');
+            })
+
+            ->rawColumns(['actions', 'checkbox', 'SellCount','availableCount'])
+            ->make();
+
+    }
+    public function report(){
+
+        return view('admin.Product.report');
 
     }
 

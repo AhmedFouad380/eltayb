@@ -120,11 +120,11 @@
                                                 <div class="product-price">
 
                                                     @if($Product->is_discount == 'active')
-                                                        <span>{{ $Product->DefaultShape->price - ( ( $Product->DefaultShape->price * $Product->discount_value ) / 100 ) }} KWD</span>
+                                                        <span>{{ $Product->DefaultShape->StorageAvaliable->sell_price - ( ( $Product->DefaultShape->StorageAvaliable->sell_price * $Product->discount_value ) / 100 ) }} KWD</span>
 
-                                                        <span class="old-price">{{$Product->DefaultShape->price}} KWD</span>
+                                                        <span class="old-price">{{$Product->DefaultShape->StorageAvaliable->sell_price}} KWD</span>
                                                     @else
-                                                        <span>{{$Product->DefaultShape->price}} KWD</span>
+                                                        <span>{{$Product->DefaultShape->StorageAvaliable->sell_price}} KWD</span>
                                                     @endif
                                                 </div>
                                                 <div class="add-cart">

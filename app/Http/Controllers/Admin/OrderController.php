@@ -35,7 +35,16 @@ class OrderController extends Controller
         if($request->payment_type && $request->payment_type != 0){
             $data->where('payment_type',$request->payment_type);
         }
+        if($request->is_payed && $request->payment_type != 3){
+            $data->where('is_payed',$request->is_payed);
+        }
 
+        if($request->from) {
+            $data->whereDate('created_at', '<=', $request->from);
+        }
+        if($request->to){
+            $data->whereDate('created_at','>=',$request->to);
+        }
         return DataTables::of($data)
             ->addColumn('checkbox', function ($row) {
                 $checkbox = '';
@@ -116,6 +125,16 @@ class OrderController extends Controller
         return view('admin.Order.Detail',compact('data'));
     }
 
+
+    public function updateOrderStates(Request $request){
+
+        $data = Order::findOrFail($request->id);
+        $data->type=$request->type;
+        $data->is_payed=$request->is_payed;
+        $data->save();
+
+        return back()->with('message','success');
+    }
     /**
      * Store a newly created resource in storage.
      *

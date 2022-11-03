@@ -50,14 +50,19 @@ class Product extends Model
             $this->attributes['image'] = $imageFields;
         }
     }
-
+    public function OrderDetails(){
+        return $this->hasMany(OrderDetails::class,'product_id');
+    }
+    public function Storage(){
+        return $this->hasMany(Storage::class,'product_id');
+    }
     public function Images(){
         return $this->hasMany(ProductImages::class ,'product_id');
     }
     public function DefaultShape(){
         return $this->hasOne(Shape::class ,'product_id')->where('default',1)->withDefault([
             'price'=>50
-        ]);
+        ])->with('StorageAvaliable');
     }
 
     public function Shapes(){

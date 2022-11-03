@@ -14,7 +14,7 @@ class Cart extends Model
     }
 
     public function Shape(){
-        return $this->belongsTo(Shape::class,'shape_id');
+        return $this->belongsTo(Shape::class,'shape_id')->with('StorageAvaliable');
     }
 
 

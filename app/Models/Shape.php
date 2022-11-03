@@ -19,5 +19,21 @@ class Shape extends Model
             return $this->en_title;
         }
     }
-
+    public function Product(){
+        return $this->belongsTo(Product::class,'product_id');
+    }
+    public  function Storage()
+    {
+        return $this->HasMany(Storage::class ,'shape_id');
+    }
+    public  function StorageAvaliable()
+    {
+        return $this->hasOne(Storage::class ,'shape_id')
+            ->where('is_available','active')->where('available_quantity','!=',0)
+            ->withDefault([
+                'sell_price'=>0,
+                'available_quantity'=>0,
+                'purchase_price'=>0
+            ]);
+    }
 }

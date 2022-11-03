@@ -131,12 +131,17 @@ class CategoriesController extends Controller
         ]);
 
 
-        $user = Category::whereId($request->id)->update($data);
+        $user = Category::whereId($request->id)->firstOrFail();
+        $user->ar_title=$request->ar_title;
+        $user->en_title=$request->en_title;
+        if($request->icon){
+        $user->icon=$request->icon;
+        }
+        $user->is_active=$request->is_active;
+        $user->save();
 
 
-
-
-        return redirect(url('Categories'))->with('message', 'تم التعديل بنجاح ');
+        return redirect(url('Categories_Setting'))->with('message', 'تم التعديل بنجاح ');
     }
 
     /**

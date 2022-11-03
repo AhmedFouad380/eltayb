@@ -141,4 +141,13 @@ class ShapeController extends Controller
         }
         return response()->json(['message' => 'Success']);
     }
+
+    public function getShapes($id){
+
+        $data = Shape::where('product_id',$id)->pluck('id','ar_title');
+
+        return response()->json($data);
+
+
+    }
 }

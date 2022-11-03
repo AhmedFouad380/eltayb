@@ -58,16 +58,16 @@
                                             </div>
                                         </div>
                                         <div class="clearfix product-price-cover">
-                                            <div class="product-price primary-color float-left">
+                                            <div class="product-price primary-color float-left" id="ShapePrice">
                                                 @if($data->is_discount == 'active')
 
-                                                    <span class="current-price text-brand">{{ $data->DefaultShape->price - (( $data->DefaultShape->price * $data->discount_value ) / 100 ) }}</span>
+                                                    <span data-shape="{{$data->DefaultShape->id}}" class="current-price text-brand">{{ $data->DefaultShape->StorageAvaliable->sell_price - (( $data->DefaultShape->StorageAvaliable->sell_price * $data->discount_value ) / 100 ) }}</span>
                                                     <span>
                                                           <span class="save-price font-md color3 ml-15">{{$data->discount_value}}% Off</span>
-                                                          <span class="old-price font-md ml-15">{{$data->DefaultShape->price}}</span>
+                                                          <span class="old-price font-md ml-15">{{$data->DefaultShape->StorageAvaliable->sell_price}}</span>
                                                      </span>
                                                 @else
-                                                    <span class="current-price text-brand">{{$data->DefaultShape->price }}</span>
+                                                    <span class="current-price text-brand">{{$data->DefaultShape->StorageAvaliable->sell_price }}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -77,7 +77,7 @@
                                             <strong class="mr-10">{{__('lang.Size / Weight')}}: </strong>
                                             <ul class="list-filter size-filter font-small">
                                                 @foreach($data->Shapes as $Shape)
-                                                <li class="shape-view @if($Shape->default == 1) active @endif" data-price="{{$Shape->price}}"><a href="#">{{$Shape->title}}</a></li>
+                                                <li class="shape-view @if($Shape->default == 1) active @endif" data-id="{{$Shape->id}}"><a href="#">{{$Shape->title}}</a></li>
                                                 @endforeach
                                             </ul>
                                         </div>
@@ -88,13 +88,13 @@
                                                 <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                             </div>
                                             <div class="product-extra-link2">
-                                                <button type="submit" class="button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>{{__('lang.add')}}</button>
+                                                <button type="submit" data-id="{{$data->id}}"class="addCart button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>{{__('lang.add')}}</button>
                                                 <a aria-label="Add To Wishlist" class="action-btn hover-up" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
                                             </div>
                                         </div>
                                         <div class="font-xs">
                                             <ul class="mr-50 float-start">
-                                                <li>{{__('lang.stock')}}:<span class="in-stock text-brand ml-5">{{$data->in_stock}} {{__('lang.Items In Stock')}}</span></li>
+                                                <li>{{__('lang.stock')}}:<span class="in-stock text-brand ml-5">{{$data->DefaultShape->StorageAvaliable->available_quantity}} {{__('lang.Items In Stock')}}</span></li>
                                                 <li class="mb-5">{{__('lang.date')}}:<span class="text-brand"> {{$data->created_at->format('Y-m-d')}}</span></li>
                                             </ul>
                                         </div>
@@ -109,9 +109,9 @@
                                             <a class="nav-link active" id="Description-tab" data-bs-toggle="tab" href="#Description">{{__('lang.description')}}</a>
                                         </li>
 
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">{{__('lang.Reviews')}} (3)</a>
-                                        </li>
+{{--                                        <li class="nav-item">--}}
+{{--                                            <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">{{__('lang.Reviews')}} (3)</a>--}}
+{{--                                        </li>--}}
                                     </ul>
                                     <div class="tab-content shop_info_tab entry-main-content">
                                         <div class="tab-pane fade show active" id="Description">
@@ -119,141 +119,141 @@
                                                {!! $data->description !!}
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="Reviews">
-                                            <!--Comments-->
-                                            <div class="comments-area">
-                                                <div class="row">
-                                                    <div class="col-lg-8">
-                                                        <h4 class="mb-30">Customer questions & answers</h4>
-                                                        <div class="comment-list">
-                                                            <div class="single-comment justify-content-between d-flex mb-30">
-                                                                <div class="user justify-content-between d-flex">
-                                                                    <div class="thumb text-center">
-                                                                        <img src="assets/imgs/blog/author-2.png" alt="" />
-                                                                        <a href="#" class="font-heading text-brand">Sienna</a>
-                                                                    </div>
-                                                                    <div class="desc">
-                                                                        <div class="d-flex justify-content-between mb-10">
-                                                                            <div class="d-flex align-items-center">
-                                                                                <span class="font-xs text-muted">December 4, 2021 at 3:12 pm </span>
-                                                                            </div>
-                                                                            <div class="product-rate d-inline-block">
-                                                                                <div class="product-rating" style="width: 100%"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="single-comment justify-content-between d-flex mb-30 ml-30">
-                                                                <div class="user justify-content-between d-flex">
-                                                                    <div class="thumb text-center">
-                                                                        <img src="assets/imgs/blog/author-3.png" alt="" />
-                                                                        <a href="#" class="font-heading text-brand">Brenna</a>
-                                                                    </div>
-                                                                    <div class="desc">
-                                                                        <div class="d-flex justify-content-between mb-10">
-                                                                            <div class="d-flex align-items-center">
-                                                                                <span class="font-xs text-muted">December 4, 2021 at 3:12 pm </span>
-                                                                            </div>
-                                                                            <div class="product-rate d-inline-block">
-                                                                                <div class="product-rating" style="width: 80%"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="single-comment justify-content-between d-flex">
-                                                                <div class="user justify-content-between d-flex">
-                                                                    <div class="thumb text-center">
-                                                                        <img src="assets/imgs/blog/author-4.png" alt="" />
-                                                                        <a href="#" class="font-heading text-brand">Gemma</a>
-                                                                    </div>
-                                                                    <div class="desc">
-                                                                        <div class="d-flex justify-content-between mb-10">
-                                                                            <div class="d-flex align-items-center">
-                                                                                <span class="font-xs text-muted">December 4, 2021 at 3:12 pm </span>
-                                                                            </div>
-                                                                            <div class="product-rate d-inline-block">
-                                                                                <div class="product-rating" style="width: 80%"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4">
-                                                        <h4 class="mb-30">Customer reviews</h4>
-                                                        <div class="d-flex mb-30">
-                                                            <div class="product-rate d-inline-block mr-15">
-                                                                <div class="product-rating" style="width: 90%"></div>
-                                                            </div>
-                                                            <h6>4.8 out of 5</h6>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <span>5 star</span>
-                                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <span>4 star</span>
-                                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <span>3 star</span>
-                                                            <div class="progress-bar" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <span>2 star</span>
-                                                            <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
-                                                        </div>
-                                                        <div class="progress mb-30">
-                                                            <span>1 star</span>
-                                                            <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
-                                                        </div>
-                                                        <a href="#" class="font-xs text-muted">How are ratings calculated?</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--comment form-->
-                                            <div class="comment-form">
-                                                <h4 class="mb-15">Add a review</h4>
-                                                <div class="product-rate d-inline-block mb-30"></div>
-                                                <div class="row">
-                                                    <div class="col-lg-8 col-md-12">
-                                                        <form class="form-contact comment_form" action="#" id="commentForm">
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="form-group">
-                                                                        <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <input class="form-control" name="name" id="name" type="text" placeholder="Name" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <input class="form-control" name="email" id="email" type="email" placeholder="Email" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <div class="form-group">
-                                                                        <input class="form-control" name="website" id="website" type="text" placeholder="Website" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <button type="submit" class="button button-contactForm">Submit Review</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+{{--                                        <div class="tab-pane fade" id="Reviews">--}}
+{{--                                            <!--Comments-->--}}
+{{--                                            <div class="comments-area">--}}
+{{--                                                <div class="row">--}}
+{{--                                                    <div class="col-lg-8">--}}
+{{--                                                        <h4 class="mb-30">Customer questions & answers</h4>--}}
+{{--                                                        <div class="comment-list">--}}
+{{--                                                            <div class="single-comment justify-content-between d-flex mb-30">--}}
+{{--                                                                <div class="user justify-content-between d-flex">--}}
+{{--                                                                    <div class="thumb text-center">--}}
+{{--                                                                        <img src="assets/imgs/blog/author-2.png" alt="" />--}}
+{{--                                                                        <a href="#" class="font-heading text-brand">Sienna</a>--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <div class="desc">--}}
+{{--                                                                        <div class="d-flex justify-content-between mb-10">--}}
+{{--                                                                            <div class="d-flex align-items-center">--}}
+{{--                                                                                <span class="font-xs text-muted">December 4, 2021 at 3:12 pm </span>--}}
+{{--                                                                            </div>--}}
+{{--                                                                            <div class="product-rate d-inline-block">--}}
+{{--                                                                                <div class="product-rating" style="width: 100%"></div>--}}
+{{--                                                                            </div>--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="single-comment justify-content-between d-flex mb-30 ml-30">--}}
+{{--                                                                <div class="user justify-content-between d-flex">--}}
+{{--                                                                    <div class="thumb text-center">--}}
+{{--                                                                        <img src="assets/imgs/blog/author-3.png" alt="" />--}}
+{{--                                                                        <a href="#" class="font-heading text-brand">Brenna</a>--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <div class="desc">--}}
+{{--                                                                        <div class="d-flex justify-content-between mb-10">--}}
+{{--                                                                            <div class="d-flex align-items-center">--}}
+{{--                                                                                <span class="font-xs text-muted">December 4, 2021 at 3:12 pm </span>--}}
+{{--                                                                            </div>--}}
+{{--                                                                            <div class="product-rate d-inline-block">--}}
+{{--                                                                                <div class="product-rating" style="width: 80%"></div>--}}
+{{--                                                                            </div>--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="single-comment justify-content-between d-flex">--}}
+{{--                                                                <div class="user justify-content-between d-flex">--}}
+{{--                                                                    <div class="thumb text-center">--}}
+{{--                                                                        <img src="assets/imgs/blog/author-4.png" alt="" />--}}
+{{--                                                                        <a href="#" class="font-heading text-brand">Gemma</a>--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <div class="desc">--}}
+{{--                                                                        <div class="d-flex justify-content-between mb-10">--}}
+{{--                                                                            <div class="d-flex align-items-center">--}}
+{{--                                                                                <span class="font-xs text-muted">December 4, 2021 at 3:12 pm </span>--}}
+{{--                                                                            </div>--}}
+{{--                                                                            <div class="product-rate d-inline-block">--}}
+{{--                                                                                <div class="product-rating" style="width: 80%"></div>--}}
+{{--                                                                            </div>--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, suscipit exercitationem accusantium obcaecati quos voluptate nesciunt facilis itaque modi commodi dignissimos sequi repudiandae minus ab deleniti totam officia id incidunt? <a href="#" class="reply">Reply</a></p>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="col-lg-4">--}}
+{{--                                                        <h4 class="mb-30">Customer reviews</h4>--}}
+{{--                                                        <div class="d-flex mb-30">--}}
+{{--                                                            <div class="product-rate d-inline-block mr-15">--}}
+{{--                                                                <div class="product-rating" style="width: 90%"></div>--}}
+{{--                                                            </div>--}}
+{{--                                                            <h6>4.8 out of 5</h6>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="progress">--}}
+{{--                                                            <span>5 star</span>--}}
+{{--                                                            <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="progress">--}}
+{{--                                                            <span>4 star</span>--}}
+{{--                                                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="progress">--}}
+{{--                                                            <span>3 star</span>--}}
+{{--                                                            <div class="progress-bar" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="progress">--}}
+{{--                                                            <span>2 star</span>--}}
+{{--                                                            <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="progress mb-30">--}}
+{{--                                                            <span>1 star</span>--}}
+{{--                                                            <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <a href="#" class="font-xs text-muted">How are ratings calculated?</a>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <!--comment form-->--}}
+{{--                                            <div class="comment-form">--}}
+{{--                                                <h4 class="mb-15">Add a review</h4>--}}
+{{--                                                <div class="product-rate d-inline-block mb-30"></div>--}}
+{{--                                                <div class="row">--}}
+{{--                                                    <div class="col-lg-8 col-md-12">--}}
+{{--                                                        <form class="form-contact comment_form" action="#" id="commentForm">--}}
+{{--                                                            <div class="row">--}}
+{{--                                                                <div class="col-12">--}}
+{{--                                                                    <div class="form-group">--}}
+{{--                                                                        <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="col-sm-6">--}}
+{{--                                                                    <div class="form-group">--}}
+{{--                                                                        <input class="form-control" name="name" id="name" type="text" placeholder="Name" />--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="col-sm-6">--}}
+{{--                                                                    <div class="form-group">--}}
+{{--                                                                        <input class="form-control" name="email" id="email" type="email" placeholder="Email" />--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="col-12">--}}
+{{--                                                                    <div class="form-group">--}}
+{{--                                                                        <input class="form-control" name="website" id="website" type="text" placeholder="Website" />--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="form-group">--}}
+{{--                                                                <button type="submit" class="button button-contactForm">Submit Review</button>--}}
+{{--                                                            </div>--}}
+{{--                                                        </form>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -316,4 +316,66 @@
                 </div>
             </div>
         </main>
+@endsection
+
+@section('js')
+    <script>
+        $(".addCart").click(function () {
+            var id = $(this).data('id')
+            var shape = $('.current-price').data('shape')
+            var count = $('.qty-val').text()
+            @if(Auth::guard('web')->check())
+            var check = true;
+            @else
+            var check = false;
+            @endif
+            if(check){
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    type: "GET",
+                    url: "{{url('add-cart')}}",
+                    data: {"id": id ,"shape_id":shape ,"count":count},
+                    success: function (data) {
+                        $('#CountCart').html(data)
+                        Swal.fire({
+                            icon: 'success',
+                            title: "{{__('lang.Success')}}",
+                            text: "{{__('lang.Success_text')}}",
+                            type: "success",
+                            timer: 1000,
+                            showConfirmButton: false
+                        });
+
+                    }
+                })
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: "{{__('lang.error')}}",
+                    text: "{{ __('lang.PleaseLogin') }}",
+                    type: "error",
+                    timer: 3000,
+                    showConfirmButton: false
+                });
+
+            }
+        })
+
+        $('.shape-view').on('click',function () {
+    id = $(this).data('id');
+        $.ajax({
+            url: '{{url("ShapeView")}}',
+            type: "get",
+            data: {'id': id },
+            success: function (data) {
+            $('#ShapePrice').html(data);
+            },
+            fail: function (xhrerrorThrown) {
+                Swal.fire("نأسف", "حدث خطأ ما ", "error");
+            }
+        });
+
+
+    })
+    </script>
 @endsection

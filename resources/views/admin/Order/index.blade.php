@@ -137,6 +137,12 @@
                             @if(Request::get('to'))
                         to:"{{Request::get('to')}}",
                         @endif
+                            @if(Request::get('payment_type'))
+                        payment_type:"{{Request::get('payment_type')}}",
+                        @endif
+                            @if(Request::get('is_payed'))
+                        is_payed:"{{Request::get('is_payed')}}",
+                        @endif
                             @if(isset($user_id))
                         user_id:"{{$user_id}}",
                         @endif
