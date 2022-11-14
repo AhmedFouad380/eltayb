@@ -150,7 +150,7 @@
                             <div class="header-action-icon-2">
                                 <a href="{{url('wishlist')}}">
                                     <img class="svgInject" alt="eltayeb" src="{{asset('website/assets/imgs/theme/icons/icon-heart.svg')}}" />
-                                    <span class="pro-count blue"id="CountWishlist">{{\App\Models\Wishlist::where('user_id',Auth::guard('web')->id())->count()}}</span>
+                                   @if(\App\Models\Wishlist::where('user_id',Auth::guard('web')->id())->count() > 0)  <span class="pro-count blue"id="CountWishlist">{{\App\Models\Wishlist::where('user_id',Auth::guard('web')->id())->count()}}</span>@endif
                                 </a>
                                 <a href="{{url('wishlist')}}"><span class="lable">{{__('lang.Wishlist')}}</span></a>
                             </div>
@@ -542,7 +542,7 @@
                         @foreach(\App\Models\Page::where('is_active','active')->where('position','footer')->get() as $page)
                         <li><a href="{{url('Page',$page->id)}}">{{$page->title}}</a></li>
                         @endforeach
-                        <li><a href="{{url('Contact')}}">{{__('lang.Contacts')}}</a></li>
+                        <li><a href="{{url('Contact')}}">{{__('lang.Contact')}}</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-widget col">
@@ -562,12 +562,12 @@
                             <li><a href="{{url('Profile')}}">{{__('lang.Profile')}}</a></li>
                             <li><a href="{{url('register')}}">{{__('lang.Register')}}</a></li>
                             <li><a href="#">My Wishlist</a></li>
-                            <li><a href="{{url('Contact')}}">{{__('lang.Contacts')}}</a></li>
+                            <li><a href="{{url('Contact')}}">{{__('lang.Contact')}}</a></li>
                         @else
                         <li><a href="{{url('login')}}">{{__('lang.login')}}</a></li>
                         <li><a href="{{url('register')}}">{{__('lang.register')}}</a></li>
                         <li><a href="#">My Wishlist</a></li>
-                            <li><a href="{{url('Contact')}}">{{__('lang.Contacts')}}</a></li>
+                            <li><a href="{{url('Contact')}}">{{__('lang.Contact')}}</a></li>
                             @endif
                     </ul>
                 </div>

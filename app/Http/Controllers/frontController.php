@@ -208,9 +208,18 @@ class frontController extends Controller
                 $cart->user_id = Auth::guard('web')->id();
                 $cart->save();
             }
-        return response()->json(Wishlist::where('user_id',Auth::guard('web')->id())->sum('count'));
+        return response()->json(Wishlist::where('user_id',Auth::guard('web')->id())->count());
     }
 
+    public function deleteWithList(Request $request){
+        Wishlist::where('id',$request->id)->delete();
+        return response()->json(['message'=>'success']);
+
+    }
+    public function wishlist(){
+
+        return view('front.wishlist');
+    }
 
     public function qtyUp(Request $request){
         $cart = Cart::findOrFail($request->id);

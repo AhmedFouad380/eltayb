@@ -439,4 +439,6 @@ return [
     'Quantity'=>'Quantity',
     'Unit Price'=>'Unit Price',
     'addtowishlist'=>'Add To Wishlist',
+    'Wishlist'=>'Wishlist'
+
 ];

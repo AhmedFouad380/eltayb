@@ -89,7 +89,7 @@
                                             </div>
                                             <div class="product-extra-link2">
                                                 <button type="submit" data-id="{{$data->id}}"class="addCart button button-add-to-cart"><i class="fi-rs-shopping-cart"></i>{{__('lang.add')}}</button>
-                                                <a aria-label="{{__('lang.addtowishlist')}}" class="action-btn addtowishlist" data-id="{{$Product->id}}" ><i class="fi-rs-heart"></i></a>
+                                                <a aria-label="{{__('lang.addtowishlist')}}" class="action-btn addtowishlist" data-id="{{$data->id}}" ><i class="fi-rs-heart"></i></a>
                                             </div>
                                         </div>
                                         <div class="font-xs">

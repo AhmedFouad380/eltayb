@@ -49,7 +49,7 @@
                                                         </a>
                                                     </div>
                                                     <div class="product-action-1">
-                                                        <a aria-label="{{__('lang.addtowishlist')}}" class="action-btn addtowishlist" ><i class="fi-rs-heart"></i></a>
+                                                        <a aria-label="{{__('lang.addtowishlist')}}" data-id="{{$Product->id}}" class="action-btn addtowishlist" ><i class="fi-rs-heart"></i></a>
                                                         <a aria-label="Quick view" class="action-btn product-view " data-id="{{$Product->id}}"><i class="fi-rs-eye"></i></a>
                                                     </div>
                                                     @if($Product->is_hot == 1)
@@ -237,7 +237,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="product-action-1">
-                                                    <a aria-label="{{__('lang.addtowishlist')}}" class="action-btn addtowishlist" ><i class="fi-rs-heart"></i></a>
+                                                    <a aria-label="{{__('lang.addtowishlist')}}" data-id="{{$Product->id}}" class="action-btn addtowishlist" ><i class="fi-rs-heart"></i></a>
                                                     <a aria-label="Quick view" class="action-btn product-view " data-id="{{$Product->id}}"><i class="fi-rs-eye"></i></a>
                                                 </div>
                                                 <div class="product-badges product-badges-position product-badges-mrg">

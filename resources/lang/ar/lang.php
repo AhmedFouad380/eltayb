@@ -441,6 +441,7 @@ return [
     'Create an Account'=>'انشاء حساب جديد',
     'Already have an account'=>'لديك حساب بالفعل ',
     'Quantity'=>'العدد',
-    'Unit Price'=>'سعر القطعة'
+    'Unit Price'=>'سعر القطعة',
+    'Wishlist'=>' المفضلة'
 
 ];
