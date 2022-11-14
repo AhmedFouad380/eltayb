@@ -263,7 +263,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="row related-products">
-                                        @foreach(\App\Models\Product::where('is_active','active')->where('in_stock','>',0)->where('category_id',$data->category_id)->limit(4)->InRandomOrder()->get() as $Related)
+                                        @foreach(\App\Models\Product::where('is_active','active')->where('category_id',$data->category_id)->limit(4)->InRandomOrder()->get() as $Related)
                                         <div class="col-lg-3 col-md-4 col-12 col-sm-6">
                                             <div class="product-cart-wrap hover-up">
                                                 <div class="product-img-action-wrap">
