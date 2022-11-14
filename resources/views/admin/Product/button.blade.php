@@ -128,16 +128,16 @@
                                           required></textarea>
                                 <!--end::Input-->
                             </div>
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">الكمية المتاحة </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input type="number" name="in_stock"
-                                       class="form-control form-control-solid mb-3 mb-lg-0"
-                                       required/>
-                                <!--end::Input-->
-                            </div>
+{{--                            <div class="fv-row mb-7">--}}
+{{--                                <!--begin::Label-->--}}
+{{--                                <label class="required fw-bold fs-6 mb-2">الكمية المتاحة </label>--}}
+{{--                                <!--end::Label-->--}}
+{{--                                <!--begin::Input-->--}}
+{{--                                <input type="number" name="in_stock"--}}
+{{--                                       class="form-control form-control-solid mb-3 mb-lg-0"--}}
+{{--                                       required/>--}}
+{{--                                <!--end::Input-->--}}
+{{--                            </div>--}}
                             <!--end::Input group-->  <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <div

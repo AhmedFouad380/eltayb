@@ -118,7 +118,7 @@ class ProductController extends Controller
         $user->is_active=$request->is_active;
         $user->is_discount=$request->is_discount;
         $user->discount_value=$request->discount_value;
-        $user->in_stock=$request->in_stock;
+//        $user->in_stock=$request->in_stock;
         $user->is_new=$request->is_new;
         $user->is_hot=$request->is_hot;
         $user->in_stock=$request->in_stock;
@@ -223,7 +223,7 @@ class ProductController extends Controller
         $user->is_active=$request->is_active;
         $user->is_discount=$request->is_discount;
         $user->discount_value=$request->discount_value;
-        $user->in_stock=$request->in_stock;
+//        $user->in_stock=$request->in_stock;
         $user->is_new=$request->is_new;
         $user->is_hot=$request->is_hot;
         $user->in_stock=$request->in_stock;
