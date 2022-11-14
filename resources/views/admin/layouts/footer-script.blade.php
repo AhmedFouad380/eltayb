@@ -40,7 +40,7 @@ $errors = session()->get("errors");
         Swal.fire({
             icon: 'warning',
             title: "برجاء التأكد من البيانات.",
-            text: "{{$e}} ",
+            text: "كلمة المرور غير صحيحه  ",
             type: "error",
             timer: 5000,
             showConfirmButton: false

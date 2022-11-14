@@ -825,8 +825,24 @@ $message = session()->get("message");
         });
 
     </script>
-    <li></li>
 @endforeach
 
+@if( session()->has("error"))
+    <?php
+    $e = session()->get("error");
+    ?>
+
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: "برجاء التأكد من البيانات.",
+            text: "{{$e}} ",
+            type: "error",
+            timer: 5000,
+            showConfirmButton: false
+        });
+    </script>
+
+@endif
 </body>
 </html>

@@ -44,7 +44,7 @@ class frontController extends Controller
             return redirect()->intended('Admin_setting');
         }
         else {
-            return back()->with('message', 'error');
+            return back()->with('error', '');
         }
 
     }
