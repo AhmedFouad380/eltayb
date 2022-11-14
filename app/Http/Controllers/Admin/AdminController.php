@@ -137,11 +137,16 @@ class AdminController extends Controller
         ]);
 
 
-        if ($request->password && $request->password != "" && $request->password != null) {
-            $data['password'] = Hash::make($request->password);
-        }
 
-        $user = Admin::whereId($request->id)->update($data);
+        $user = Admin::whereId($request->id)->first();
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->is_active=$request->is_active;
+        if(isset($user->password)){
+            $user->password=Hash::make($request->password);
+        }
+        $user->save();
+
 
 
 
