@@ -146,14 +146,14 @@
                         <div class="header-action-2">
 
                             @if(Auth::guard('web')->check())
-{{--
+
                             <div class="header-action-icon-2">
-                                <a href="shop-wishlist.html">
+                                <a href="{{url('wishlist')}}">
                                     <img class="svgInject" alt="eltayeb" src="{{asset('website/assets/imgs/theme/icons/icon-heart.svg')}}" />
-                                    <span class="pro-count blue">6</span>
+                                    <span class="pro-count blue"id="CountWishlist">{{\App\Models\Wishlist::where('user_id',Auth::guard('web')->id())->count()}}</span>
                                 </a>
-                                <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
-                            </div>--}}
+                                <a href="{{url('wishlist')}}"><span class="lable">{{__('lang.Wishlist')}}</span></a>
+                            </div>
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="{{url('cart')}}">
                                     <img alt="eltayeb" src="{{asset('website/assets/imgs/theme/icons/icon-cart.svg')}}" />
@@ -709,10 +709,51 @@
         })
     })
 
+    $('.addtowishlist').click(function () {
+        var id = $(this).data('id');
+            @if(Auth::guard('web')->check())
+        var check = true;
+            @else
+        var check = false;
+        @endif
+        if(check){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                type: "GET",
+                url: "{{url('add-wishlist')}}",
+                data: {"id": id },
+                success: function (data) {
+                    $('#CountWishlist').html(data)
+                    Swal.fire({
+                        icon: 'success',
+                        title: "{{__('lang.Success')}}",
+                        text: "{{__('lang.Success_text')}}",
+                        type: "success",
+                        timer: 1000,
+                        showConfirmButton: false
+                    });
 
+                }
+            })
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: "{{__('lang.error')}}",
+                text: "{{ __('lang.PleaseLogin') }}",
+                type: "error",
+                timer: 5000,
+                confirmButtonText: '{{__('lang.login')}}',
+            }).then(function (result) {
+                window.location.href = "{{url('login')}}";
+            } );
+
+
+        }
+    })
     $(".add").click(function () {
         var id = $(this).data('id')
         var shape = $(this).data('shape')
+
         @if(Auth::guard('web')->check())
             var check = true;
             @else

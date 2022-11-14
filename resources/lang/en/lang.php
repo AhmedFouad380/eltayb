@@ -437,6 +437,6 @@ return [
     'Create an Account'=>'Create an Account',
     'Already have an account'=>'Already have an account',
     'Quantity'=>'Quantity',
-    'Unit Price'=>'Unit Price'
-
+    'Unit Price'=>'Unit Price',
+    'addtowishlist'=>'Add To Wishlist',
 ];

@@ -47,6 +47,8 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
 
         Route::get('cart', [\App\Http\Controllers\frontController::class, 'cart']);
         Route::get('add-cart', [\App\Http\Controllers\frontController::class, 'addCart']);
+        Route::get('add-wishlist', [\App\Http\Controllers\frontController::class, 'addwishlist']);
+
         Route::get('qty-up', [\App\Http\Controllers\frontController::class, 'qtyUp']);
         Route::get('qty-down', [\App\Http\Controllers\frontController::class, 'qtyUp']);
         Route::get('delete-cart-item', [\App\Http\Controllers\frontController::class, 'deleteCartItem']);

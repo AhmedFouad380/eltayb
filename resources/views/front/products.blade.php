@@ -83,7 +83,7 @@
                                                 </a>
                                             </div>
                                             <div class="product-action-1">
-                                                <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                                <a aria-label="{{__('lang.addtowishlist')}}" class="action-btn addtowishlist" data-id="{{$Product->id}}" ><i class="fi-rs-heart"></i></a>
                                                 <a aria-label="Quick view" class="action-btn product-view " data-id="{{$Product->id}}"><i class="fi-rs-eye"></i></a>
                                             </div>
                                             @if($Product->is_hot == 1)

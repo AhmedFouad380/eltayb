@@ -435,7 +435,7 @@ return [
     'error'=> 'عفوا !',
     'Don`t have an account'=>'ليس لديك حساب ',
     'Forgot password'=>'استرجاع كلمة المرور',
-    'Forgot password'=>'استرجاع كلمة المرور',
+    'addtowishlist'=>'اضافة الى المفضلة',
     'Log in'=>'تسجيل',
     'Remember me'=>'تذكرني',
     'Create an Account'=>'انشاء حساب جديد',

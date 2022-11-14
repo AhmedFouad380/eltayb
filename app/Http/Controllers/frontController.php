@@ -14,6 +14,7 @@ use App\Models\Product;
 use App\Models\Setting;
 use App\Models\Shape;
 use App\Models\User;
+use App\Models\Wishlist;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
@@ -195,6 +196,19 @@ class frontController extends Controller
 
 
         return response()->json(Cart::where('user_id',Auth::guard('web')->id())->sum('count'));
+    }
+
+    public function addwishlist(Request $request){
+        $Product = Product::findOrFail($request->id);
+            if(Wishlist::where('user_id',Auth::guard('web')->id())->where('product_id',$Product->id)->count() > 0){
+                $cart =  Wishlist::where('user_id',Auth::guard('web')->id())->where('product_id',$Product->id)->first()->delete();
+            }else {
+                $cart = new Wishlist();
+                $cart->product_id = $request->id;
+                $cart->user_id = Auth::guard('web')->id();
+                $cart->save();
+            }
+        return response()->json(Wishlist::where('user_id',Auth::guard('web')->id())->sum('count'));
     }
 
 
