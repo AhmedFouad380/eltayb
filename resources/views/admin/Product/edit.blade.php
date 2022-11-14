@@ -208,21 +208,6 @@
                             </div>
                             <!--end::Input group-->
                             <!--end::Input group-->
-                            <!--end::Input group-->
-                            <div class="fv-row mb-7">
-                                <div
-                                    class="form-check form-switch form-check-custom form-check-solid">
-                                    <label class="form-check-label" for="flexSwitchDefault">مفعل
-                                        ؟</label>
-                                    <input class="form-check-input" name="is_active" type="hidden"
-                                           value="inactive" id="flexSwitchDefault"/>
-                                    <input class="form-check-input form-control form-control-solid mb-3 mb-lg-0"
-                                           name="is_active" type="checkbox"
-                                           value="active" id="flexSwitchDefault"
-                                           @if($employee->is_active == 'active') checked @endif />
-                                </div>
-                            </div>
-                            <!--end::Input group-->
 
 
                         </div>

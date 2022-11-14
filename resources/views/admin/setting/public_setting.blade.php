@@ -363,7 +363,7 @@
 @section('script')
     <script type="text/javascript"
 
-            src='http://maps.google.com/maps/api/js?libraries=places&key=AIzaSyAIcQUxj9rT_a3_5GhMp-i6xVqMrtasqws&language=ar'></script>
+            src='https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyAIcQUxj9rT_a3_5GhMp-i6xVqMrtasqws&language=ar'></script>
     <script src="{{asset('admin/locationpicker.jquery.js')}}"></script>
 
 
