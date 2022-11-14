@@ -69,7 +69,7 @@ class frontController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
-            'phone' => 'required|unique:users|min:11',
+            'phone' => 'required|unique:users|min:8',
 
         ]);
         $data = new User();

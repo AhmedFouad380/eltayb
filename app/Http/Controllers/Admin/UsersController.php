@@ -75,7 +75,7 @@ class UsersController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
-            'phone' => 'required|unique:users|min:11',
+            'phone' => 'required|unique:users|min:8',
             'is_active' => 'nullable|string',
 
         ]);
@@ -131,7 +131,7 @@ class UsersController extends Controller
             'id' => 'required|exists:users,id',
             'email' => 'required|email|unique:users,email,' . $request->id,
             'password' => 'nullable|confirmed',
-            'phone' => 'required|min:11|unique:users,phone,' . $request->id,
+            'phone' => 'required|min:8g|unique:users,phone,' . $request->id,
             'is_active' => 'nullable|string',
 
         ]);
