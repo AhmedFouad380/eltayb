@@ -132,7 +132,7 @@
                     {data: 'ar_title', name: 'ar_title', "searchable": true, "orderable": true},
                     {data: 'en_title', name: 'en_title', "searchable": true, "orderable": true},
                     {data: 'category_id', name: 'category_id', "searchable": true, "orderable": true},
-                    {data: 'in_stock', name: 'in_stock', "searchable": true, "orderable": true},
+                    {data: 'availableCount', name: 'availableCountg', "searchable": true, "orderable": true},
                     {data: 'is_discount', name: 'is_discount', "searchable": true, "orderable": true},
                     {data: 'discount_value', name: 'discount_value', "searchable": true, "orderable": true},
                     {data: 'is_new', name: 'is_new', "searchable": true, "orderable": true},
