@@ -163,7 +163,7 @@
                                 <!--begin::Input-->
                                 <input type="number" id="discount_value" name="discount_value" value="{{$employee->discount_value}}"
                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                       required/>
+                                       />
                                 <!--end::Input-->
                             </div>
 

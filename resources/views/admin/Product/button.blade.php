@@ -159,7 +159,7 @@
                                 <!--begin::Input-->
                                 <input type="number" name="discount_value" id="discount_value"
                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                       required/>
+                                       />
                                 <!--end::Input-->
                             </div>
 
