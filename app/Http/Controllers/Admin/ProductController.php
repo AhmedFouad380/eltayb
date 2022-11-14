@@ -68,6 +68,10 @@ class ProductController extends Controller
             ->editColumn('category_id', function ($row) {
                 return $row->Category->ar_title;
             })
+            ->AddColumn('availableCount', function ($row) {
+                return $row->Storage->sum('available_quantity');
+            })
+
             ->addColumn('actions', function ($row) {
                 $actions = ' <a href="' . url("Shapes/" . $row->id) . '" class="btn btn-light-dark"><i class="bi bi-alt"></i> الاحجام </a>';
                 $actions .= ' <a href="' . url("ProductImages/" . $row->id) . '" class="btn btn-light-dark"><i class="bi bi-alt"></i> صور المنتج </a>';
