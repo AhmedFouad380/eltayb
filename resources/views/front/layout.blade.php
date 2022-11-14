@@ -358,7 +358,7 @@
         </div>
         <div class="mobile-header-content-area">
             <div class="mobile-search search-style-3 mobile-header-border">
-                <form action="{{url('search')}}" method="get">
+                <form action="{{url('Search')}}" method="get">
                     <input type="text" placeholder="Search for items…" />
                     <button type="submit"><i class="fi-rs-search"></i></button>
                 </form>
@@ -369,6 +369,26 @@
                     <ul class="mobile-menu font-heading">
                         <li class="menu-item-has-children">
                             <a href="{{url('/')}}">{{__('lang.Home')}}</a>
+                        </li>
+                        @foreach(\App\Models\Page::where('is_active','active')->where('position','header')->get() as $Page)
+                            <li>
+                                <a href="{{url('Page',$Page->id)}}">{{$Page->title}}</a>
+                            </li>
+                        @endforeach
+                        <li class="menu-item-has-children">
+                            <a href="index.html">{{__('lang.BrowseCategories')}}</a>
+                            <ul class="dropdown">
+                                @foreach(\App\Models\Category::where('is_active','active')->limit(8)->get() as $Cat)
+                                    <li><a href="{{url('/Category',$Cat->id)}}">
+                                        {{$Cat->title}}</a>
+                                    </li>
+                                @endforeach
+
+
+                                @foreach(\App\Models\Page::where('is_active','active')->where('position','header')->get() as $Page)
+
+                                @endforeach
+                            </ul>
                         </li>
                         @foreach(\App\Models\Page::where('is_active','active')->where('position','header')->get() as $Page)
                             <li>
@@ -388,14 +408,14 @@
                     <a href="{{url('login')}}"><i class="fi-rs-user"></i>{{__('lang.login')}}  </a>
                 </div>
                 <div class="single-mobile-header-info">
-                    <a href="{{url('login')}}"><i class="fi-rs-user"></i>{{__('lang.Register')}}  </a>
+                    <a href="{{url('login')}}"><i class="fi-rs-user"></i>{{__('lang.register')}}  </a>
                 </div>
             </div>
             <div class="mobile-social-icon mb-50">
                 <h6 class="mb-15">Follow Us</h6>
                 <a href="{{\App\Models\Setting::findOrFail(1)->facebook}}"><img src="{{asset('website/assets/imgs/theme/icons/icon-facebook-white.svg')}}" alt="" /></a>
-                <a href="{{\App\Models\Setting::findOrFail(1)->twitters}}><img src="{{asset('website/assets/imgs/theme/icons/icon-twitter-white.svg')}}" alt="" /></a>
-                <a href="{{\App\Models\Setting::findOrFail(1)->instagram}}><img src="{{asset('website/assets/imgs/theme/icons/icon-instagram-white.svg')}}" alt="" /></a>
+                <a href="{{\App\Models\Setting::findOrFail(1)->twitters}}"><img src="{{asset('website/assets/imgs/theme/icons/icon-twitter-white.svg')}}" alt="" /></a>
+                <a href="{{\App\Models\Setting::findOrFail(1)->instagram}}"><img src="{{asset('website/assets/imgs/theme/icons/icon-instagram-white.svg')}}" alt="" /></a>
                 <a href="{{\App\Models\Setting::findOrFail(1)->youtube}}"><img src="{{asset('website/assets/imgs/theme/icons/icon-youtube-white.svg')}}" alt="" /></a>
             </div>
             <div class="site-copyright">Copyright 2021 © <a href="https://corebugs.com"> CoreBugs </a> All rights reserved.</div>

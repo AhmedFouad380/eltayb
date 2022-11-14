@@ -104,7 +104,7 @@
                                 <!--begin::Input-->
                                 <input type="password" name="password"
                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                       placeholder="" value="" required/>
+                                       placeholder="" value="" />
                                 <!--end::Input-->
                             </div>
                             <div class="fv-row mb-7">
