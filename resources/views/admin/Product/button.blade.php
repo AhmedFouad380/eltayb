@@ -144,10 +144,10 @@
                                     class="form-check form-switch form-check-custom form-check-solid">
                                     <label class="form-check-label" for="flexSwitchDefault">تفعيل الخصم
                                         ؟</label>
-                                    <input class="form-check-input" name="is_discount" type="hidden"
+                                    <input class="form-check-input is_discount" name="is_discount" type="hidden"
                                            value="inactive" id="flexSwitchDefault"/>
                                     <input
-                                        class="form-check-input form-control form-control-solid mb-3 mb-lg-0"
+                                        class="form-check-input form-control is_discount form-control-solid mb-3 mb-lg-0"
                                         name="is_discount" type="checkbox"
                                         value="active" id="flexSwitchDefault" checked/>
                                 </div>
@@ -157,7 +157,7 @@
                                 <label class="required fw-bold fs-6 mb-2">نسبة الخصم </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="number" name="discount_value"
+                                <input type="number" name="discount_value" id="discount_value"
                                        class="form-control form-control-solid mb-3 mb-lg-0"
                                        required/>
                                 <!--end::Input-->
@@ -266,7 +266,17 @@
 <script>
     CKEDITOR.replace( 'editor2' );
     CKEDITOR.replace( 'editor1' );
+    $('.is_discount').on('click , change , keyup ',function () {
+        var value = $(this).val();
+        if(value == 'active'){
+            $( "#discount_value" ).prop( "disabled", false );
 
+// Enable #x
+        }else{
+            $( "#discount_value" ).prop( "disabled", false );
+
+        }
+    })
 </script>
 <script>
     $("#add-question").on("click", function () {
