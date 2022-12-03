@@ -206,6 +206,53 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
 
         Route::get('Product_Reports', [\App\Http\Controllers\Admin\ProductController::class, 'report']);
         Route::get('datatable-Product_Reports', [\App\Http\Controllers\Admin\ProductController::class, 'datatableProduct_Reports'])->name('datatableProduct_Reports');
+
+        /* Branches Routes Start*/
+        Route::get('branches_Setting', [\App\Http\Controllers\Admin\BranchesConroller::class, 'index']);
+        Route::get('branches_datatable', [\App\Http\Controllers\Admin\BranchesConroller::class, 'datatable'])->name('branches.datatable.data');
+        Route::get('delete-branches', [\App\Http\Controllers\Admin\BranchesConroller::class, 'destroy']);
+        Route::post('store-branches', [\App\Http\Controllers\Admin\BranchesConroller::class, 'store']);
+        Route::get('branches-edit/{id}', [\App\Http\Controllers\Admin\BranchesConroller::class, 'edit']);
+        Route::post('update-branches', [\App\Http\Controllers\Admin\BranchesConroller::class, 'update']);
+        Route::get('/add-button-branches', function () {
+            return view('admin/branches/button');
+        });
+        /* Branches Routes End*/
+
+        /* Units Routes Start*/
+        Route::get('units_Setting', [\App\Http\Controllers\Admin\UnitsController::class, 'index']);
+        Route::get('units_datatable', [\App\Http\Controllers\Admin\UnitsController::class, 'datatable'])->name('units.datatable.data');
+        Route::get('delete-units', [\App\Http\Controllers\Admin\UnitsController::class, 'destroy']);
+        Route::post('store-units', [\App\Http\Controllers\Admin\UnitsController::class, 'store']);
+        Route::get('units-edit/{id}', [\App\Http\Controllers\Admin\UnitsController::class, 'edit']);
+        Route::post('update-units', [\App\Http\Controllers\Admin\UnitsController::class, 'update']);
+        Route::get('/add-button-units', function () {
+            return view('admin/units/button');
+        });
+        /* Units Routes End*/
+        /* Suppliers Routes Start*/
+        Route::get('suppliers_Setting', [\App\Http\Controllers\Admin\SuppliersController::class, 'index']);
+        Route::get('suppliers_datatable', [\App\Http\Controllers\Admin\SuppliersController::class, 'datatable'])->name('suppliers.datatable.data');
+        Route::get('delete-suppliers', [\App\Http\Controllers\Admin\SuppliersController::class, 'destroy']);
+        Route::post('store-suppliers', [\App\Http\Controllers\Admin\SuppliersController::class, 'store']);
+        Route::get('suppliers-edit/{id}', [\App\Http\Controllers\Admin\SuppliersController::class, 'edit']);
+        Route::post('update-suppliers', [\App\Http\Controllers\Admin\SuppliersController::class, 'update']);
+        Route::get('/add-button-suppliers', function () {
+            return view('admin/suppliers/button');
+        });
+        /* Suppliers Routes End*/
+
+        /* Receipts Routes Start*/
+        Route::get('receipts_Setting', [\App\Http\Controllers\Admin\ReceiptsController::class, 'index']);
+        Route::get('receipts_datatable', [\App\Http\Controllers\Admin\ReceiptsController::class, 'datatable'])->name('receipts.datatable.data');
+        Route::get('delete-receipts', [\App\Http\Controllers\Admin\ReceiptsController::class, 'destroy']);
+        Route::post('store-receipts', [\App\Http\Controllers\Admin\ReceiptsController::class, 'store']);
+        Route::get('receipts-edit/{id}', [\App\Http\Controllers\Admin\ReceiptsController::class, 'edit']);
+        Route::post('update-receipts', [\App\Http\Controllers\Admin\ReceiptsController::class, 'update']);
+        Route::get('/add-button-receipts', function () {
+            return view('admin/receipts/button');
+        });
+        /* Suppliers Routes End*/
     });
 
     Route::get('lang/{lang}', function ($lang) {
