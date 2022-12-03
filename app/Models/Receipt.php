@@ -49,10 +49,10 @@ class Receipt extends Model
     public function supplier(){
         return $this->belongsTo(Supplier::class , 'supplier_id');
     }
-    public function created_by(){
+    public function creator(){
         return $this->belongsTo(Admin::class , 'created_by');
     }
-    public function updated_by(){
+    public function updator(){
         return $this->belongsTo(Admin::class , 'updated_by');
     }
 }

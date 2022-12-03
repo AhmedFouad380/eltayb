@@ -9,4 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable
 {
     use HasFactory;
+    public function receipt(){
+        return $this->hasMany(Receipt::class , 'created_by');
+    }
 }

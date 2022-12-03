@@ -442,7 +442,7 @@
 
                 ],
                 ajax: {
-                    url: '{{ route('employee.datatable.data') }}',
+                    url: '',
                     data: {
                         @if(Request::get('users_group'))
                         users_group: {{ Request::get('users_group') }}

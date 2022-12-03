@@ -215,13 +215,13 @@
                             اضافة تعديلات
                         </a>
                         <a href="#" class="btn btn-sm btn-danger me-5">
-                            مشرفي المرحلة 
+                            مشرفي المرحلة
                         </a>
                         <a href="#" class="btn btn-sm btn-danger me-5">
-                            محادثة 
+                            محادثة
                         </a>
                         <a href="#" class="btn btn-sm btn-danger me-5">
-                            وقت المرحلة  
+                            وقت المرحلة
                         </a>
                     </div>
                 </div>

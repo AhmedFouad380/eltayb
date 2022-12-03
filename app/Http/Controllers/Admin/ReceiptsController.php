@@ -18,6 +18,9 @@ class ReceiptsController extends Controller
     public function datatable(Request $request)
     {
         $data = Receipt::orderBy('id', 'desc');
+        if(isset($request->id)){
+            $data->where('supplier_id',$request->id);
+        }
 
         return DataTables::of($data)
             ->addColumn('checkbox', function ($row) {
@@ -100,6 +103,7 @@ class ReceiptsController extends Controller
 
             ->addColumn('actions', function ($row) {
                 $actions = ' <a href="' . url("receipts-edit/" . $row->id) . '" class="btn btn-active-light-info"><i class="bi bi-pencil-fill"></i> تعديل </a>';
+                $actions .= ' <a href="' . url("receipts-details/" . $row->id) . '" class="btn btn-active-light-info"><i class="bi bi-pencil-fill"></i> تفاصيل </a>';
                 return $actions;
 
             })
@@ -144,8 +148,9 @@ class ReceiptsController extends Controller
         $receipt->cheque_number=$request->cheque_number;
         $receipt->receipt_type=$request->receipt_type;
         $receipt->payment_type=$request->payment_type;
-        $receipt->updated_by=Auth::user()->id;
-        $receipt->created_by=Auth::user()->id;
+        $receipt->created_by=Auth::guard('admin')->user()->id;
+
+        $receipt->updated_by=Auth::guard('admin')->user()->id;
 
         $receipt->save();
 
@@ -175,6 +180,11 @@ class ReceiptsController extends Controller
     {
         $employee = Receipt::findOrFail($id);
         return view('admin.receipts.edit', compact('employee'));
+    }
+    public function details($id)
+    {
+        $employee = Receipt::findOrFail($id);
+        return view('admin.receipts.details', compact('employee'));
     }
 
     /**

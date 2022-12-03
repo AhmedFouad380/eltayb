@@ -248,10 +248,15 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
         Route::get('delete-receipts', [\App\Http\Controllers\Admin\ReceiptsController::class, 'destroy']);
         Route::post('store-receipts', [\App\Http\Controllers\Admin\ReceiptsController::class, 'store']);
         Route::get('receipts-edit/{id}', [\App\Http\Controllers\Admin\ReceiptsController::class, 'edit']);
+        Route::get('receipts-details/{id}', [\App\Http\Controllers\Admin\ReceiptsController::class, 'details']);
         Route::post('update-receipts', [\App\Http\Controllers\Admin\ReceiptsController::class, 'update']);
         Route::get('/add-button-receipts', function () {
             return view('admin/receipts/button');
         });
+        Route::get('project-details',function (){
+            return view('admin.project_details');
+        });
+
         /* Suppliers Routes End*/
     });
 

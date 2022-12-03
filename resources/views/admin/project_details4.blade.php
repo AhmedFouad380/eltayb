@@ -249,7 +249,7 @@
                 </div>
                 <!--end::Card-->
             </div>
-            
+
             <div class="col-md-4 col-xxl-3">
                 <!--begin::Card-->
                 <div class="card">
