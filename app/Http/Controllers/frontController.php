@@ -40,7 +40,7 @@ class frontController extends Controller
         }
         if (Auth::guard('admin')->attempt($credentials2 ,$remember_me)) {
             // Authentication passed...
-
+                    
             return redirect()->intended('Admin_setting');
         }
         else {

@@ -218,9 +218,7 @@
                     </table>
                     <!--end::Table-->
                     <div class="separator"></div>
-
                 </div>
-
             </div>
 
             <!--end::Basic info-->
