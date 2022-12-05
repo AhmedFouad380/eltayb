@@ -257,7 +257,23 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
             return view('admin.project_details');
         });
 
-        /* Suppliers Routes End*/
+        /* Receipts Routes End*/
+
+        /* Invoices Routes Start*/
+        Route::get('invoices_Setting/{type?}', [\App\Http\Controllers\Admin\InvoicesController::class, 'index']);
+        Route::get('invoices_datatable', [\App\Http\Controllers\Admin\InvoicesController::class, 'datatable'])->name('invoices.datatable.data');
+        Route::get('delete-invoices', [\App\Http\Controllers\Admin\InvoicesController::class, 'destroy']);
+        Route::post('store-invoices', [\App\Http\Controllers\Admin\InvoicesController::class, 'store']);
+        Route::get('invoices-edit/{id}', [\App\Http\Controllers\Admin\InvoicesController::class, 'edit']);
+        Route::get('invoices-details/{id}', [\App\Http\Controllers\Admin\InvoicesController::class, 'details']);
+        Route::post('update-invoices', [\App\Http\Controllers\Admin\InvoicesController::class, 'update']);
+        Route::get('/add-button-invoices/{type?}', function ($type = null) {
+            return view('admin/invoices/button',compact('type'));
+        });
+        Route::get('/add-button-invoices-add/{type?}', function ($type = null) {
+            return view('admin/invoices/invoice-add',compact('type'));
+        });
+        /* Invoices Routes End*/
     });
 
     Route::get('lang/{lang}', function ($lang) {

@@ -102,7 +102,6 @@ class SuppliersController extends Controller
     {
         $data = $this->validate(request(), [
             'name' => 'required|string',
-            'phone' => 'required',
         ]);
 
 
@@ -154,7 +153,6 @@ class SuppliersController extends Controller
     {
         $data = $this->validate(request(), [
             'name' => 'required|string',
-            'phone' => 'required',
         ]);
 
         $supplier = Supplier::whereId($request->id)->firstOrFail();

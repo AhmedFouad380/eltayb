@@ -4,6 +4,10 @@ return [
         'in' => "وارد",
         'out' => "صادر",
     ],
+    'invoice_type' => [
+        'in' => "شراء",
+        'out' => "بيع",
+    ],
     'payment_type' => [
         'cash' => "نقدا",
         'visa' => "فيزا كارد",

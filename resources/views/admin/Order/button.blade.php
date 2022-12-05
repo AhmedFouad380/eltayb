@@ -144,6 +144,7 @@
                             </button>
                         </div>
                         <!--end::Actions-->
+                        </div>
                     </form>
                     <!--end::Form-->
                 </div>

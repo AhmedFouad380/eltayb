@@ -88,7 +88,7 @@
                                 <!--begin::Input-->
                                 <input type="tel" name="phone" id="phone" maxlength="11"
                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                       placeholder="رقم الهاتف" value="{{$employee->phone}}" required/>
+                                       placeholder="رقم الهاتف" value="{{$employee->phone}}" />
                                 <!--end::Input-->
                                 <span id="error-validation" style="color:red"></span>
                             </div>

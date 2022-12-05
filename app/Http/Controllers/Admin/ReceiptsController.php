@@ -21,7 +21,18 @@ class ReceiptsController extends Controller
         if(isset($request->id)){
             $data->where('supplier_id',$request->id);
         }
-
+        if(isset($request->from)) {
+            $data->whereDate('created_at', '<=', $request->from);
+        }
+        if(isset($request->to)){
+            $data->whereDate('created_at','>=',$request->to);
+        }
+        if($request->payment_type && $request->payment_type != 0){
+            $data->where('payment_type',$request->payment_type);
+        }
+        if(isset($request->supplier_id)){
+            $data->where('supplier_id',$request->id);
+        }
         return DataTables::of($data)
             ->addColumn('checkbox', function ($row) {
                 $checkbox = '';
@@ -141,6 +152,7 @@ class ReceiptsController extends Controller
         $receipt = new Receipt();
         $receipt->supplier_id=$request->supplier_id;
         $receipt->value=$request->value;
+        $receipt->date=$request->date;
         $receipt->reciever_name=$request->reciever_name;
         $receipt->notes=$request->notes;
         $receipt->photo=$request->photo;
@@ -206,6 +218,7 @@ class ReceiptsController extends Controller
         $receipt = Receipt::whereId($request->id)->firstOrFail();
         $receipt->supplier_id=$request->supplier_id;
         $receipt->value=$request->value;
+        $receipt->date=$request->date;
         $receipt->reciever_name=$request->reciever_name;
         $receipt->notes=$request->notes;
         $receipt->photo=$request->photo;

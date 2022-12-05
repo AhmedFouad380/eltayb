@@ -59,6 +59,14 @@
                     <!--begin::Card body-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
+                            <label class=" fw-bold fs-6 mb-2"> اختار التاريخ </label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <!--end::Input-->
+                            <input type="date" name="date" class="form-control" value="{{$employee->date}}">
+                        </div>
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
                             <label class="required fw-bold fs-6 mb-2">اسم المورد </label>
                             <!--end::Label-->
                             <!--begin::Input-->

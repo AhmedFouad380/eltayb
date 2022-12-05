@@ -27,4 +27,8 @@ class Branch extends Model
         'updated_at',
     ];
     public $timestamps = true;
+
+    public function admin(){
+        return $this->hasMany(Admin::class , 'branch_id');
+    }
 }

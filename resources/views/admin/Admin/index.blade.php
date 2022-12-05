@@ -66,6 +66,7 @@
                             <th class="min-w-125px">الاسم</th>
                             <th class="min-w-125px">رقم الجوال</th>
                             <th class="min-w-125px">الايميل</th>
+                            <th class="min-w-125px">الفرع</th>
                             <th class="min-w-125px">مفعل</th>
                             <th class=" min-w-100px">الاجراءات</th>
                         </tr>
@@ -122,6 +123,7 @@
                     {data: 'name', name: 'name', "searchable": true, "orderable": true},
                     {data: 'phone', name: 'phone', "searchable": true, "orderable": true},
                     {data: 'email', name: 'email', "searchable": true, "orderable": true},
+                    {data: 'branch', name: 'branch', "searchable": false, "orderable": false},
                     {data: 'is_active', name: 'is_active', "searchable": true, "orderable": true},
                     {data: 'actions', name: 'actions', "searchable": false, "orderable": false},
 

@@ -32,7 +32,11 @@ class AdminController extends Controller
                                    <br> <small class="text-gray-600">' . $row->email . '</small>';
                 return $name;
             })
-
+            ->editColumn('branch', function ($row) {
+                $name = '';
+                $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->branch->ar_name . '</span>';
+                return $name;
+            })
             ->editColumn('is_active', function ($row) {
                 $is_active = '<div class="badge badge-light-success fw-bolder">مفعل</div>';
                 $not_active = '<div class="badge badge-light-danger fw-bolder">غير مفعل</div>';
@@ -48,7 +52,7 @@ class AdminController extends Controller
                 return $actions;
 
             })
-            ->rawColumns(['actions', 'checkbox', 'name', 'is_active'])
+            ->rawColumns(['actions', 'checkbox', 'name', 'is_active','branch'])
             ->make();
 
     }
@@ -84,6 +88,7 @@ class AdminController extends Controller
         $user = new Admin;
         $user->name=$request->name;
         $user->phone=$request->phone;
+        $user->branch_id=$request->branch_id;
         $user->password=Hash::make($request->password);
         $user->email=$request->email;
         $user->is_active=$request->is_active;
@@ -141,6 +146,7 @@ class AdminController extends Controller
         $user = Admin::whereId($request->id)->first();
         $user->name=$request->name;
         $user->email=$request->email;
+        $user->branch_id=$request->branch_id;
         $user->is_active=$request->is_active;
         if(isset($user->password)){
             $user->password=Hash::make($request->password);

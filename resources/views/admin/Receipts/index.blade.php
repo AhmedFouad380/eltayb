@@ -122,6 +122,19 @@
                 ajax: {
                     url: '{{ route('receipts.datatable.data') }}',
                     data: {
+                        @if(Request::get('from'))
+                        from:"{{Request::get('from')}}",
+                        @endif
+                            @if(Request::get('to'))
+                        to:"{{Request::get('to')}}",
+                        @endif
+                            @if(Request::get('payment_type'))
+                        payment_type:"{{Request::get('payment_type')}}",
+                        @endif
+
+                            @if(Request::get('supplier_id'))
+                        supplier_id:"{{Request::get('supplier_id')}}",
+                        @endif
                     }
                 },
                 columns: [

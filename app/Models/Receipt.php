@@ -16,6 +16,7 @@ class Receipt extends Model
         'created_by',
         'updated_by',
         'value',
+        'date',
         'reciever_name',
         'notes',
         'photo',

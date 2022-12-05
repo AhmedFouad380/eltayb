@@ -99,6 +99,20 @@
                             </div>
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">الفرع </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <select class="form-control form-select form-control-solid mb-3 mb-lg-0" name="branch_id"
+                                >
+                                    @inject('branches','App\Models\Branch')
+                                    @foreach($branches->all() as $branch)
+                                        <option value="{{$branch->id}}" @if($employee->branch_id == $branch->id) selected @endif >{{$branch->ar_name}}</option>
+                                    @endforeach
+                                </select>
+                                <!--end::Input-->
+                            </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">كلمة المرور</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
