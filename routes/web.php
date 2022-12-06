@@ -261,6 +261,7 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
 
         /* Invoices Routes Start*/
         Route::get('invoices_Setting/{type?}', [\App\Http\Controllers\Admin\InvoicesController::class, 'index']);
+
         Route::get('invoices_datatable', [\App\Http\Controllers\Admin\InvoicesController::class, 'datatable'])->name('invoices.datatable.data');
         Route::get('delete-invoices', [\App\Http\Controllers\Admin\InvoicesController::class, 'destroy']);
         Route::post('store-invoices', [\App\Http\Controllers\Admin\InvoicesController::class, 'store']);
@@ -273,6 +274,9 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
         Route::get('/add-button-invoices-add/{type?}', function ($type = null) {
             return view('admin/invoices/invoice-add',compact('type'));
         });
+
+        Route::get('addInvoiceDetailRow', [\App\Http\Controllers\Admin\InvoicesController::class, 'addInvoiceDetailRow']);
+
         /* Invoices Routes End*/
     });
 

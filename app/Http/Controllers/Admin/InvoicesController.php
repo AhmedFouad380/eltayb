@@ -286,4 +286,11 @@ class InvoicesController extends Controller
         }
         return response()->json(['message' => 'Success']);
     }
+    public function addInvoiceDetailRow(Request $request){
+
+        $num = $request->num;
+
+        return view('Admin.Invoices.invoicedetailsjson',compact('num'));
+    }
+
 }
