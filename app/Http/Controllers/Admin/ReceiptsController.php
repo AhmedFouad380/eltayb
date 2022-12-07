@@ -18,20 +18,18 @@ class ReceiptsController extends Controller
     public function datatable(Request $request)
     {
         $data = Receipt::orderBy('id', 'desc');
-        if(isset($request->id)){
-            $data->where('supplier_id',$request->id);
-        }
+
         if(isset($request->from)) {
-            $data->whereDate('created_at', '<=', $request->from);
+            $data->whereDate('created_at', '>=', $request->from);
         }
         if(isset($request->to)){
-            $data->whereDate('created_at','>=',$request->to);
+            $data->whereDate('created_at','<=',$request->to);
         }
         if($request->payment_type && $request->payment_type != 0){
             $data->where('payment_type',$request->payment_type);
         }
-        if(isset($request->supplier_id)){
-            $data->where('supplier_id',$request->id);
+        if(isset($request->supplier_id) && $request->supplier_id != 0){
+            $data->where('supplier_id',$request->supplier_id);
         }
         return DataTables::of($data)
             ->addColumn('checkbox', function ($row) {

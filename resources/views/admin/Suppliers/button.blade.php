@@ -111,7 +111,7 @@
                                 <!--begin::Input-->
                                 <input type="text" name="address"
                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                       placeholder="العنوان التفصبلى" value="{{old('address')}}" required />
+                                       placeholder="العنوان التفصبلى" value="{{old('address')}}"  />
                                 <!--end::Input-->
                             </div>
 

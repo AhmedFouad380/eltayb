@@ -16,7 +16,7 @@
 @endsection
 
 @section('breadcrumb')
-    <h1 class="d-flex text-dark fw-bolder my-1 fs-3">تعديل بيانات السندات</h1>
+    <h1 class="d-flex text-dark fw-bolder my-1 fs-3">اضافة فاتورة شراء</h1>
     <!--end::Title-->
     <!--begin::Breadcrumb-->
     <ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
@@ -26,7 +26,7 @@
         </li>
         <!--end::Item-->
         <!--begin::Item-->
-        <li class="breadcrumb-item text-gray-500">تعديل بيانات السندات</li>
+        <li class="breadcrumb-item text-gray-500">اضافة فاتورة شراء</li>
         <!--end::Item-->
     </ul>
     <!--end::Breadcrumb-->
@@ -46,7 +46,7 @@
                      aria-controls="kt_account_profile_details">
                     <!--begin::Card title-->
                     <div class="card-title m-0">
-                        <h3 class="fw-bolder m-0">تعديل بيانات السندات</h3>
+                        <h3 class="fw-bolder m-0">اضافة فاتورة شراء</h3>
                     </div>
                     <!--end::Card title-->
                 </div>
@@ -62,7 +62,7 @@
 
                         <div class="card-body pt-5">
                             <div class="row g-6 g-xl-9 ">
-                                <div class="col-md-6 col-xl-4">
+                                <div class="col-md-4 col-xl-3">
                                     <div class="card card-xl-stretch mb-xl-8">
                                         <label class="required fw-bold fs-6 mb-2">اسم المورد </label>
                                         <!--end::Label-->
@@ -78,16 +78,16 @@
                                     </div>
 
                                 </div>
-                                <div class="col-md-6 col-xl-4">
+                                <div class="col-md-4 col-xl-3">
                                     <div class="card card-xl-stretch mb-xl-8">
-                                        <label class=" fw-bold fs-6 mb-2"> اختار التاريخ </label>
+                                        <label class=" fw-bold fs-6 mb-2">  التاريخ </label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
                                         <!--end::Input-->
                                         <input type="date" name="date" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-xl-4">
+                                <div class="col-md-4 col-xl-3">
                                     <div class="card card-xl-stretch mb-xl-8">
                                         <label class="required fw-bold fs-6 mb-2">نوع الفاتورة</label>
                                         <!--end::Label-->
@@ -105,7 +105,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-xl-4">
+                                <div class="col-md-4 col-xl-3">
                                     <div class="card card-xl-stretch mb-xl-8">
                                         <label class="required fw-bold fs-6 mb-2">اختار الفرع</label>
                                         <!--end::Label-->
@@ -138,62 +138,174 @@
                             <!--end::Card title-->
                         </div>
 
-
-                        <div class="card-body pt-5">
-                            <div class="row g-6 g-xl-9 ">
-                                <div class="col-md-6 col-xl-4">
-                                    <div class="card card-xl-stretch mb-xl-8">
-                                        <label class="required fw-bold fs-6 mb-2">اختار المنتج </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-products" name="supplier_id"
-                                        >
-                                            @inject('products','App\Models\Product')
-                                            @foreach($products->all() as $product)
-                                                <option value="{{$product->id}}">{{$product->ar_title}}</option>
-                                            @endforeach
-                                        </select>
-
-                                    </div>
-
-                                </div>
-                                <div class="col-md-6 col-xl-4">
-                                    <div class="card card-xl-stretch mb-xl-8">
-                                        <!--begin::Label-->
-                                        <label class="required fw-bold fs-6 mb-2">سعر الشراء</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" name="purchase_price"
-                                               class="form-control form-control-solid mb-3 mb-lg-0"
-                                               placeholder="سعر الشراء" value="{{old('notes')}}" />
-                                        <!--end::Input-->
-
-                                    </div>
-
-                                </div>
-                                <div class="col-md-6 col-xl-4">
-                                    <div class="card card-xl-stretch mb-xl-8">
-                                        <!--begin::Label-->
-                                        <label class="required fw-bold fs-6 mb-2">سعر البيع</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" name="sell_price"
-                                               class="form-control form-control-solid mb-3 mb-lg-0"
-                                               placeholder="سعر الشراء" value="{{old('notes')}}" />
-                                        <!--end::Input-->
-
-                                    </div>
-
+                        <!--end::Input group-->
+                        <div class="d-flex flex-column fv-row mb-7 " id="questions" style="display: none">
+                            <div class="row">
+                                <!--begin::Label-->
+                                <label> اضافة منتج </label>
+                                <br>
+                                <div class="col-3">
+                                    <button type="button" id="add-question"
+                                            class="btn btn-light-primary me-3">
+                                        <i class="bi bi-plus-circle-fill fs-2x"></i>
+                                    </button>
                                 </div>
                             </div>
+                            <div class="card-body pt-5">
+                                <div class="row g-6 g-xl-9 ">
+                                    <div class="col-md-6 col-xl-2">
+                                        <div class="card card-xl-stretch mb-xl-8">
+                                            <label class="required fw-bold fs-6 mb-2">اختار المنتج </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-products" name="product_id[]"
+                                            >
+                                                @inject('products','App\Models\Product')
+                                                @foreach($products->all() as $product)
+                                                    <option value="{{$product->id}}">{{$product->ar_title}}</option>
+                                                @endforeach
+                                            </select>
 
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-xl-2">
+                                        <!--begin::Label-->
+                                        <label class="required fw-bold fs-6 mb-2">الاحجام </label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <select class="form-control" name="shape_id" id="shape_id[]" >
+                                        </select>
+                                        <!--end::Input-->
+                                    </div>
+                                    <div class="col-md-6 col-xl-2">
+                                        <div class="card card-xl-stretch mb-xl-8">
+                                            <!--begin::Label-->
+                                            <label class="required fw-bold fs-6 mb-2">سعر الشراء</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" name="purchase_price[]"
+                                                   class="form-control form-control-solid mb-3 mb-lg-0"
+                                                   placeholder="سعر الشراء" value="{{old('notes')}}" />
+                                            <!--end::Input-->
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-xl-2">
+                                        <div class="card card-xl-stretch mb-xl-8">
+                                            <!--begin::Label-->
+                                            <label class="required fw-bold fs-6 mb-2">سعر البيع</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" name="sell_price[]"
+                                                   class="form-control form-control-solid mb-3 mb-lg-0"
+                                                   placeholder="سعر الشراء" value="{{old('notes')}}" />
+                                            <!--end::Input-->
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6 col-xl-2">
+                                        <div class="card card-xl-stretch mb-xl-8">
+                                            <!--begin::Label-->
+                                            <label class="required fw-bold fs-6 mb-2">الكمية</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" name="quantity[]"
+                                                   class="form-control form-control-solid mb-3 mb-lg-0"
+                                                   placeholder="الكمية" value="{{old('quantity')}}" />
+                                            <!--end::Input-->
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-xl-2">
+                                        <div class="card card-xl-stretch mb-xl-8">
+
+                                            <div class="form-check form-switch form-check-custom form-check-solid">
+                                                <label class="form-check-label" for="flexSwitchDefault">مفعل
+                                                    ؟</label>
+                                                <input class="form-check-input" name="is_active[]" type="hidden"
+                                                       value="inactive" id="flexSwitchDefault"/>
+                                                <input
+                                                    class="form-check-input form-control form-control-solid mb-3 mb-lg-0"
+                                                    name="is_active" type="checkbox"
+                                                    value="active" id="flexSwitchDefault" checked/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!--end::Input-->
                         </div>
 
 
+                        <div class="separator"></div>
 
+                        <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
+                             data-bs-target="#kt_account_profile_details" aria-expanded="true"
+                             aria-controls="kt_account_profile_details">
+                            <!--begin::Card title-->
+                            <div class="card-title m-0">
+                                <h3 class="fw-bolder m-0">بيانات اخرى للفاتورة</h3>
+                            </div>
+                            <!--end::Card title-->
+                        </div>
 
+                        <!--end::Input group-->
+                        <div class="card-body pt-5">
+                            <div class="row g-6 g-xl-9 ">
 
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card card-xl-stretch mb-xl-8">
+                                        <!--begin::Label-->
+                                        <label class="required fw-bold fs-6 mb-2"> ضريبة مضافة</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" name="tax"
+                                               class="form-control form-control-solid mb-3 mb-lg-0"
+                                               placeholder="ضريبة مضافة" value="{{old('tax')}}" />
+                                        <!--end::Input-->
 
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card card-xl-stretch mb-xl-8">
+                                        <!--begin::Label-->
+                                        <label class="required fw-bold fs-6 mb-2">مصاريف توصيل</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" name="delivery_fees"
+                                               class="form-control form-control-solid mb-3 mb-lg-0"
+                                               placeholder="مصاريف توصيل" value="{{old('delivery_fees')}}" />
+                                        <!--end::Input-->
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card card-xl-stretch mb-xl-8">
+                                        <!--begin::Label-->
+                                        <label class="required fw-bold fs-6 mb-2">خصم</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" name="discount"
+                                               class="form-control form-control-solid mb-3 mb-lg-0"
+                                               placeholder="خصم" value="{{old('discount')}}" />
+                                        <!--end::Input-->
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
 
 
@@ -219,7 +331,71 @@
 
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $("#add-question").on("click", function () {
+            $("#questions").append('<div class="row g-6 g-xl-9 ">' +
+                '                                            <div class="col-md-6 col-xl-3">' +
+                '                                            <label class="required fw-bold fs-6 mb-2">اختار المنتج </label>'+
+                '                                                <select value="0" type="number" name="shape_price[]"' +
+                '                                                       class="form-control form-select form-control-solid mb-3 mb-lg-0"' +
+                '                                                       placeholder="" required>' +
+                '                                                           <option value=""></option>' +
+                '                                             </div>' +
+                '                                            <div class="col-3"> <label> الاسم بالعربية </label>'  +
+                '                                                <input type="text" name="shape_ar_title[]"' +
+                '                                                       class=" form-control col-6 form-control-solid mb-3 mb-lg-0"' +
+                '                                                       placeholder="" required/>' +
+                '                                            </div>' +
+                '                                            <div class="col-3"> <label> الاسم بالانجليزية </label>'  +
+                '                                                <input type="text" name="shape_en_title[]"' +
+                '                                                       class=" form-control col-6 form-control-solid mb-3 mb-lg-0"' +
+                '                                                       placeholder="" required/>' +
+                '                                            </div>' +
+                '                                            <div class="col-3">' +
+                '                                                     <button type="button"' +
+                '                                                        class="btn btn-light-danger me-3 delete_question">' +
+                '                                                    <i class="bi bi-trash-fill fs-2x fs-2x"></i>' +
+                '                                                </button>' +
+                '                                             </div>' +
+                '                                        </div>');
+        });
 
+        $(document).on('click', '.delete_question', function () {
+            $(this).parent().parent().remove();
+        });
+    </script>
+
+    <script>
+        $("#add-question2").on("click", function () {
+            $("#questions2").append('<div class="row">' +
+                '                                            <div class="col-3">' + '<label>السعر  </label>'+
+                '                                                <input value="0" type="number" name="addition_price[]"' +
+                '                                                       class="values form-control col-6 form-control-solid mb-3 mb-lg-0"' +
+                '                                                       placeholder="" required/>' +
+                '                                             </div>' +
+                '                                            <div class="col-3"> <label> الاسم بالعربية </label>'  +
+                '                                                <input type="text" name="addition_ar_title[]"' +
+                '                                                       class=" form-control col-6 form-control-solid mb-3 mb-lg-0"' +
+                '                                                       placeholder="" required/>' +
+                '                                            </div>' +
+                '                                            <div class="col-3"> <label> الاسم بالانجليزية </label>'  +
+                '                                                <input type="text" name="addition_en_title[]"' +
+                '                                                       class=" form-control col-6 form-control-solid mb-3 mb-lg-0"' +
+                '                                                       placeholder="" required/>' +
+                '                                            </div>' +
+                '                                            <div class="col-3">' +
+                '                                                     <button type="button"' +
+                '                                                        class="btn btn-light-danger me-3 delete_question">' +
+                '                                                    <i class="bi bi-trash-fill fs-2x fs-2x"></i>' +
+                '                                                </button>' +
+                '                                             </div>' +
+                '                                        </div>');
+        });
+
+        $(document).on('click', '.delete_question', function () {
+            $(this).parent().parent().remove();
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('#js-example-basic-single').select2({});
@@ -238,6 +414,21 @@
             }else{
                 document.getElementById('transfer_number').style.display = 'none';
                 document.getElementById('cheque_number').style.display = 'none';
+            }
+        });
+
+        $("#js-example-basic-products").change(function () {
+            var wahda = $(this).val();
+
+            if (wahda != '') {
+                $.get("{{ URL::to('/get-Shapes')}}" + '/' + wahda, function ($data) {
+                    var outs = "";
+                    $.each($data, function (title, id) {
+                        console.log(title)
+                        outs += '<option value="' + id + '">' + title + '</option>'
+                    });
+                    $('#shape_id').html(outs);
+                });
             }
         });
     </script>

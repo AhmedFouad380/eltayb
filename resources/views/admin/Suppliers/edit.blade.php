@@ -112,7 +112,7 @@
                                 <!--begin::Input-->
                                 <input type="text" name="address"
                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                       placeholder="العنوان التفصبلى" value="{{$employee->address}}" required />
+                                       placeholder="العنوان التفصبلى" value="{{$employee->address}}"  />
                                 <!--end::Input-->
                             </div>
 

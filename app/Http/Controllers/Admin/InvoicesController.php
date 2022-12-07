@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
+use App\Models\InvoiceAddition;
+use App\Models\InvoiceDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
@@ -149,23 +151,50 @@ class InvoicesController extends Controller
 
         ]);
 
+        if ($request->product_id != null){
+            $invoice = new Invoice();
+            $invoice->type=$request->type;
+            $invoice->date=$request->date;
+            $invoice->date=$request->date;
+            $invoice->image=$request->image;
+            $invoice->supplier_id=$request->supplier_id;
+            $invoice->branch_id=$request->branch_id;
+            $invoice->created_by=Auth::guard('admin')->user()->id;
+            $invoice->updated_by=Auth::guard('admin')->user()->id;
+            $invoice->save();
 
-        $receipt = new Invoice();
-        $receipt->supplier_id=$request->supplier_id;
-        $receipt->value=$request->value;
-        $receipt->date=$request->date;
-        $receipt->reciever_name=$request->reciever_name;
-        $receipt->notes=$request->notes;
-        $receipt->photo=$request->photo;
-        $receipt->transfer_number=$request->transfer_number;
-        $receipt->cheque_number=$request->cheque_number;
-        $receipt->receipt_type=$request->receipt_type;
-        $receipt->payment_type=$request->payment_type;
-        $receipt->created_by=Auth::guard('admin')->user()->id;
+            // start list of invoices details
+            $product_id = $request->product_id;
+            $shape_id = $request->shape_id;
+            $quantity = $request->quantity;
+            $purchase_price = $request->purchase_price;
+            $add_to_storage = $request->add_to_storage;
+            $sell_price = $request->sell_price;
 
-        $receipt->updated_by=Auth::guard('admin')->user()->id;
+            foreach ($request->product_id as $key => $product){
+                $invoiceDetails = new InvoiceDetails();
+                $invoiceDetails->invoice_id = $invoice->id;
+                $invoiceDetails->product_id = $product_id[$key];
+                $invoiceDetails->shape_id = $shape_id[$key];
+                $invoiceDetails->quantity = $quantity[$key];
+                $invoiceDetails->purchase_price = $purchase_price[$key];
+                $invoiceDetails->add_to_storage = $add_to_storage[$key];
+                $invoiceDetails->sell_price = $sell_price[$key];
+                $invoiceDetails->save();
+            }
+            // end list of invoices details
 
-        $receipt->save();
+            $invoiceAdditions = new InvoiceAddition();
+            $invoiceAdditions->tax = $request->tax;
+            $invoiceAdditions->delivery_fees = $request->delivery_fees;
+            $invoiceAdditions->discount = $request->discount;
+            $invoiceAdditions->coupon_id = $request->coupon_id;
+            $invoiceAdditions->invoice_id = $invoice->id;
+            $invoiceAdditions->save();
+
+        }
+
+
 
         return redirect()->back()->with('message', 'تم الاضافة بنجاح ');
 
