@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Receipt;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
@@ -196,7 +197,12 @@ class ReceiptsController extends Controller
         $employee = Receipt::findOrFail($id);
         return view('admin.receipts.details', compact('employee'));
     }
-
+    public function print_receipt($id)
+    {
+        $employee = Receipt::findOrFail($id);
+        $settings = Setting::findOrFail(1);
+        return view('admin.receipts.print2', compact(['employee','settings']));
+    }
     /**
      * Update the specified resource in storage.
      *

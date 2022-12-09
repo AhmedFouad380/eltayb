@@ -84,7 +84,7 @@
                     <div class="separator"></div>
                     <div class="card-body pt-5">
                         <div class="row g-6 g-xl-9 ">
-                            <div class="col-md-9 col-xl-4">
+                            <div class="col-md-6 col-xl-4">
                                 <div class="card card-xl-stretch mb-xl-8">
                                     <div class="fs-4 fw-bolder">اسم مستلم السند: </div>
                                     <div class="fs-4 fw-bolder">

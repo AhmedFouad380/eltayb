@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\InvoiceAddition;
 use App\Models\InvoiceDetails;
+use App\Models\Product;
+use App\Models\Shape;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
@@ -146,21 +148,18 @@ class InvoicesController extends Controller
     {
         $data = $this->validate(request(), [
             'supplier_id' => 'required|string',
-            'value' => 'required',
-            'photo' => 'required',
 
         ]);
 
         if ($request->product_id != null){
             $invoice = new Invoice();
-            $invoice->type=$request->type;
+            $invoice->type='income';
             $invoice->date=$request->date;
             $invoice->date=$request->date;
             $invoice->image=$request->image;
             $invoice->supplier_id=$request->supplier_id;
             $invoice->branch_id=$request->branch_id;
             $invoice->created_by=Auth::guard('admin')->user()->id;
-            $invoice->updated_by=Auth::guard('admin')->user()->id;
             $invoice->save();
 
             // start list of invoices details
@@ -292,5 +291,16 @@ class InvoicesController extends Controller
 
         return view('Admin.Invoices.invoicedetailsjson',compact('num'));
     }
+    public function addInvoiceDetailRow1(Request $request){
 
+        $product = Product::findOrFail($request->product_id);
+        $shape_id = Shape::findOrFail($request->shape_id);
+        $shape = $shape_id->ar_title;
+        $quantity = $request->quantity;
+        $sell_price = $request->sell_price;
+        $purchase_price = $request->purchase_price;
+        $total_price = $request->total_price;
+
+        return view('Admin.Invoices.invoiceitemsjson',compact(['product','shape','quantity','sell_price','purchase_price','total_price']));
+    }
 }

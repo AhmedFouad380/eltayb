@@ -244,6 +244,7 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
 
         /* Receipts Routes Start*/
         Route::get('receipts_Setting', [\App\Http\Controllers\Admin\ReceiptsController::class, 'index']);
+        Route::get('receipts_print/{id?}', [\App\Http\Controllers\Admin\ReceiptsController::class, 'print_receipt']);
         Route::get('receipts_datatable', [\App\Http\Controllers\Admin\ReceiptsController::class, 'datatable'])->name('receipts.datatable.data');
         Route::get('delete-receipts', [\App\Http\Controllers\Admin\ReceiptsController::class, 'destroy']);
         Route::post('store-receipts', [\App\Http\Controllers\Admin\ReceiptsController::class, 'store']);
@@ -272,10 +273,14 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
             return view('admin/invoices/button',compact('type'));
         });
         Route::get('/add-button-invoices-add/{type?}', function ($type = null) {
-            return view('admin/invoices/invoice-add',compact('type'));
+            return view('admin/invoices/invoice-add1',compact('type'));
+        });
+        Route::get('/add-button-invoices-item/{type?}', function ($type = null) {
+            return view('admin/invoices/invoice-add1',compact('type'));
         });
 
         Route::get('addInvoiceDetailRow', [\App\Http\Controllers\Admin\InvoicesController::class, 'addInvoiceDetailRow']);
+        Route::get('addInvoiceDetailRow1', [\App\Http\Controllers\Admin\InvoicesController::class, 'addInvoiceDetailRow1']);
 
         /* Invoices Routes End*/
     });

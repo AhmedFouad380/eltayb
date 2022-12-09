@@ -10,7 +10,18 @@ class Product extends Model
 {
     use HasFactory;
     protected $appends = ['title','description'];
+    /*protected $table= 'products';
 
+    protected $fillable = [
+        'ar_title',
+        'en_title',
+        'created_at',
+        'updated_at',
+    ];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];*/
     public function getTitleAttribute()
     {
         if ($locale = App::currentLocale() == "ar") {

@@ -1,7 +1,7 @@
-@extends('layout.layout')
+@extends('admin.layouts.master')
 
 @section('title')
-    {{$User->ReceiptType->title}}
+    {{$employee->receipt_type}}
 @endsection
 @section('css')
     <link href="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet"
@@ -112,7 +112,7 @@
 
 
                             <li class="breadcrumb-item">
-                                <h5 class="text-dark font-weight-bold my-1 mr-5 ">{{$User->ReceiptType->title}}</h5>
+                                <h5 class="text-dark font-weight-bold my-1 mr-5 ">{{$employee->receipt_type}}</h5>
                             </li>
                         </ul>
 
@@ -157,40 +157,35 @@
                                     {{--                                <label style="font-size: 18px;font-weight: bold">{{$settings->name}}</label>--}}
 
                                 </div>
-                                <div class="col-sm-4 col-md-4 col-lg-4"
-                                     style="text-align: center; padding: 15px;  display:inline;width: 300px;float:none;">
-                                    <img src="data:image/png;base64,{{DNS2D::getBarcodePNG(url('/'), 'QRCODE',4,4)}}"
-                                         alt="barcode"/>
 
-                                </div>
                                 <div class="col-sm-4 col-lg-4"
                                      style="text-align: left; padding: 0px;  display:inline;width: 300px;float:left;">
                                     <label style="font-size: 18px;font-weight: bold">التاريخ : </label>
                                     <label
-                                        style="font-size: 18px;font-weight: bold">  {{ $hijri_date }}
+                                        style="font-size: 18px;font-weight: bold">  {{ $employee->date }}
                                     </label> هـ <br>
                                     <label
-                                        style="font-size: 18px;font-weight: bold">{{Carbon\Carbon::parse($User->created_at)->format('Y/m/d')}}</label>
+                                        style="font-size: 18px;font-weight: bold">{{Carbon\Carbon::parse($employee->created_at)->format('Y/m/d')}}</label>
                                     م <br>
-                                    <label style="font-size: 18px;font-weight: bold"> رقم السند : {{$User->id}}</label>
+                                    <label style="font-size: 18px;font-weight: bold"> رقم السند : {{$employee->id}}</label>
                                 </div>
                             </div>
                         </div>
                         <br>
-                        <div class="col-lg-12" style="text-align: center">
-                            <h3 style="font-size: 18px;font-weight: bold;">{{$User->ReceiptType->title}}  </h3>
-                        </div>
+                        {{--<div class="col-lg-12" style="text-align: center">
+                            <h3 style="font-size: 18px;font-weight: bold;">{{$employee->ReceiptType->title}}  </h3>
+                        </div>--}}
                         <br>
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-form-label">استلمنا من السيد/ـه: </label>
                             <div class="col-lg-9 col-xl-9">
-                                @inject('client','App\Models\Client')
-                                <input type="text" value="{{$client->find($id)->name}}" disabled
+                                @inject('supplier','App\Models\Supplier')
+                                <input type="text" value="{{$supplier->find($employee->supplier_id)->name}}" disabled
                                        class="form-control form-control-solid" required placeholder="">
                             </div>
                         </div>
 
-                        @if($client->find($id)->tax_num != null)
+                        {{--@if($client->find($id)->tax_num != null)
                             <div class="form-group row">
                                 <label class="col-xl-3 col-lg-3 col-form-label">رقم ضريبي : </label>
                                 <div class="col-lg-9 col-xl-9">
@@ -200,14 +195,14 @@
                                 </div>
                             </div>
 
-                        @endif
+                        @endif--}}
                         <br>
                         <!--begin: Wizard Step 1-->
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-sm-3 col-form-label"> نقدا مبلغ و قدرة </label>
                             <div class="col-lg-3 col-xl-3 col-sm-3">
                                 <input type="number" id="txt" disabled class="form-control form-control-solid"
-                                       value="{{$User->price}}" name="price" required
+                                       value="{{$employee->value}}" name="price" required
                                        placeholder="{{__('lang.price')}}">
                             </div>
                             <label class="col-xl-1 col-lg-1 col-sm-1 col-form-label"> كتابة : </label>
@@ -221,37 +216,37 @@
                             <label class="col-xl-3 col-lg-3 col-form-label"> {{__('lang.pay_type')}}: </label>
                             <div class="col-lg-9 col-xl-9">
                                 <input type="text" disabled class="form-control form-control-solid"
-                                       value="{{__('lang.'.$User->pay_type)}}" required placeholder="">
+                                       value="{{__('lang.'.$employee->payment_type)}}" required placeholder="">
                             </div>
                         </div>
 
-                        @if($User->pay_type == 'network')
+                        @if($employee->payment_type == 'bank_transfer')
                             <div id="networkInputs">
                                 <div class="form-group row">
                                     <label class="col-xl-1 col-lg-1 col-form-label"> {{__('lang.network_num')}}</label>
                                     <div class="col-lg-3 col-xl-3">
                                         <input type="text" disabled class="form-control form-control-solid"
-                                               name="network_date" value="{{$User->network_num}}"
+                                               name="network_date" value="{{$employee->transfer_number}}"
                                                placeholder="{{__('lang.network_num')}}">
                                     </div>
 
                                     <label class="col-xl-1 col-lg-1 col-form-label"> {{__('lang.date')}}</label>
                                     <div class="col-lg-3 col-xl-3">
                                         <input type="text" disabled class="form-control form-control-solid"
-                                               value="{{\Carbon\Carbon::parse($User->date)->format('Y-m-d')}}"
+                                               value="{{\Carbon\Carbon::parse($employee->date)->format('Y-m-d')}}"
                                                name="network_date" placeholder="{{__('lang.date')}}">
                                     </div>
                                     <label class="col-xl-1 col-lg-1 col-form-label"> {{__('lang.time')}}</label>
                                     <div class="col-lg-3 col-xl-3">
                                         <input type="text" disabled class="form-control form-control-solid"
-                                               value="{{\Carbon\Carbon::parse($User->date)->format('H:i')}}"
+                                               value="{{\Carbon\Carbon::parse($employee->date)->format('H:i')}}"
                                                name="network_date" placeholder="{{__('lang.date')}}">
                                     </div>
                                 </div>
                             </div>
                         @endif
 
-                        @if($User->pay_type == 'check')
+                        @if($employee->payment_type == 'cheque')
 
                             <div id="checkInputs">
 
@@ -260,13 +255,13 @@
                                     <label class="col-xl-3 col-lg-3 col-sm-3 col-form-label"> رقم الشيك</label>
                                     <div class="col-lg-3 col-xl-3 col-sm-3 ">
                                         <input type="text" disabled class="form-control form-control-solid"
-                                               value="{{ $User->check_number }}" name="check_number"
+                                               value="{{ $employee->cheque_number }}" name="check_number"
                                                placeholder="{{__('lang.date')}}">
                                     </div>
                                     <label class="col-xl-2 col-lg-2 col-sm-2 col-form-label"> تاريخ الاستحقاق</label>
                                     <div class="col-lg-4 col-xl-4 col-sm-2">
                                         <input type="date" disabled class="form-control form-control-solid"
-                                               name="check_date" value="{{$User->check_date}}"
+                                               name="check_date" value="{{$employee->date}}"
                                                placeholder="{{__('lang.network_num')}}">
                                     </div>
 
@@ -275,8 +270,8 @@
 
                                     <label class="col-xl-3 col-lg-3 col-form-label"> اسم البنك</label>
                                     <div class="col-lg-9 col-xl-9">
-                                        <input type="text" disabled class="form-control form-control-solid"
-                                               value="{{ $User->bank_name }}" name="bank_name"
+                                        <input type="text"  class="form-control form-control-solid"
+                                                name="bank_name"
                                                placeholder="{{__('lang.date')}}">
                                     </div>
                                 </div>
@@ -286,7 +281,7 @@
                         <div class="form-group row">
                             <label class="col-xl-3 col-lg-3 col-sm-3 col-form-label"> وذلك مقابل </label>
                             <div class="col-lg-9 col-xl-9 col-sm-9">
-                                <p> {{$User->note}} </p>
+                                <p> {{$employee->note}} </p>
                             </div>
                         </div>
 
@@ -305,7 +300,7 @@
 
 
 
-@section('js')
+@section('script')
     <script src="{{asset('dashboard/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
     <script src="{{asset('dashboard/assets/js/pages/crud/datatables/basic/basic.js')}}"></script>
     <script src="{{asset('dashboard/assets/js/pages/crud/file-upload/image-input.js')}}"></script>
@@ -313,7 +308,6 @@
     <script src="{{asset('dashboard/assets/js/pages/features/miscellaneous/dropify.min.js')}}"></script>
     <script src="{{asset('dashboard/assets/js/pages/custom/wizard/wizard-6.js')}}"></script>
     <script src="{{asset('dashboard/assets/js/pages/crud/forms/widgets/select2.js')}}"></script>
-
 
     <script src="{{asset('front/Tafqeet.js')}}"></script>
     <script>
@@ -331,20 +325,138 @@
         main();
 
     </script>
+    <link href="{{asset('admin/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('admin/assets/css/style.bundle.rtl.css')}}" rel="stylesheet" type="text/css" />
+
     <script>
         $(document).ready(function () {
             $('#print-div').on('click ', function () {
-                var val = demo.value; //get the input box value
-                demo.setAttribute('value', val); //set value attribute into input
+                var script_url = '{{asset('admin/assets/css/style.bundle.rtl.css')}}'
                 var divToPrint = document.getElementById('content_2');
 
-                console.log(main());
                 var newWin = window.open('', 'Print-Window');
                 newWin.document.open();
                 newWin.document.write('<html>' +
                     '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">' +
-                    '<body dir="rtl" onload="window.print()"> ' + divToPrint.innerHTML + '</body></html>');
-                newWin.document.title = 'سند رقم ' + {!! json_encode($User->id) !!};
+                    '    <link href="'+ script_url +'" rel="stylesheet" type="text/css" />'+
+                    '    <style>' +
+                    '        @media print {' +
+                    '            .flex-column-fluid {' +
+                    '                display: none;' +
+                    '            }' +
+                    '' +
+                    '.card .card-body {' +
+                    '  padding: 2rem 2.25rem;' +
+                    '}'+
+                    '.card.card-p-0 .card-header,' +
+                    '.card.card-p-0 .card-body,' +
+                    '.card.card-p-0 .card-footer {' +
+                    '  padding: 0;' +
+                    '}'+
+                    '.card-body {' +
+                    '  flex: 1 1 auto;' +
+                    '  padding: 1rem 1rem;' +
+                    '}'+
+                    '.row {\n' +
+                    '  --bs-gutter-x: 1.5rem;\n' +
+                    '  --bs-gutter-y: 0;\n' +
+                    '  display: flex;\n' +
+                    '  flex-wrap: wrap;\n' +
+                    '  margin-top: calc(-1 * var(--bs-gutter-y));\n' +
+                    '  margin-left: calc(-0.5 * var(--bs-gutter-x));\n' +
+                    '  margin-right: calc(-0.5 * var(--bs-gutter-x));\n' +
+                    '}\n' +
+                    '.row > * {\n' +
+                    '  flex-shrink: 0;\n' +
+                    '  width: 100%;\n' +
+                    '  max-width: 100%;\n' +
+                    '  padding-left: calc(var(--bs-gutter-x) * 0.5);\n' +
+                    '  padding-right: calc(var(--bs-gutter-x) * 0.5);\n' +
+                    '  margin-top: var(--bs-gutter-y);\n' +
+                    '}'+
+                    '.card.card-py-0 .card-header,' +
+                    '.card.card-py-0 .card-body,' +
+                    '.card.card-py-0 .card-footer {' +
+                    '  padding-top: 0;' +
+                    '  padding-bottom: 0;' +
+                    '}'+
+                    '.card.card-px-0 .card-body,' +
+                    '.card.card-px-0 .card-footer {' +
+                    '  padding-right: 0;' +
+                    '  padding-left: 0;' +
+                    '}'+
+                    '            .brand-logo img {' +
+                    '                display: none;' +
+                    '            }' +
+                    '' +
+                    '            .breadcrumb-item h5 {' +
+                    '                display: none;' +
+                    '            }' +
+                    '' +
+                    '            .logo {' +
+                    '                display: none;' +
+                    '            }' +
+                    '' +
+                    '            .card-toolbar button {' +
+                    '                display: none;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {' +
+                    '                float: left !important;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-12 {' +
+                    '                width: 100%;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-11 {' +
+                    '                width: 91.66666666666666%;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-10 {' +
+                    '                width: 83.33333333333334%;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-9 {' +
+                    '                width: 75%;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-8 {' +
+                    '                width: 66.66666666666666%;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-7 {' +
+                    '                width: 58.333333333333336%;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-6 {' +
+                    '                width: 50%;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-5 {' +
+                    '                width: 41.66666666666667%;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-4 {' +
+                    '                width: 32.33333333333333%;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-3 {' +
+                    '                width: 25%;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-2 {' +
+                    '                width: 16.666666666666664%;' +
+                    '            }' +
+                    '' +
+                    '            .col-sm-1 {' +
+                    '                width: 8.333333333333332%;' +
+                    '            }' +
+                    '' +
+                    '        }' +
+                    '    </style>'+
+                    '<body dir="rtl"onload="window.print()"> ' + divToPrint.innerHTML + '</body></html>');
+                newWin.document.title = 'سند رقم ' + {!! json_encode($employee->id) !!};
                 newWin.document.close();
                 setTimeout(function () {
                     newWin.close();

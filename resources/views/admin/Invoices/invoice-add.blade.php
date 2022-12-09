@@ -54,7 +54,7 @@
                 <!--begin::Content-->
                 <div id="kt_account_settings_profile_details" class="collapse show" style="margin-left: 30px;margin-right: 30px;">
                     <!--begin::Form-->
-                    <form id="kt_account_profile_details_form" enctype="multipart/form-data" action="{{url('update-receipts')}}" class="form"
+                    <form id="" enctype="multipart/form-data" action="{{url('store-invoices')}}" class="form"
                           method="post">
                     @csrf
                     <!--begin::Card body-->
@@ -85,6 +85,7 @@
                                         <!--begin::Input-->
                                         <!--end::Input-->
                                         <input type="date" name="date" class="form-control">
+
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xl-3">
@@ -140,111 +141,123 @@
 
                         <!--end::Input group-->
                         <div class="d-flex flex-column fv-row mb-7 " id="questions" style="display: none">
-                            <div class="row">
-                                <!--begin::Label-->
-                                <label> اضافة منتج </label>
-                                <br>
-                                <div class="col-3">
-                                    <button type="button" id="add-question"
-                                            class="btn btn-light-primary me-3">
-                                        <i class="bi bi-plus-circle-fill fs-2x"></i>
-                                    </button>
+                            <div class="row g-6 g-xl-9 ">
+
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card card-xl-stretch mb-xl-8">
+                                        <!--begin::Label-->
+                                        <label> اضافة منتج </label>
+                                        <button type="button" id="add-question"
+                                                class="btn btn-light-primary me-3">
+                                            <i class="bi bi-plus-circle-fill fs-2x"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-body pt-5">
-                                <div class="row g-6 g-xl-9 ">
-                                    <div class="col-md-6 col-xl-2">
-                                        <div class="card card-xl-stretch mb-xl-8">
-                                            <label class="required fw-bold fs-6 mb-2">اختار المنتج </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0 product_id"  data-num="1" id="js-example-basic-products" name="product_id[]"
-                                            >
-                                                @inject('products','App\Models\Product')
-                                                @foreach($products->all() as $product)
-                                                    <option value="{{$product->id}}">{{$product->ar_title}}</option>
-                                                @endforeach
-                                            </select>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6 col-xl-2">
-                                        <!--begin::Label-->
-                                        <label class="required fw-bold fs-6 mb-2">الاحجام </label>
+                            <div class="row g-6 g-xl-9 ">
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card card-xl-stretch mb-xl-8">
+                                        <label class="required fw-bold fs-6 mb-2">اختار المنتج </label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <select class="form-control" id="shape1" name="shape_id" id="shape_id[]" >
+                                        <select class="form-control form-select form-control-solid mb-3 mb-lg-0 product_id"  data-num="1" id="js-example-basic-products" name="product_id[]"
+                                        >
+                                            @inject('products','App\Models\Product')
+                                            @foreach($products->all() as $product)
+                                                <option value="{{$product->id}}">{{$product->ar_title}}</option>
+                                            @endforeach
                                         </select>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <!--begin::Label-->
+                                    <label class="required fw-bold fs-6 mb-2">الاحجام </label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <select class="form-control" id="shape1" name="shape_id" id="shape_id[]" >
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card card-xl-stretch mb-xl-8">
+                                        <!--begin::Label-->
+                                        <label class="required fw-bold fs-6 mb-2">سعر الشراء</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" name="purchase_price[]"
+                                               class="form-control form-control-solid mb-3 mb-lg-0 purchase_price"
+                                               placeholder="سعر الشراء" value="{{old('notes')}}" id="purchase_price1"/>
                                         <!--end::Input-->
-                                    </div>
-                                    <div class="col-md-6 col-xl-2">
-                                        <div class="card card-xl-stretch mb-xl-8">
-                                            <!--begin::Label-->
-                                            <label class="required fw-bold fs-6 mb-2">سعر الشراء</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="purchase_price[]"
-                                                   class="form-control form-control-solid mb-3 mb-lg-0"
-                                                   placeholder="سعر الشراء" value="{{old('notes')}}" />
-                                            <!--end::Input-->
-
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6 col-xl-2">
-                                        <div class="card card-xl-stretch mb-xl-8">
-                                            <!--begin::Label-->
-                                            <label class="required fw-bold fs-6 mb-2">سعر البيع</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="sell_price[]"
-                                                   class="form-control form-control-solid mb-3 mb-lg-0"
-                                                   placeholder="سعر الشراء" value="{{old('notes')}}" />
-                                            <!--end::Input-->
-
-                                        </div>
 
                                     </div>
 
-                                    <div class="col-md-6 col-xl-2">
-                                        <div class="card card-xl-stretch mb-xl-8">
-                                            <!--begin::Label-->
-                                            <label class="required fw-bold fs-6 mb-2">الكمية</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" name="quantity[]"
-                                                   class="form-control form-control-solid mb-3 mb-lg-0"
-                                                   placeholder="الكمية" value="{{old('quantity')}}" />
-                                            <!--end::Input-->
-
-                                        </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card card-xl-stretch mb-xl-8">
+                                        <!--begin::Label-->
+                                        <label class="required fw-bold fs-6 mb-2">سعر البيع</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" name="sell_price[]"
+                                               class="form-control form-control-solid mb-3 mb-lg-0"
+                                               placeholder="سعر الشراء" value="{{old('notes')}}" />
+                                        <!--end::Input-->
 
                                     </div>
-                                    <div class="col-md-6 col-xl-2">
-                                        <div class="card card-xl-stretch mb-xl-8">
 
-                                            <div class="form-check form-switch form-check-custom form-check-solid">
-                                                <label class="form-check-label" for="flexSwitchDefault">مفعل
-                                                    ؟</label>
-                                                <input class="form-check-input" name="is_active[]" type="hidden"
-                                                       value="inactive" id="flexSwitchDefault"/>
-                                                <input
-                                                    class="form-check-input form-control form-control-solid mb-3 mb-lg-0"
-                                                    name="is_active" type="checkbox"
-                                                    value="active" id="flexSwitchDefault" checked/>
-                                            </div>
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card card-xl-stretch mb-xl-8">
+                                        <!--begin::Label-->
+                                        <label class="required fw-bold fs-6 mb-2">الكمية</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" name="quantity[]"
+                                               class="form-control form-control-solid mb-3 mb-lg-0 quantity"
+                                               placeholder="الكمية" id="quantity1" />
+                                        <!--end::Input-->
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card card-xl-stretch mb-xl-8">
+                                        <!--begin::Label-->
+                                        <label class="required fw-bold fs-6 mb-2">السعر الاجمالى</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text"
+                                               class="form-control form-control-solid mb-3 mb-lg-0"
+                                               placeholder="السعر الاجمالى" id="total_price1"
+                                               onchange="addNumbers(this)"
+                                        disabled/>
+                                        <!--end::Input-->
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card card-xl-stretch mb-xl-8">
+
+                                        <div class="form-check form-switch form-check-custom form-check-solid">
+                                            <label class="form-check-label" for="flexSwitchDefault">اضف الى المخزون</label>
+                                            <input class="form-check-input" name="add_to_storage[]" type="hidden"
+                                                   value="0" id="flexSwitchDefault"/>
+                                            <input
+                                                class="form-check-input form-control form-control-solid mb-3 mb-lg-0"
+                                                name="is_active" type="checkbox"
+                                                value="1" id="flexSwitchDefault" checked/>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+                            <div class="separator"></div>
+
 
                             <!--end::Input-->
                         </div>
-
-
-                        <div class="separator"></div>
 
                         <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
                              data-bs-target="#kt_account_profile_details" aria-expanded="true"
@@ -303,6 +316,23 @@
 
                                 </div>
 
+                                <div class="col-md-6 col-xl-2">
+                                    <div class="card card-xl-stretch mb-xl-8">
+                                        <!--begin::Label-->
+                                        <label class="required fw-bold fs-6 mb-2">اجمالى الفاتورة</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <input type="text" name="value"
+                                               id="total_price"
+                                               class="form-control form-control-solid mb-3 mb-lg-0"
+                                               placeholder="اجمالى الفاتورة"
+                                        disabled />
+                                        <!--end::Input-->
+
+                                    </div>
+
+                                </div>
+
                             </div>
 
                         </div>
@@ -332,8 +362,9 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        var num = 2;
+        var num = 1;
         $("#add-question").on("click", function () {
+            num++
             $.ajax({
                 type: "GET",
                 url: "{{url('addInvoiceDetailRow')}}",
@@ -345,48 +376,54 @@
             })
 
         });
+        $("#quantity"+num).on('click , change ,keyup',function() {
+            var  quantity = $(this).val();
+            var   purchase_price= $('#purchase_price'+num).val();
+            var total = quantity * purchase_price;
+            document.getElementById("total_price"+num).value = total;
+
+            document.getElementById('total_price').value = total;
+
+        })
+        $("#purchase_price"+num).on('click , change ,keyup',function() {
+            var  quantity = $(this).val();
+            var   purchase_price= $('#quantity'+num).val();
+            var total = quantity * purchase_price;
+            document.getElementById("total_price"+num).value = total;
+            /*for( var i = 1; i <= 60; i++ ) {
+                var val = parseInt(document.getElementById("total_price"+num).value);
+                if(val > 0){
+                    total += val;
+                }
+            }*/
+            document.getElementById('total_price').value = total;
+
+        })
+
+        addNumbers = function(el){
+            var total = 0;
+            var number = 1;
+            for( var i = 1; i <= 60; i++ ) {
+                number++;
+                var val = parseInt(document.getElementById("total_price"+number).value);
+                if(val > 0){
+                    total += val;
+                }
+
+            }
+            document.getElementById('total_price').value = total;
+        }
 
         $(document).on('click', '.delete_question', function () {
             $(this).parent().parent().remove();
         });
     </script>
 
-    <script>
-        $("#add-question2").on("click", function () {
-            $("#questions2").append('<div class="row">' +
-                '                                            <div class="col-3">' + '<label>السعر  </label>'+
-                '                                                <input value="0" type="number" name="addition_price[]"' +
-                '                                                       class="values form-control col-6 form-control-solid mb-3 mb-lg-0"' +
-                '                                                       placeholder="" required/>' +
-                '                                             </div>' +
-                '                                            <div class="col-3"> <label> الاسم بالعربية </label>'  +
-                '                                                <input type="text" name="addition_ar_title[]"' +
-                '                                                       class=" form-control col-6 form-control-solid mb-3 mb-lg-0"' +
-                '                                                       placeholder="" required/>' +
-                '                                            </div>' +
-                '                                            <div class="col-3"> <label> الاسم بالانجليزية </label>'  +
-                '                                                <input type="text" name="addition_en_title[]"' +
-                '                                                       class=" form-control col-6 form-control-solid mb-3 mb-lg-0"' +
-                '                                                       placeholder="" required/>' +
-                '                                            </div>' +
-                '                                            <div class="col-3">' +
-                '                                                     <button type="button"' +
-                '                                                        class="btn btn-light-danger me-3 delete_question">' +
-                '                                                    <i class="bi bi-trash-fill fs-2x fs-2x"></i>' +
-                '                                                </button>' +
-                '                                             </div>' +
-                '                                        </div>');
-        });
-
-        $(document).on('click', '.delete_question', function () {
-            $(this).parent().parent().remove();
-        });
-    </script>
     <script>
         $(document).ready(function() {
             $('#js-example-basic-single').select2({});
             $('#js-example-basic-branch').select2({});
-            // $('#js-example-basic-products').select2({});
+             $('#js-example-basic-products').select2({});
         });
         $("#payment_type").change(function () {
             var type = $(this).val();

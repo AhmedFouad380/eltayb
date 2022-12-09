@@ -1,4 +1,5 @@
-<div class="row g-6 g-xl-9 ">
+<div class="row g-6 g-xl-9 " style="margin-top: 1px;">
+    <div>{{$num}}</div>
     <div class="col-md-6 col-xl-2">
         <div class="card card-xl-stretch mb-xl-8">
             <label class="required fw-bold fs-6 mb-2">اختار المنتج </label>
@@ -20,7 +21,7 @@
         <label class="required fw-bold fs-6 mb-2">الاحجام </label>
         <!--end::Label-->
         <!--begin::Input-->
-        <select class="form-control" id="shape{{$num}}" name="shape_id" id="shape_id[]" >
+        <select class="form-control" id="shape{{$num}}" name="shape_id[]" >
         </select>
         <!--end::Input-->
     </div>
@@ -32,7 +33,8 @@
             <!--begin::Input-->
             <input type="text" name="purchase_price[]"
                    class="form-control form-control-solid mb-3 mb-lg-0"
-                   placeholder="سعر الشراء" value="{{old('notes')}}" />
+                   placeholder="سعر الشراء" value="{{old('notes')}}"
+            id="purchase_price{{$num}}"/>
             <!--end::Input-->
 
         </div>
@@ -61,7 +63,24 @@
             <!--begin::Input-->
             <input type="text" name="quantity[]"
                    class="form-control form-control-solid mb-3 mb-lg-0"
-                   placeholder="الكمية" value="{{old('quantity')}}" />
+                   placeholder="الكمية" value="{{old('quantity')}}"
+                   id="quantity{{$num}}"
+            />
+            <!--end::Input-->
+
+        </div>
+
+    </div>
+    <div class="col-md-6 col-xl-2">
+        <div class="card card-xl-stretch mb-xl-8">
+            <!--begin::Label-->
+            <label class="required fw-bold fs-6 mb-2">السعر الاجمالى</label>
+            <!--end::Label-->
+            <!--begin::Input-->
+            <input type="text"
+                   class="form-control form-control-solid mb-3 mb-lg-0 total_price"
+                   placeholder="السعر الاجمالى" id="total_price{{$num}}"
+                   disabled/>
             <!--end::Input-->
 
         </div>
@@ -71,23 +90,24 @@
         <div class="card card-xl-stretch mb-xl-8">
 
             <div class="form-check form-switch form-check-custom form-check-solid">
-                <label class="form-check-label" for="flexSwitchDefault">مفعل
-                    ؟</label>
-                <input class="form-check-input" name="is_active[]" type="hidden"
-                       value="inactive" id="flexSwitchDefault"/>
+                <label class="form-check-label" for="flexSwitchDefault">اضف الى المخزون</label>
+                <input class="form-check-input" name="add_to_storage[]" type="hidden"
+                       value="0" id="flexSwitchDefault"/>
                 <input
                     class="form-check-input form-control form-control-solid mb-3 mb-lg-0"
                     name="is_active" type="checkbox"
-                    value="active" id="flexSwitchDefault" checked/>
+                    value="1" id="flexSwitchDefault" checked/>
             </div>
         </div>
     </div>
-    <div class="col-3">
-                                                             <button type="button"
-                                                                class="btn btn-light-danger me-3 delete_question">
-                                                            <i class="bi bi-trash-fill fs-2x fs-2x"></i>
-                                                       </button>
-                                                     </div>
+    <div class="col-md-6 col-xl-2" style="margin-top: -5px;">
+        <button type="button"
+                class="btn btn-light-danger me-3 delete_question">
+            <i class="bi bi-trash-fill fs-2x fs-2x"></i>
+        </button>
+    </div>
+    </div>
+
 </div>
 
 
@@ -107,4 +127,30 @@
             });
         }
     });
+    $("#quantity"+{{$num}}).on('click , change ,keyup',function() {
+        var  quantity = $(this).val();
+        var   purchase_price= $('#purchase_price'+{{$num}}).val();
+        var total = quantity * purchase_price;
+        document.getElementById("total_price"+{{$num}}).value = total;
+    })
+
+    $("#purchase_price"+{{$num}}).on('click , change ,keyup',function() {
+        var  quantity = $(this).val();
+        var   purchase_price= $('#quantity'+{{$num}}).val();
+        var total = quantity * purchase_price;
+        document.getElementById("total_price"+{{$num}}).value = total;
+    })
+    addNumbers = function(el){
+        var total = 0;
+        var number = 1;
+        for( var i = 1; i <= 60; i++ ) {
+            number++;
+            var val = parseInt(document.getElementById("total_price"+number).value);
+            if(val > 0){
+                total += val;
+            }
+
+        }
+        document.getElementById('total_price').value = total;
+    }
 </script>

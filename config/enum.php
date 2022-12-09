@@ -5,8 +5,8 @@ return [
         'out' => "صادر",
     ],
     'invoice_type' => [
-        'in' => "شراء",
-        'out' => "بيع",
+        'income' => "شراء",
+        'outcome' => "بيع",
     ],
     'payment_type' => [
         'cash' => "نقدا",

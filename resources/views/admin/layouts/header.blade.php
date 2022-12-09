@@ -286,7 +286,7 @@
 
                                 <div data-kt-menu-placement="right-start"
                                      class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('/invoices_Setting/'. 'in')}}">
+                                    <a href="{{url('/invoices_Setting/'. 'income')}}">
                                     <span
                                         class="menu-link @if(Request::segment(1) == "invoices_Setting_buy"  ) active @endif py-3">
                                         <span class="menu-icon ">
@@ -321,7 +321,7 @@
                                 </div>
                                 <div data-kt-menu-placement="right-start"
                                      class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('/invoices_Setting/out')}}">
+                                    <a href="{{url('/invoices_Setting/outcome')}}">
                                     <span
                                         class="menu-link @if(Request::segment(1) == "invoices_Setting_sell"  ) active @endif py-3">
                                         <span class="menu-icon ">
