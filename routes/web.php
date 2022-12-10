@@ -140,6 +140,7 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
             return view('admin/Product/button');
         });
 
+        Route::get('get-products/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'getProducts']);
 
         Route::get('ProductImages/{id}', [\App\Http\Controllers\Admin\ProductImagesController::class, 'index']);
         Route::get('ProductImages_datatable', [\App\Http\Controllers\Admin\ProductImagesController::class, 'datatable'])->name('ProductImages.datatable.data');
@@ -230,6 +231,19 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
             return view('admin/units/button');
         });
         /* Units Routes End*/
+
+        /* CLients Routes Start*/
+        Route::get('clients_Setting', [\App\Http\Controllers\Admin\ClientsController::class, 'index']);
+        Route::get('clients_datatable', [\App\Http\Controllers\Admin\ClientsController::class, 'datatable'])->name('clients.datatable.data');
+        Route::get('delete-clients', [\App\Http\Controllers\Admin\ClientsController::class, 'destroy']);
+        Route::post('store-clients', [\App\Http\Controllers\Admin\ClientsController::class, 'store']);
+        Route::get('clients-edit/{id}', [\App\Http\Controllers\Admin\ClientsController::class, 'edit']);
+        Route::post('update-clients', [\App\Http\Controllers\Admin\ClientsController::class, 'update']);
+        Route::get('/add-button-clients', function () {
+            return view('admin/clients/button');
+        });
+        /* Clients Routes End*/
+
         /* Suppliers Routes Start*/
         Route::get('suppliers_Setting', [\App\Http\Controllers\Admin\SuppliersController::class, 'index']);
         Route::get('suppliers_datatable', [\App\Http\Controllers\Admin\SuppliersController::class, 'datatable'])->name('suppliers.datatable.data');

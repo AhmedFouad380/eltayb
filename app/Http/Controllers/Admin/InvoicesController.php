@@ -23,8 +23,8 @@ class InvoicesController extends Controller
     public function datatable(Request $request)
     {
         $data = Invoice::orderBy('id', 'desc');
-        if(isset($request->id)){
-            $data->where('supplier_id',$request->id);
+        if(isset($request->type)){
+            $data->where('type',$request->type);
         }
         if(isset($request->from)) {
             $data->whereDate('created_at', '<=', $request->from);
@@ -51,79 +51,31 @@ class InvoicesController extends Controller
                 $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->supplier->name . '</span>';
                 return $name;
             })
+            ->editColumn('num', function ($row) {
+                $name = '';
+                $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->id . '</span>';
+
+                return $name;
+            })
             ->editColumn('value', function ($row) {
                 $name = '';
-                $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->value . '</span>';
+                $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->total_price . '</span>';
 
                 return $name;
             })
-            ->editColumn('notes', function ($row) {
+            ->editColumn('created_by', function ($row) {
                 $name = '';
-                $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->notes . '</span>';
-                return $name;
-            })
-            ->editColumn('photo', function ($row) {
-                $name = '';
-                $name .= ' <a class="badge badge-light-danger fw-bolder text-hover-primary mb-1" href="'.$row->photo.'" target="_blank">' .' <span class="menu-link py-3" >
-                    </span> عرض الملف</a>';
-                return $name;
-            })
-            ->editColumn('reciever_name', function ($row) {
-                $name = '';
-                if ($row->reciever_name != null){
-                    $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->reciever_name . '</span>';
-
-                }else{
-                    $name .= ' <span class="badge badge-light-danger fw-bolder">غير معروف</span>';
-
-                }
-                return $name;
-            })
-            ->editColumn('transfer_cheque_number', function ($row) {
-                $name = '';
-                if ($row->transfer_number != null ){
-                    $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->transfer_number . '</span>';
-
-                }else if ($row->cheque_number != null){
-                    $name .= ' <span class="badge badge-light-danger fw-bolder">'.$row->cheque_number .'</span>';
-
-                }else{
-                    $name .= ' <span class="badge badge-light-danger fw-bolder">لا يوجد</span>';
-
-                }
-                return $name;
-            })
-            ->editColumn('receipt_type', function ($row) {
-                $name = '';
-                foreach(config('enum.receipt_type') as $key => $value)
-                    if ($row->receipt_type === $key){
-                        if ($key === 'in'){
-                            $name .= ' <span class="badge badge-success fw-bolder"> ' . $value . '</span>';
-                        }else{
-                            $name .= ' <span class="badge badge-danger fw-bolder"> ' . $value . '</span>';
-                        }
-                    }
-                return $name;
-            })
-            ->editColumn('payment_type', function ($row) {
-                $name = '';
-                foreach(config('enum.payment_type') as $key => $value)
-                    if ($row->payment_type === $key){
-                        $name .= ' <span class="badge badge-info fw-bolder"> ' . $value . '</span>';
-                    }else{
-
-                    }
+                $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->creator->name . '</span>';
 
                 return $name;
             })
-
             ->addColumn('actions', function ($row) {
                 $actions = ' <a href="' . url("receipts-edit/" . $row->id) . '" class="btn btn-active-light-info"><i class="bi bi-pencil-fill"></i> تعديل </a>';
                 $actions .= ' <a href="' . url("receipts-details/" . $row->id) . '" class="btn btn-active-light-info"><i class="bi bi-pencil-fill"></i> تفاصيل </a>';
                 return $actions;
 
             })
-            ->rawColumns(['actions', 'checkbox', 'supplier','value','photo','payment_type','receipt_type','notes','transfer_cheque_number','reciever_name'])
+            ->rawColumns(['actions', 'checkbox', 'supplier','value','num','created_by'])
             ->make();
 
     }
@@ -147,13 +99,13 @@ class InvoicesController extends Controller
     public function store(Request $request)
     {
         $data = $this->validate(request(), [
-            'supplier_id' => 'required|string',
+            'date' => 'string',
 
         ]);
 
         if ($request->product_id != null){
             $invoice = new Invoice();
-            $invoice->type='income';
+            $invoice->type=$request->type;
             $invoice->date=$request->date;
             $invoice->date=$request->date;
             $invoice->image=$request->image;
@@ -176,6 +128,7 @@ class InvoicesController extends Controller
                 $invoiceDetails->product_id = $product_id[$key];
                 $invoiceDetails->shape_id = $shape_id[$key];
                 $invoiceDetails->quantity = $quantity[$key];
+                if ($request->type == 'outcome')
                 $invoiceDetails->purchase_price = $purchase_price[$key];
                 $invoiceDetails->add_to_storage = $add_to_storage[$key];
                 $invoiceDetails->sell_price = $sell_price[$key];
@@ -294,13 +247,15 @@ class InvoicesController extends Controller
     public function addInvoiceDetailRow1(Request $request){
 
         $product = Product::findOrFail($request->product_id);
-        $shape_id = Shape::findOrFail($request->shape_id);
-        $shape = $shape_id->ar_title;
+        $shape = Shape::findOrFail($request->shape_id);
+        $shape_title = $shape->ar_title;
         $quantity = $request->quantity;
         $sell_price = $request->sell_price;
         $purchase_price = $request->purchase_price;
         $total_price = $request->total_price;
+        $add_to_storage = $request->add_to_storage;
+        $unit_name = $request->unit_id;
 
-        return view('Admin.Invoices.invoiceitemsjson',compact(['product','shape','quantity','sell_price','purchase_price','total_price']));
+        return view('Admin.Invoices.invoiceitemsjson',compact(['product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
     }
 }

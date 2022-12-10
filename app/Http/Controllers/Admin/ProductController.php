@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\Shape;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -68,6 +69,16 @@ class ProductController extends Controller
             ->editColumn('category_id', function ($row) {
                 return $row->Category->ar_title;
             })
+            ->editColumn('unit_id', function ($row) {
+                if ($row->units->ar_name != 0){
+                    return $row->units->ar_name;
+
+                }else{
+                    $name = '';
+                    $name .= ' <span class="text-gray-800 text-hover-primary mb-1">غير معروف</span>';
+                    return $name;
+                }
+            })
             ->AddColumn('availableCount', function ($row) {
                 return $row->Storage->sum('available_quantity');
             })
@@ -79,7 +90,7 @@ class ProductController extends Controller
                 return $actions;
 
             })
-            ->rawColumns(['actions', 'checkbox', 'is_active','is_discount','is_new','is_hot'])
+            ->rawColumns(['actions', 'checkbox', 'is_active','is_discount','is_new','is_hot','unit_id'])
             ->make();
 
     }
@@ -123,6 +134,7 @@ class ProductController extends Controller
         $user->is_discount=$request->is_discount;
         $user->discount_value=$request->discount_value;
         $user->is_new=$request->is_new;
+        $user->unit_id=$request->unit_id;
         $user->is_hot=$request->is_hot;
         $user->save();
 
@@ -224,6 +236,7 @@ class ProductController extends Controller
         $user->is_active=$request->is_active;
         $user->is_discount=$request->is_discount;
         $user->discount_value=$request->discount_value;
+        $user->unit_id=$request->unit_id;
         $user->is_new=$request->is_new;
         $user->is_hot=$request->is_hot;
         $user->save();
@@ -247,5 +260,14 @@ class ProductController extends Controller
             return response()->json(['message' => 'Failed']);
         }
         return response()->json(['message' => 'Success']);
+    }
+    public function getProducts($id){
+
+        $unit_id = Product::findOrFail($id)->unit_id;
+        $data = Unit::findOrFail($unit_id)->ar_name;
+
+        return response()->json($data);
+
+
     }
 }

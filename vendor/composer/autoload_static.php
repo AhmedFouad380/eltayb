@@ -518,6 +518,7 @@ class ComposerStaticInitc55526542e76b73808502ebe88493e5b
         'App\\Http\\Controllers\\Admin\\BranchesConroller' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BranchesConroller.php',
         'App\\Http\\Controllers\\Admin\\CategoriesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoriesController.php',
         'App\\Http\\Controllers\\Admin\\CouponController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CouponController.php',
+        'App\\Http\\Controllers\\Admin\\InvoicesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/InvoicesController.php',
         'App\\Http\\Controllers\\Admin\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/OrderController.php',
         'App\\Http\\Controllers\\Admin\\PageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PageController.php',
         'App\\Http\\Controllers\\Admin\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductController.php',

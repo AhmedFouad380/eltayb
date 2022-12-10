@@ -7,31 +7,57 @@
     </td>
     <td>
         <div class="d-flex align-items-center">
+            <input type="text" name="product_id[]"
+                   class="form-control form-control-solid mb-2 mb-lg-0"
+                   placeholder="سعر الشراء" value="{{$product->id}}" hidden/>
+            <!--end::Input-->
             {{$product->ar_title}}
+
         </div>
     </td>
     <td>
         <div class="d-flex align-items-center">
-            {{$shape}}
+                <input type="text" name="shape_id[]"
+                       value="{{$shape->id}}"
+                       hidden/>
+            {{$shape_title}}
         </div>
     </td>
     <td>
         <div class="d-flex align-items-center">
+
+                {{$unit_name}}
+            </div>
+    </td>
+    <td>
+        <div class="d-flex align-items-center">
+            <input type="text" name="quantity[]"
+                   value="{{$quantity}}"
+
+                   hidden/>
+            {{$quantity}}
+
+        </div>
+    </td>
+    <td>
+        <div class="d-flex align-items-center">
+            <input type="text" name="purchase_price[]"
+                   value="{{$purchase_price}}"
+                   hidden/>
             {{$sell_price}}
         </div>
     </td>
     <td>
         <div class="d-flex align-items-center">
-            {{$purchase_price}}
-        </div>
-    </td>
-    <td>
-        <div class="d-flex align-items-center">
-            {{$quantity}}
-        </div>
-    </td>
-    <td>
-        <div class="d-flex align-items-center">
+            <input type="text" name="total_price[]"
+                   value="{{$total_price}}"
+                   hidden/>
+            <input type="text" name="add_to_storage[]"
+                   value="{{$add_to_storage}}"
+                   hidden/>
+            <input type="text" name="sell_price[]"
+                   value="{{$sell_price}}"
+                   hidden/>
             {{$total_price}}
         </div>
     </td>

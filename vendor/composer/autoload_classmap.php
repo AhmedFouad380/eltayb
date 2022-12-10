@@ -13,6 +13,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\BranchesConroller' => $baseDir . '/app/Http/Controllers/Admin/BranchesConroller.php',
     'App\\Http\\Controllers\\Admin\\CategoriesController' => $baseDir . '/app/Http/Controllers/Admin/CategoriesController.php',
     'App\\Http\\Controllers\\Admin\\CouponController' => $baseDir . '/app/Http/Controllers/Admin/CouponController.php',
+    'App\\Http\\Controllers\\Admin\\InvoicesController' => $baseDir . '/app/Http/Controllers/Admin/InvoicesController.php',
     'App\\Http\\Controllers\\Admin\\OrderController' => $baseDir . '/app/Http/Controllers/Admin/OrderController.php',
     'App\\Http\\Controllers\\Admin\\PageController' => $baseDir . '/app/Http/Controllers/Admin/PageController.php',
     'App\\Http\\Controllers\\Admin\\ProductController' => $baseDir . '/app/Http/Controllers/Admin/ProductController.php',

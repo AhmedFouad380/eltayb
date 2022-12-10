@@ -34,7 +34,11 @@
 
         <!--end::Item-->
         <!--begin::Item-->
-        <li class="breadcrumb-item text-gray-500">قائمة السندات  </li>
+        @if($type == 'income')
+        <li class="breadcrumb-item text-gray-500">قائمة فواتير الشراء  </li>
+        @else
+        <li class="breadcrumb-item text-gray-500">قائمة فواتير البيع  </li>
+    @endif
         <!--end::Item-->
     </ul>
     <!--end::Breadcrumb-->
@@ -63,14 +67,14 @@
                                            data-kt-check-target="#users_table .form-check-input" value="1"/>
                                 </div>
                             </th>
-
-                            <th class="min-w-125px">اسم المورد  </th>
-                            <th class="min-w-100px">قيمة السند  </th>
-                            <th class="min-w-125px">اسم المستلم  </th>
-                            <th class="min-w-100px">نوع السند  </th>
-                            <th class="min-w-125px">طريقة دفع او استلام السند  </th>
-                            <th class="min-w-100px">ملاحظات  </th>
-                            <th class="min-w-100px">مستندات </th>
+                            @if($type == 'income')
+                                <th class="min-w-125px">اسم المورد  </th>
+                            @else
+                                <th class="min-w-125px">اسم العميل  </th>
+                            @endif
+                            <th class="min-w-100px">رقم الفاتورة  </th>
+                            <th class="min-w-125px">قيمة الفاتورة  </th>
+                            <th class="min-w-100px">بواسطة  </th>
                             <th class="min-w-100px">الاجراءات</th>
                         </tr>
                         <!--end::Table row-->
@@ -119,7 +123,7 @@
                     // {extend: 'colvis', className: 'btn secondary', text: 'إظهار / إخفاء الأعمدة '}
                 ],
                 ajax: {
-                    url: '{{ route('receipts.datatable.data') }}',
+                    url: '{{ route('invoices.datatable.data') }}',
                     data: {
                         @if(Request::get('from'))
                         from:"{{Request::get('from')}}",
@@ -130,7 +134,9 @@
                             @if(Request::get('payment_type'))
                         payment_type:"{{Request::get('payment_type')}}",
                         @endif
-
+                            @if(isset($type))
+                        type:"{{$type}}",
+                        @endif
                             @if(Request::get('supplier_id'))
                         supplier_id:"{{Request::get('supplier_id')}}",
                         @endif
@@ -139,12 +145,9 @@
                 columns: [
                     {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
                     {data: 'supplier', name: 'supplier', "searchable": true, "orderable": true},
+                    {data: 'num', name: 'num', "searchable": false, "orderable": false},
                     {data: 'value', name: 'value', "searchable": false, "orderable": false},
-                    {data: 'reciever_name', name: 'reciever_name', "searchable": false, "orderable": false},
-                    {data: 'receipt_type', name: 'receipt_type', "searchable": false, "orderable": false},
-                    {data: 'payment_type', name: 'payment_type', "searchable": false, "orderable": false},
-                    {data: 'notes', name: 'notes', "searchable": false, "orderable": false},
-                    {data: 'photo', name: 'photo', "searchable": false, "orderable": false},
+                    {data: 'created_by', name: 'created_by', "searchable": false, "orderable": false},
                     {data: 'actions', name: 'actions', "searchable": false, "orderable": false},
 
                 ]

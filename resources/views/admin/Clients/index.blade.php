@@ -34,7 +34,7 @@
 
         <!--end::Item-->
         <!--begin::Item-->
-        <li class="breadcrumb-item text-gray-500">قائمة المنتجات  </li>
+        <li class="breadcrumb-item text-gray-500">قائمة العملاء  </li>
         <!--end::Item-->
     </ul>
     <!--end::Breadcrumb-->
@@ -65,16 +65,9 @@
                                 </div>
                             </th>
 
-                            <th class="min-w-125px">الاسم باللغة العربية  </th>
-                            <th class="min-w-125px">الاسم باللغة الانجليزية  </th>
-                            <th class="min-w-125px"> القسم  </th>
-                            <th class="min-w-125px"> الوحدة  </th>
-                            <th class="min-w-125px"> الكمية المتاحة  </th>
-                            <th class="min-w-125px"> الخصم  </th>
-                            <th class="min-w-125px"> نسبة الخصم  </th>
-                            <th class="min-w-125px">  جديد  </th>
-                            <th class="min-w-125px">  مميز  </th>
-                            <th class="min-w-125px">مفعل</th>
+                            <th class="min-w-125px">الاسم  </th>
+                            <th class="min-w-125px">رقم الجوال  </th>
+                            <th class="min-w-125px">العنوان  </th>
                             <th class=" min-w-100px">الاجراءات</th>
                         </tr>
                         <!--end::Table row-->
@@ -98,7 +91,6 @@
 @section('script')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
 
     <script src="{{ URL::asset('admin/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
 
@@ -124,28 +116,21 @@
                     // {extend: 'colvis', className: 'btn secondary', text: 'إظهار / إخفاء الأعمدة '}
                 ],
                 ajax: {
-                    url: '{{ route('Product.datatable.data') }}',
+                    url: '{{ route('clients.datatable.data') }}',
                     data: {
                     }
                 },
                 columns: [
                     {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
-                    {data: 'ar_title', name: 'ar_title', "searchable": true, "orderable": true},
-                    {data: 'en_title', name: 'en_title', "searchable": true, "orderable": true},
-                    {data: 'category_id', name: 'category_id', "searchable": true, "orderable": true},
-                    {data: 'unit_id', name: 'unit_id', "searchable": false, "orderable": false},
-                    {data: 'availableCount', name: 'availableCountg', "searchable": true, "orderable": true},
-                    {data: 'is_discount', name: 'is_discount', "searchable": true, "orderable": true},
-                    {data: 'discount_value', name: 'discount_value', "searchable": true, "orderable": true},
-                    {data: 'is_new', name: 'is_new', "searchable": true, "orderable": true},
-                    {data: 'is_hot', name: 'is_hot', "searchable": true, "orderable": true},
-                    {data: 'is_active', name: 'is_active', "searchable": true, "orderable": true},
+                    {data: 'name', name: 'name', "searchable": true, "orderable": true},
+                    {data: 'phone', name: 'phone', "searchable": true, "orderable": true},
+                    {data: 'address', name: 'address', "searchable": true, "orderable": true},
                     {data: 'actions', name: 'actions', "searchable": false, "orderable": false},
 
                 ]
             });
             $.ajax({
-                url: "{{ URL::to('/add-button-Product')}}",
+                url: "{{ URL::to('/add-button-clients')}}",
                 success: function (data) { $('.add_button').append(data); },
                 dataType: 'html'
             });

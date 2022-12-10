@@ -4,18 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
 
-class Unit extends Model
+class Client extends Model
 {
     use HasFactory;
-    protected $table= 'units';
+    protected $table= 'clients';
 
 
     protected $fillable = [
-        'ar_name',
-        'en_name',
-        'active',
+        'name',
+        'phone',
+        'address',
+        'email',
         'created_at',
         'updated_at',
     ];
@@ -26,7 +26,4 @@ class Unit extends Model
 
     public $timestamps = true;
 
-    public function products(){
-        return $this->hasMany(Product::class,'unit_id');
-    }
 }

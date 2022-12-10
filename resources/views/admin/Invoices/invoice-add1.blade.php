@@ -95,13 +95,21 @@
                                             <label class="required fw-bold fs-6 mb-2">اختار المنتج </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0 product_id"  id="product_id" data-num="1" id="js-example-basic-products" name="product_id"
+                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0 js-example-basic-products product_id"  id="product_id" data-num="1" id="js-example-basic-products" name="product_id"
                                             >
                                                 @inject('products','App\Models\Product')
                                                 @foreach($products->all() as $product)
                                                     <option value="{{$product->id}}">{{$product->ar_title}}</option>
                                                 @endforeach
                                             </select>
+
+                                        </div>
+                                        <div class="fv-row mb-7 " id="units_id">
+                                            <label class="required fw-bold fs-6 mb-2">الوحدة</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+
+
 
                                         </div>
                                         <div class="fv-row mb-7">
@@ -113,23 +121,26 @@
                                             </select>
                                             <!--end::Input-->
                                         </div>
+                                        @if($type == 'income')
                                         <div class="fv-row mb-7">
                                             <label class="required fw-bold fs-6 mb-2">سعر الشراء</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" name="purchase_price"
+                                            <input type="number" step="0.001" name="purchase_price"
                                                    class="form-control form-control-solid mb-3 mb-lg-0 purchase_price"
                                                    placeholder="سعر الشراء" value="{{old('notes')}}" id="purchase_price"/>
                                             <!--end::Input-->
 
 
                                         </div>
+                                        @endif
                                         <div class="fv-row mb-7">
                                             <!--begin::Label-->
                                             <label class="required fw-bold fs-6 mb-2">سعر البيع</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" name="sell_price"
+                                            <input type="number" step="0.001" name="sell_price"
+                                                   id="sell_price"
                                                    class="form-control form-control-solid mb-3 mb-lg-0"
                                                    placeholder="سعر الشراء" value="{{old('notes')}}" />
                                             <!--end::Input-->
@@ -141,7 +152,7 @@
                                             <label class="required fw-bold fs-6 mb-2">الكمية</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" name="quantity"
+                                            <input type="number" name="quantity"
                                                    class="form-control form-control-solid mb-3 mb-lg-0 quantity"
                                                    placeholder="الكمية" id="quantity" />
                                             <!--end::Input-->
@@ -152,28 +163,13 @@
                                             <label class="required fw-bold fs-6 mb-2">السعر الاجمالى</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text"
+                                            <input type="number" step="0.001"
                                                    class="form-control form-control-solid mb-3 mb-lg-0"
                                                    placeholder="السعر الاجمالى" id="total_price"
-                                                   onchange="addNumbers(this)"
                                                    disabled/>
                                             <!--end::Input-->
 
 
-                                        </div>
-                                        <div class="col-md-6 col-xl-2">
-                                            <div class="card card-xl-stretch mb-xl-8">
-
-                                                <div class="form-check form-switch form-check-custom form-check-solid">
-                                                    <label class="form-check-label" for="flexSwitchDefault">اضف الى المخزون</label>
-                                                    <input class="form-check-input" name="add_to_storage" type="hidden"
-                                                           value="0" id="flexSwitchDefault"/>
-                                                    <input
-                                                        class="form-check-input form-control form-control-solid mb-3 mb-lg-0"
-                                                        name="is_active" type="checkbox"
-                                                        value="1" id="flexSwitchDefault" checked/>
-                                                </div>
-                                            </div>
                                         </div>
 
 
@@ -214,6 +210,8 @@
 
                         <div class="card-body pt-5">
                             <div class="row g-6 g-xl-9 ">
+                                @if($type == 'income')
+
                                 <div class="col-md-4 col-xl-3">
                                     <div class="card card-xl-stretch mb-xl-8">
                                         <label class="required fw-bold fs-6 mb-2">اسم المورد </label>
@@ -221,15 +219,52 @@
                                         <!--begin::Input-->
                                         <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-single" name="supplier_id"
                                         >
+                                            <option value="">اختار المورد</option>
+
                                             @inject('suppliers','App\Models\Supplier')
                                             @foreach($suppliers->all() as $supplier)
                                                 <option value="{{$supplier->id}}">{{$supplier->name}}</option>
                                             @endforeach
                                         </select>
-
                                     </div>
 
                                 </div>
+                                @else
+                                    <div class="col-md-4 col-xl-3">
+                                        <div class="card card-xl-stretch mb-xl-8">
+                                            <label class="required fw-bold fs-6 mb-2">اسم العميل </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-single" name="supplier_id"
+                                            >
+                                                <option value="">اختار العميل</option>
+
+                                                @inject('clients','App\Models\Client')
+                                                @foreach($clients->all() as $client)
+                                                    <option value="{{$client->id}}">{{$client->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 col-xl-3">
+                                        <div class="card card-xl-stretch mb-xl-8">
+                                            <label class="required fw-bold fs-6 mb-2">اسم مستخدم الموقع </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-single" name="supplier_id"
+                                            >
+                                                <option value="">اختار مستخدم الموقع</option>
+
+                                                @inject('users','App\Models\User')
+                                                @foreach($users->all() as $user)
+                                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                @endif
                                 <div class="col-md-4 col-xl-3">
                                     <div class="card card-xl-stretch mb-xl-8">
                                         <label class=" fw-bold fs-6 mb-2">  التاريخ </label>
@@ -281,38 +316,17 @@
 
                         <div class="separator"></div>
 
-                        <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
-                             data-bs-target="#kt_account_profile_details" aria-expanded="true"
-                             aria-controls="kt_account_profile_details">
-                            <!--begin::Card title-->
-                            <div class="card-title m-0">
-                                <h3 class="fw-bolder m-0">اضافة بيانات الفاتورة</h3>
-                            </div>
-                            <!--end::Card title-->
-                        </div>
 
                         <!--end::Input group-->
                         <div class="d-flex flex-column fv-row mb-7 " id="" style="display: none">
-                            <div class="row g-6 g-xl-9 ">
 
-                                <div class="col-md-6 col-xl-2">
-                                    <div class="card card-xl-stretch mb-xl-8">
-                                        <!--begin::Label-->
-                                        <label> اضافة منتج </label>
-                                        <button type="button" id="add-question"
-                                                class="btn btn-light-primary me-3">
-                                            <i class="bi bi-plus-circle-fill fs-2x"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="row g-6 g-xl-9">
                                 <div class="card mb-5">
                                     <!--begin::Header-->
                                     <div class="card-header border-0 pt-5">
                                         <h3 class="card-title align-items-start flex-column">
-                                            <span class="card-label fw-bolder fs-3 mb-1">تفاصيل الطلب</span>
+                                            <span class="card-label fw-bolder fs-3 mb-1">اضافة منتجات الفاتورة</span>
                                             <span class="text-muted mt-1 fw-bold fs-7"></span>
                                         </h3>
                                         <div class="card-toolbar">
@@ -336,10 +350,14 @@
                                                     <th class="min-w-30px">م</th>
                                                     <th class="min-w-125px">اسم المنتج</th>
                                                     <th class="min-w-100px">الحجم</th>
+                                                    <th class="min-w-100px">الوحدة</th>
                                                     <th class="min-w-100px">العدد</th>
+                                                    @if($type == 'income')
                                                     <th class="min-w-100px">سعر الشراء</th>
-                                                    <th class="min-w-100px">سعر البيع</th>
-                                                    <th class="min-w-100px">الاجمالي</th>
+                                                    @else
+                                                        <th class="min-w-100px">سعر البيع</th>
+                                                    @endif
+                                                        <th class="min-w-100px">الاجمالي</th>
                                                     <th class="min-w-150px">الملاحظات</th>
                                                 </tr>
                                                 </thead>
@@ -408,7 +426,7 @@
                                         <label class="required fw-bold fs-6 mb-2"> ضريبة مضافة</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" name="tax"
+                                        <input type="number" step="0.001" name="tax"
                                                class="form-control form-control-solid mb-3 mb-lg-0"
                                                placeholder="ضريبة مضافة" value="{{old('tax')}}" />
                                         <!--end::Input-->
@@ -422,7 +440,7 @@
                                         <label class="required fw-bold fs-6 mb-2">مصاريف توصيل</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" name="delivery_fees"
+                                        <input type="number" step="0.001" name="delivery_fees"
                                                class="form-control form-control-solid mb-3 mb-lg-0"
                                                placeholder="مصاريف توصيل" value="{{old('delivery_fees')}}" />
                                         <!--end::Input-->
@@ -436,7 +454,7 @@
                                         <label class="required fw-bold fs-6 mb-2">خصم</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" name="discount"
+                                        <input type="number" step="0.001" name="discount"
                                                class="form-control form-control-solid mb-3 mb-lg-0"
                                                placeholder="خصم" value="{{old('discount')}}" />
                                         <!--end::Input-->
@@ -475,6 +493,15 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('#js-example-basic-single').select2({});
+            $('#js-example-basic-branch').select2({});
+            $('.js-example-basic-products').select2({
+                dropdownParent: $("#kt_modal_add_user")
+            });
+
+
+        });
         $("#invoice_form").on("submit", function (e) {
             e.preventDefault();
             var product_id = $('#product_id').val();
@@ -483,11 +510,15 @@
             var purchase_price = $('#purchase_price').val();
             var quantity = $('#quantity').val();
             var total_price = $('#total_price').val();
+            var add_to_storage = $('.add_to_storage').val();
+            var unit_id = $('#unit_id').val();
             $.ajax({
                 type: "GET",
                 url: "{{url('addInvoiceDetailRow1')}}",
                 data: {'product_id': product_id,'shape_id':shape_id,'sell_price':sell_price,'purchase_price':purchase_price
                     ,'quantity':quantity
+                    ,'unit_id':unit_id
+                    ,'add_to_storage':add_to_storage
                     ,'total_price':total_price
                 },
                 error: function(xhr, status, error) {
@@ -502,7 +533,7 @@
             })
 
         });
-
+        @if($type == 'income')
         $("#quantity").on('click , change ,keyup',function() {
             var  quantity = $(this).val();
             var   purchase_price= $('#purchase_price').val();
@@ -519,7 +550,24 @@
 
 
         })
+        @else
+        $("#quantity").on('click , change ,keyup',function() {
+            var  quantity = $(this).val();
+            var   purchase_price= $('#sell_price').val();
+            var total = quantity * purchase_price;
+            document.getElementById("total_price").value = total;
 
+
+        })
+        $("#sell_price").on('click , change ,keyup',function() {
+            var  quantity = $(this).val();
+            var   purchase_price= $('#quantity').val();
+            var total = quantity * purchase_price;
+            document.getElementById("total_price").value = total;
+
+
+        })
+        @endif
 
 
         $(document).on('click', '.delete_question', function () {
@@ -528,11 +576,7 @@
     </script>
 
     <script>
-        $(document).ready(function() {
-            $('#js-example-basic-single').select2({});
-            $('#js-example-basic-branch').select2({});
-             $('#js-example-basic-products').select2({});
-        });
+
         $("#payment_type").change(function () {
             var type = $(this).val();
             if($(this).val() == 'bank_transfer'){
@@ -561,8 +605,18 @@
                     $('#shape_id').html(outs);
 
                     });
+                $.get("{{ url('/get-products')}}" + '/' + wahda, function ($data) {
+                    var outs = "";
+                    console.log($data)
+                    outs += '<label class="required fw-bold fs-6 mb-2">الوحدة</label>' +
+                        '<input value="'+$data+'" type="text"' +
+                        'class="form-control form-control-solid mb-3 mb-lg-0 purchase_price" id="unit_id" disabled>'
+                    $('#units_id').html(outs);
+
+                });
             }
         });
+
     </script>
 
 @endsection
