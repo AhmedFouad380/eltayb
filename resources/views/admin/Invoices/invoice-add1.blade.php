@@ -133,7 +133,8 @@
 
 
                                         </div>
-                                        @endif
+                                        @else
+
                                         <div class="fv-row mb-7">
                                             <!--begin::Label-->
                                             <label class="required fw-bold fs-6 mb-2">سعر البيع</label>
@@ -142,7 +143,11 @@
                                             <input type="number" step="0.001" name="sell_price"
                                                    id="sell_price"
                                                    class="form-control form-control-solid mb-3 mb-lg-0"
-                                                   placeholder="سعر الشراء" value="{{old('notes')}}" />
+                                                   placeholder="سعر البيع" value="{{old('notes')}}" />
+                                            <!--end::Input-->
+                                            <input type="number" step="0.001" name="{{$type}}" hidden
+                                                   class="form-control form-control-solid mb-3 mb-lg-0"
+                                            />
                                             <!--end::Input-->
 
 
@@ -171,7 +176,7 @@
 
 
                                         </div>
-
+                                        @endif
 
                                     </div>
                                     <!--end::Scroll-->
@@ -285,7 +290,7 @@
                                                 disabled
                                         >
                                             @foreach(config('enum.invoice_type') as $key => $value)
-                                                <option value="{{ $key }}" @if($type === $key) selected @endif >
+                                                <option value="{{$key}}" @if($type === $key) selected @endif >
                                                     {{ $value }}
                                                 </option>
                                             @endforeach

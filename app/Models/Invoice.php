@@ -18,6 +18,7 @@ class Invoice extends Model
         'date',
         'image',
         'user_id',
+        'client_id',
         'branch_id',
         'created_by',
         'update_by',
@@ -34,6 +35,9 @@ class Invoice extends Model
     }
     public function user(){
         return $this->belongsTo(User::class , 'user_id');
+    }
+    public function client(){
+        return $this->belongsTo(Client::class , 'client_id');
     }
     public function branch(){
         return $this->belongsTo(Branch::class , 'branch_id');

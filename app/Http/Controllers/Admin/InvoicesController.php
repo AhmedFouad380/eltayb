@@ -8,6 +8,7 @@ use App\Models\InvoiceAddition;
 use App\Models\InvoiceDetails;
 use App\Models\Product;
 use App\Models\Shape;
+use App\Models\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
@@ -48,9 +49,19 @@ class InvoicesController extends Controller
             })
             ->editColumn('supplier', function ($row) {
                 $name = '';
-                $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->supplier->name . '</span>';
+                if ($row->supplier_id !=null){
+                    $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->supplier->name . '</span>';
+
+                }elseif ($row->user_id !=null){
+                    $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->user->name . '</span>';
+
+                }elseif ($row->client_id !=null){
+                    $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->client->name . '</span>';
+
+                }
                 return $name;
             })
+
             ->editColumn('num', function ($row) {
                 $name = '';
                 $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->id . '</span>';
@@ -128,11 +139,11 @@ class InvoicesController extends Controller
                 $invoiceDetails->product_id = $product_id[$key];
                 $invoiceDetails->shape_id = $shape_id[$key];
                 $invoiceDetails->quantity = $quantity[$key];
-                if ($request->type == 'outcome')
                 $invoiceDetails->purchase_price = $purchase_price[$key];
                 $invoiceDetails->add_to_storage = $add_to_storage[$key];
                 $invoiceDetails->sell_price = $sell_price[$key];
                 $invoiceDetails->save();
+
             }
             // end list of invoices details
 
@@ -251,11 +262,23 @@ class InvoicesController extends Controller
         $shape_title = $shape->ar_title;
         $quantity = $request->quantity;
         $sell_price = $request->sell_price;
-        $purchase_price = $request->purchase_price;
         $total_price = $request->total_price;
         $add_to_storage = $request->add_to_storage;
         $unit_name = $request->unit_id;
+        if ($request->type == 'income'){
+            $purchase_price = $request->purchase_price;
 
-        return view('Admin.Invoices.invoiceitemsjson',compact(['product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
+        }else{
+            $storage = Storage::where('product_id',$request->product_id);
+            if ($storage !=null && $storage->quantity <= $quantity){
+                $purchase_price = $storage->purchase_price;
+                return view('Admin.Invoices.invoiceitemsjson',compact(['product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
+
+            }else{
+                return response()->json(['message' => 'Failed']);
+            }
+
+        }
+
     }
 }
