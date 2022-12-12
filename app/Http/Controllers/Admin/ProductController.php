@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\Shape;
+use App\Models\Storage;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -265,9 +266,19 @@ class ProductController extends Controller
 
         $unit_id = Product::findOrFail($id)->unit_id;
         $data = Unit::findOrFail($unit_id)->ar_name;
+        $storage = Storage::where('product_id',$id)->first();
+        if ($storage !=null ){
+            $storage_quantity = $storage->quantity;
+            $purchase_price = $storage->purchase_price;
+            $sell_price = $storage->sell_price;
 
-        return response()->json($data);
+            return response()->json([$data,$storage_quantity,$purchase_price,$sell_price]);
 
+        }else{
+            $storage_quantity = 0;
+            return response()->json([$data,$storage_quantity]);
+
+        }
 
     }
 }

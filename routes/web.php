@@ -290,7 +290,7 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
             return view('admin/invoices/invoice-add1',compact('type'));
         });
         Route::get('/add-button-invoices-item/{type?}', function ($type = null) {
-            return view('admin/invoices/invoice-add1',compact('type'));
+            return view('admin/invoices/invoice-add2',compact('type'));
         });
 
         Route::get('addInvoiceDetailRow', [\App\Http\Controllers\Admin\InvoicesController::class, 'addInvoiceDetailRow']);

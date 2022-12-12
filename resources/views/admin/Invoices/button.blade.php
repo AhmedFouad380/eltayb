@@ -8,7 +8,7 @@
         <i class="bi bi-search fs-2x"></i>
     </button>
     <!--end::Filter-->
-    <a class="btn btn-light-primary me-3"  href="{{url('/add-button-invoices-add/'. $type)}}" >
+    <a class="btn btn-light-primary me-3"  href="{{url('/add-button-invoices-item/'. $type)}}" >
         اضافة فاتورة
         <i class="bi bi-plus-circle-fill fs-2x"></i>
     </a>

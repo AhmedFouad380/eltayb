@@ -265,16 +265,21 @@ class InvoicesController extends Controller
         $total_price = $request->total_price;
         $add_to_storage = $request->add_to_storage;
         $unit_name = $request->unit_id;
+        $type = $request->type;
         if ($request->type == 'income'){
             $purchase_price = $request->purchase_price;
+            return view('Admin.Invoices.invoiceitemsjson',compact(['type','product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
 
         }else{
-            $storage = Storage::where('product_id',$request->product_id);
-            if ($storage !=null && $storage->quantity <= $quantity){
+            $storage = Storage::where('product_id',$request->product_id)->first();
+            if ($storage !=null ){
                 $purchase_price = $storage->purchase_price;
-                return view('Admin.Invoices.invoiceitemsjson',compact(['product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
+                return view('Admin.Invoices.invoiceitemsjson',compact(['type','product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
 
             }else{
+                $purchase_price = $request->purchase_price;
+                return view('Admin.Invoices.invoiceitemsjson',compact(['type','product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
+
                 return response()->json(['message' => 'Failed']);
             }
 

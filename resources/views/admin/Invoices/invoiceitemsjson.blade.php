@@ -7,9 +7,7 @@
     </td>
     <td>
         <div class="d-flex align-items-center">
-            <input type="text" name="product_id[]"
-                   class="form-control form-control-solid mb-2 mb-lg-0"
-                   placeholder="سعر الشراء" value="{{$product->id}}" hidden/>
+
             <!--end::Input-->
             {{$product->ar_title}}
 
@@ -17,34 +15,31 @@
     </td>
     <td>
         <div class="d-flex align-items-center">
-                <input type="text" name="shape_id[]"
-                       value="{{$shape->id}}"
-                       hidden/>
+
             {{$shape_title}}
         </div>
     </td>
     <td>
         <div class="d-flex align-items-center">
 
-                {{$unit_name}}
-            </div>
+            {{$unit_name}}
+        </div>
     </td>
     <td>
         <div class="d-flex align-items-center">
-            <input type="text" name="quantity[]"
-                   value="{{$quantity}}"
 
-                   hidden/>
             {{$quantity}}
 
         </div>
     </td>
     <td>
         <div class="d-flex align-items-center">
-            <input type="text" name="purchase_price[]"
-                   value="{{$purchase_price}}"
-                   hidden/>
+            @if($type == 'income')
+            {{$purchase_price}}
+            @else
             {{$sell_price}}
+            @endif
+
         </div>
     </td>
     <td>
@@ -57,6 +52,19 @@
                    hidden/>
             <input type="text" name="sell_price[]"
                    value="{{$sell_price}}"
+                   hidden/>
+            <input type="text" name="purchase_price[]"
+                   value="{{$purchase_price}}"
+                   hidden/>
+            <input type="text" name="quantity[]"
+                   value="{{$quantity}}"
+
+                   hidden/>
+            <input type="text" name="product_id[]"
+                   class="form-control form-control-solid mb-2 mb-lg-0"
+                   placeholder="سعر الشراء" value="{{$product->id}}" hidden/>
+            <input type="text" name="shape_id[]"
+                   value="{{$shape->id}}"
                    hidden/>
             {{$total_price}}
         </div>
@@ -81,7 +89,6 @@
                     outs += '<option value="' + id + '">' + title + '</option>'
                 });
                 $('#shape'+num).html(outs);
-
             });
         }
     });
