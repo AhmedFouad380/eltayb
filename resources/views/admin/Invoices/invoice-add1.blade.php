@@ -133,6 +133,30 @@
 
 
                                         </div>
+                                            <div class="fv-row mb-7">
+                                                <!--begin::Label-->
+                                                <label class="required fw-bold fs-6 mb-2">الكمية</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="number" name="quantity"
+                                                       class="form-control form-control-solid mb-3 mb-lg-0 quantity"
+                                                       placeholder="الكمية" id="quantity" />
+                                                <!--end::Input-->
+
+                                            </div>
+                                            <div class="fv-row mb-7">
+                                                <!--begin::Label-->
+                                                <label class="required fw-bold fs-6 mb-2">السعر الاجمالى</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="number" step="0.001"
+                                                       class="form-control form-control-solid mb-3 mb-lg-0"
+                                                       placeholder="السعر الاجمالى" id="total_price"
+                                                       disabled/>
+                                                <!--end::Input-->
+
+
+                                            </div>
                                         @else
 
                                         <div class="fv-row mb-7">

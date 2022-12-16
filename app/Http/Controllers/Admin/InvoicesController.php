@@ -110,7 +110,7 @@ class InvoicesController extends Controller
     public function store(Request $request)
     {
         $data = $this->validate(request(), [
-            'date' => 'string',
+            'date' => 'date',
 
         ]);
 
@@ -265,11 +265,14 @@ class InvoicesController extends Controller
         $total_price = $request->total_price;
         $add_to_storage = $request->add_to_storage;
         $unit_name = $request->unit_id;
-        if ($request->type == 'income'){
+        $purchase_price = $request->purchase_price;
+            return view('Admin.Invoices.invoiceitemsjson',compact(['product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
+
+            if ($request->type == 'income'){
             $purchase_price = $request->purchase_price;
 
         }else{
-            $storage = Storage::where('product_id',$request->product_id);
+            $storage = Storage::where('product_id',$request->product_id)->first();
             if ($storage !=null && $storage->quantity <= $quantity){
                 $purchase_price = $storage->purchase_price;
                 return view('Admin.Invoices.invoiceitemsjson',compact(['product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));

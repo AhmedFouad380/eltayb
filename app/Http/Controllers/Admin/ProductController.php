@@ -70,7 +70,7 @@ class ProductController extends Controller
                 return $row->Category->ar_title;
             })
             ->editColumn('unit_id', function ($row) {
-                if ($row->units->ar_name != 0){
+                if (isset($row->units->ar_name)){
                     return $row->units->ar_name;
 
                 }else{

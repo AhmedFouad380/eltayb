@@ -14,8 +14,7 @@ class AddColumnUnitToProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            //
-            $table->foreignId('unit_id')->after('is_discount')->default(1)->constrained('units')->cascadeOnDelete();
+            $table->foreignId('unit_id')->nullable()->after('is_discount')->constrained('units')->cascadeOnDelete();
 
         });
     }
