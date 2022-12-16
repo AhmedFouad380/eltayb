@@ -71,6 +71,7 @@ return array(
     'App\\Models\\Shape' => $baseDir . '/app/Models/Shape.php',
     'App\\Models\\Slider' => $baseDir . '/app/Models/Slider.php',
     'App\\Models\\Storage' => $baseDir . '/app/Models/Storage.php',
+    'App\\Models\\StorageTransaction' => $baseDir . '/app/Models/StorageTransaction.php',
     'App\\Models\\Supplier' => $baseDir . '/app/Models/Supplier.php',
     'App\\Models\\Unit' => $baseDir . '/app/Models/Unit.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',

@@ -147,19 +147,19 @@ class InvoicesController extends Controller
                 $invoiceDetails->sell_price = $sell_price[$key];
                 $invoiceDetails->save();
 
-                /*if ($request->type == 'income' && $add_to_storage[$key] == 1){
+                if ($request->type == 'income' && $add_to_storage[$key] == 1){
                     $storage = Storage::where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->first()->quantity;
                     $quantity_storage = $quantity[$key] + $storage;
                     $storage->quantity = $quantity_storage;
                     $storage->available_quantity = $quantity_storage;
                     $storage->save();
                 }else if ($request->type == 'outcome'){
-                    $storage = Storage::where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->first()->quantity;
+                    $storage = Storage::where('available_quantity','!=',0)->where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->first()->quantity;
                     $quantity_storage = $storage - $quantity[$key];
                     $storage->quantity = $quantity_storage;
                     $storage->available_quantity = $quantity_storage;
                     $storage->save();
-                }*/
+                }
 
                 if($request->type == 'outcome'){
                     $total_details[] = $quantity[$key]  * $sell_price[$key];

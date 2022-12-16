@@ -13,9 +13,8 @@ class AddColumnToBranchIdToStorage extends Migration
      */
     public function up()
     {
-        Schema::table('branch_id_to_storage', function (Blueprint $table) {
-            $table->foreignId('branch_id')->nullable()->constrained('clients')->cascadeOnDelete();
-            $table->foreignId('client_id')->after('user_id')->nullable()->constrained('clients')->cascadeOnDelete();
+        Schema::table('storages', function (Blueprint $table) {
+            $table->foreignId('branch_id')->after('shape_id')->nullable()->constrained('branches')->cascadeOnDelete();
         });
     }
 

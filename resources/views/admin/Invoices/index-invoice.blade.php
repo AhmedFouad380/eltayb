@@ -298,8 +298,8 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-8">
-                                        <div class="inv-title-1" >
-                                            :{{$amount}}
+                                        <div class="inv-title-1" id="demo" >
+                                            
                                         </div>
                                         <div class="inv-title-1" >
                                             :
@@ -340,6 +340,22 @@
         </div>
     </div>
 
+    <input type="hidden" id="txt" value="{{$amount}}">
+    <script src="{{asset('admin/Tafqeet.js')}}"></script>
+<script>
+    function main (){
+        var fraction = document.getElementById("txt").value.split(".");
+
+        if (fraction.length == 2){
+            document.getElementById ("demo").innerHTML   =  tafqeet (fraction[0]) + " دينار و" + tafqeet (fraction[1]) + ' فلس  فقط لاغير ';
+        }
+        else if (fraction.length == 1){
+            document.getElementById ("demo").innerHTML =  tafqeet (fraction[0]) + ' دينار  فقط لاغير ';
+        }
+    }
+    main();
+    window.print()
+</script>
 
 <!--end::Main-->
 <script>var hostUrl = "{{asset('admin/assets/')}}";</script>

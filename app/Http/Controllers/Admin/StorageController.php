@@ -91,6 +91,7 @@ class StorageController extends Controller
 
         $user = new Storage();
         $user->num=$request->num;
+        $user->branch_id=$request->branch_id;
         $user->is_available=$request->is_available;
         $user->available_quantity=$request->quantity;
         $user->quantity=$request->quantity;
