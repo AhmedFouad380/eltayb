@@ -57,6 +57,20 @@
                              data-kt-scroll-wrappers="#kt_modal_add_user_scroll"
                              data-kt-scroll-offset="300px">
 
+                             <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">الفرع </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <select class="form-control form-select form-control-solid mb-3 mb-lg-0" name="branch_id"
+                                >
+                                    @inject('branches','App\Models\Branch')
+                                    @foreach($branches->all() as $branch)
+                                        <option value="{{$branch->id}}">{{$branch->ar_name}}</option>
+                                    @endforeach
+                                </select>
+                                <!--end::Input-->
+                            </div>
                             <!--begin::Input group-->
                             @if(isset($id))
                                 <div class="fv-row mb-7">
