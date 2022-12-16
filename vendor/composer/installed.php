@@ -5,11 +5,22 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'bc2699b5134e06b4c9dc01c23a3ea0310646e5eb',
+        'reference' => 'ad856fc26c53e0659779bf15ee512d4888af355a',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
     'versions' => array(
+        'alkoumi/laravel-arabic-tafqeet' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../alkoumi/laravel-arabic-tafqeet',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'reference' => '0859768ac074cffb02972d5c7485528cda99d493',
+            'dev_requirement' => false,
+        ),
         'asm89/stack-cors' => array(
             'pretty_version' => 'v2.1.1',
             'version' => '2.1.1.0',
@@ -400,7 +411,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'bc2699b5134e06b4c9dc01c23a3ea0310646e5eb',
+            'reference' => 'ad856fc26c53e0659779bf15ee512d4888af355a',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(

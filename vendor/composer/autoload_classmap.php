@@ -6,6 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Alkoumi\\LaravelArabicTafqeet\\Helpers\\App' => $vendorDir . '/alkoumi/laravel-arabic-tafqeet/src/Helpers/App.php',
+    'Alkoumi\\LaravelArabicTafqeet\\Helpers\\Calculators' => $vendorDir . '/alkoumi/laravel-arabic-tafqeet/src/Helpers/Calculators.php',
+    'Alkoumi\\LaravelArabicTafqeet\\Helpers\\Digit' => $vendorDir . '/alkoumi/laravel-arabic-tafqeet/src/Helpers/Digit.php',
+    'Alkoumi\\LaravelArabicTafqeet\\Helpers\\Handler' => $vendorDir . '/alkoumi/laravel-arabic-tafqeet/src/Helpers/Handler.php',
+    'Alkoumi\\LaravelArabicTafqeet\\Helpers\\Validation' => $vendorDir . '/alkoumi/laravel-arabic-tafqeet/src/Helpers/Validation.php',
+    'Alkoumi\\LaravelArabicTafqeet\\LaravelArabicTafqeetServiceProvider' => $vendorDir . '/alkoumi/laravel-arabic-tafqeet/src/LaravelArabicTafqeetServiceProvider.php',
+    'Alkoumi\\LaravelArabicTafqeet\\Tafqeet' => $vendorDir . '/alkoumi/laravel-arabic-tafqeet/src/Tafqeet.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AddressController' => $baseDir . '/app/Http/Controllers/AddressController.php',

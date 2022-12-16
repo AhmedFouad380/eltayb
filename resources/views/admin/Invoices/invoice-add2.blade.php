@@ -133,20 +133,7 @@
 
 
                                         </div>
-                                            <div class="fv-row mb-7">
-                                                <!--begin::Label-->
-                                                <label class="required fw-bold fs-6 mb-2">سعر البيع</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input type="number" step="0.001" name="sell_price"
-                                                       id="sell_price"
-                                                       class="form-control form-control-solid mb-3 mb-lg-0"
-                                                       placeholder="سعر البيع" value="{{old('notes')}}" />
-                                                <!--end::Input-->
-                                                <!--end::Input-->
 
-
-                                            </div>
                                         @endif
 
                                         <div class="fv-row mb-7" id="sell_price_label">
@@ -262,7 +249,7 @@
                                             <label class="required fw-bold fs-6 mb-2">اسم العميل </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-single" name="supplier_id"
+                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-single" name="client_id"
                                             >
                                                 <option value="">اختار العميل</option>
 
@@ -279,7 +266,7 @@
                                             <label class="required fw-bold fs-6 mb-2">اسم مستخدم الموقع </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-single" name="supplier_id"
+                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-single" name="user_id"
                                             >
                                                 <option value="">اختار مستخدم الموقع</option>
 
