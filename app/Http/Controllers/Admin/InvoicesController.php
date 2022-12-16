@@ -132,7 +132,7 @@ class InvoicesController extends Controller
             $purchase_price = $request->purchase_price;
             $add_to_storage = $request->add_to_storage;
             $sell_price = $request->sell_price;
-
+            $total_details = [];
             foreach ($request->product_id as $key => $product){
                 $invoiceDetails = new InvoiceDetails();
                 $invoiceDetails->invoice_id = $invoice->id;
@@ -144,6 +144,11 @@ class InvoicesController extends Controller
                 $invoiceDetails->sell_price = $sell_price[$key];
                 $invoiceDetails->save();
 
+                if($request->type == 'outcome'){
+                    $total_details[] = $quantity[$key]  * $sell_price[$key];
+                }else{
+                    $total_details[] = $quantity[$key]  * $purchase_price[$key];
+                }
             }
             // end list of invoices details
 
@@ -154,6 +159,26 @@ class InvoicesController extends Controller
             $invoiceAdditions->coupon_id = $request->coupon_id;
             $invoiceAdditions->invoice_id = $invoice->id;
             $invoiceAdditions->save();
+
+         
+
+            $subtotal = array_sum($total_details); 
+
+         
+            if(isset($request->discount) && $request->discount != 0){
+                $total = $subtotal - ( ( $subtotal * $request->discount ) / 100 );
+            }else{
+                $total = $subtotal - ( ( $subtotal * $request->tax ) / 100 );
+            }
+
+            if(isset($request->tax) && $request->tax != 0 ){
+                $TotalWithTax = $total + ( ( $total * $request->tax ) / 100 );
+            }else{
+                $TotalWithTax = $total;
+            }
+            
+            $invoice->total_price=$TotalWithTax + $request->delivery_fees;
+            $invoice->save();
 
         }
 

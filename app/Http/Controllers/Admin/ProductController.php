@@ -71,7 +71,7 @@ class ProductController extends Controller
                 return $row->Category->ar_title;
             })
             ->editColumn('unit_id', function ($row) {
-                if ($row->units->ar_name != 0){
+                if (isset($row->units->ar_name)){
                     return $row->units->ar_name;
 
                 }else{
@@ -264,8 +264,8 @@ class ProductController extends Controller
     }
     public function getProducts($id){
 
-        $unit_id = Product::findOrFail($id)->unit_id;
-        $data = Unit::findOrFail($unit_id)->ar_name;
+        $Product = Product::findOrFail($id);
+        $data = $Product->units->ar_name;
         $storage = Storage::where('product_id',$id)->first();
         if ($storage !=null ){
             $storage_quantity = $storage->quantity;
