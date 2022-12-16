@@ -80,7 +80,9 @@ class Product extends Model
         return $this->hasMany(Shape::class ,'product_id');
     }
     public function units(){
-        return $this->belongsTo(Unit::class ,'unit_id');
+        return $this->belongsTo(Unit::class ,'unit_id')->Withdefault([
+            'ar_name'=>''
+        ]);
     }
 
 }

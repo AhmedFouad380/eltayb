@@ -121,20 +121,18 @@
                                             </select>
                                             <!--end::Input-->
                                         </div>
-
-                                            <div class="fv-row mb-7">
-                                                <label class="required fw-bold fs-6 mb-2">سعر الشراء</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input type="number" step="0.001" name="purchase_price"
-                                                       class="form-control form-control-solid mb-3 mb-lg-0 purchase_price"
-                                                       placeholder="سعر الشراء" value="{{old('notes')}}" id="purchase_price"/>
-                                                <!--end::Input-->
-
-
-                                            </div>
+                                        @if($type == 'income')
+                                        <div class="fv-row mb-7">
+                                            <label class="required fw-bold fs-6 mb-2">سعر الشراء</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="number" step="0.001" name="purchase_price"
+                                                   class="form-control form-control-solid mb-3 mb-lg-0 purchase_price"
+                                                   placeholder="سعر الشراء" value="{{old('notes')}}" id="purchase_price"/>
+                                            <!--end::Input-->
 
 
+                                        </div>
                                             <div class="fv-row mb-7">
                                                 <!--begin::Label-->
                                                 <label class="required fw-bold fs-6 mb-2">سعر البيع</label>
@@ -145,38 +143,62 @@
                                                        class="form-control form-control-solid mb-3 mb-lg-0"
                                                        placeholder="سعر البيع" value="{{old('notes')}}" />
                                                 <!--end::Input-->
-                                                <input type="number" step="0.001" name="{{$type}}" hidden
-                                                       class="form-control form-control-solid mb-3 mb-lg-0"
-                                                />
                                                 <!--end::Input-->
 
 
                                             </div>
-                                            <div class="fv-row mb-7">
-                                                <!--begin::Label-->
-                                                <label class="required fw-bold fs-6 mb-2">الكمية</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input type="number" name="quantity"
-                                                       class="form-control form-control-solid mb-3 mb-lg-0 quantity"
-                                                       placeholder="الكمية" id="quantity" />
-                                                <!--end::Input-->
+                                        @endif
 
+                                        <div class="fv-row mb-7" id="sell_price_label">
+                                            <!--begin::Label-->
+                                            <label class="required fw-bold fs-6 mb-2">سعر البيع</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="number" step="0.001" name="sell_price"
+                                                   id="sell_price"
+                                                   class="form-control form-control-solid mb-3 mb-lg-0"
+                                                   placeholder="سعر البيع" value="{{old('notes')}}" />
+                                            <!--end::Input-->
+                                            <!--end::Input-->
+
+
+                                        </div>
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="required fw-bold fs-6 mb-2">الكمية</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="number" name="quantity"
+                                                   class="form-control form-control-solid mb-3 mb-lg-0 quantity"
+                                                   placeholder="الكمية" id="quantity" />
+                                            <!--end::Input-->
+
+                                        </div>
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="required fw-bold fs-6 mb-2">السعر الاجمالى</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="number" step="0.001"
+                                                   class="form-control form-control-solid mb-3 mb-lg-0"
+                                                   placeholder="السعر الاجمالى" id="total_price"
+                                                   disabled/>
+                                            <!--end::Input-->
+
+
+                                        </div>
+                                        <div class="fv-row mb-7">
+                                            <div class="card card-xl-stretch mb-xl-8">
+
+                                                <div class="form-check form-switch form-check-custom form-check-solid">
+                                                    <label class="form-check-label" for="flexSwitchDefault">اضف الى المخزون</label>
+                                                    <input
+                                                        class="form-check-input form-control form-control-solid mb-3 mb-lg-0"
+                                                        name="add_to_storage" type="checkbox"
+                                                        value="1" id="add_to_storage" checked/>
+                                                </div>
                                             </div>
-                                            <div class="fv-row mb-7">
-                                                <!--begin::Label-->
-                                                <label class="required fw-bold fs-6 mb-2">السعر الاجمالى</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input type="number" step="0.001"
-                                                       class="form-control form-control-solid mb-3 mb-lg-0"
-                                                       placeholder="السعر الاجمالى" id="total_price"
-                                                       disabled/>
-                                                <!--end::Input-->
-
-
-                                            </div>
-
+                                        </div>
 
                                     </div>
                                     <!--end::Scroll-->
@@ -296,6 +318,8 @@
                                             @endforeach
 
                                         </select>
+                                        <input type="type" name="type" value="{{$type}}" class="form-control" hidden>
+
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-xl-3">
@@ -322,6 +346,7 @@
                         <div class="separator"></div>
 
 
+                        <!--end::Input group-->
                         <!--end::Input group-->
                         <div class="d-flex flex-column fv-row mb-7 " id="" style="display: none">
 
@@ -504,22 +529,67 @@
                 dropdownParent: $("#kt_modal_add_user")
             });
         });
+        var num = 1;
         $("#invoice_form").on("submit", function (e) {
             e.preventDefault();
+            @if($type == 'outcome'){
+                if($('#quantity').val() <= $('#storage_quantity').val()){
+                    var product_id = $('#product_id').val();
+                    var shape_id = $('#shape_id').val();
+                    var sell_price = $('#sell_price').val();
+                    var purchase_price = $('#purchase_price').val();
+                    var quantity = $('#quantity').val();
+                    var total_price = $('#total_price').val();
+                    var add_to_storage = $('#add_to_storage').val();
+                    var unit_id = $('#unit_id').val();
+                    var type = '{{$type}}';
+                    $.ajax({
+                        type: "GET",
+                        url: "{{url('addInvoiceDetailRow1')}}",
+                        data: {'product_id': product_id,'shape_id':shape_id,'sell_price':sell_price,'purchase_price':purchase_price
+                            ,'quantity':quantity
+                            ,'unit_id':unit_id
+                            ,'type':type
+                            ,'add_to_storage':add_to_storage
+                            ,'total_price':total_price
+                        },
+                        error: function(xhr, status, error) {
+                            alert(xhr.responseText);
+                        },
+                        success: function (data) {
+                            $('#kt_modal_add_user').modal('toggle');
+                            $('#invoice_form').trigger("reset");
+                            $("#questions").append(data);
+                        }
+                    })
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        title: "برجاء التأكد من البيانات.",
+                        text: "لا يوجد كمية كافية فى المخزون من هذا المنتج ",
+                        type: "error",
+                        timer: 5000,
+                        showConfirmButton: false
+                    });
+
+                }
+            }@else
             var product_id = $('#product_id').val();
             var shape_id = $('#shape_id').val();
             var sell_price = $('#sell_price').val();
             var purchase_price = $('#purchase_price').val();
             var quantity = $('#quantity').val();
             var total_price = $('#total_price').val();
-            var add_to_storage = $('.add_to_storage').val();
+            var add_to_storage = $('#add_to_storage').val();
             var unit_id = $('#unit_id').val();
+            var type = '{{$type}}';
             $.ajax({
                 type: "GET",
                 url: "{{url('addInvoiceDetailRow1')}}",
                 data: {'product_id': product_id,'shape_id':shape_id,'sell_price':sell_price,'purchase_price':purchase_price
                     ,'quantity':quantity
                     ,'unit_id':unit_id
+                    ,'type':type
                     ,'add_to_storage':add_to_storage
                     ,'total_price':total_price
                 },
@@ -532,6 +602,8 @@
                     $("#questions").append(data);
                 }
             })
+            @endif
+
         });
         @if($type == 'income')
         $("#quantity").on('click , change ,keyup',function() {
@@ -545,6 +617,7 @@
             var   purchase_price= $('#quantity').val();
             var total = quantity * purchase_price;
             document.getElementById("total_price").value = total;
+
         })
         @else
         $("#quantity").on('click , change ,keyup',function() {
@@ -558,19 +631,27 @@
             var   purchase_price= $('#quantity').val();
             var total = quantity * purchase_price;
             document.getElementById("total_price").value = total;
+
         })
         @endif
+
         $(document).on('click', '.delete_question', function () {
             $(this).parent().parent().remove();
         });
     </script>
 
     <script>
+        $(document).ready(function() {
+            $('#js-example-basic-single').select2({});
+            $('#js-example-basic-branch').select2({});
+             $('#js-example-basic-products').select2({});
+        });
         $("#payment_type").change(function () {
             var type = $(this).val();
             if($(this).val() == 'bank_transfer'){
                 document.getElementById('transfer_number').style.display = 'block';
                 document.getElementById('cheque_number').style.display = 'none';
+
             }else if($(this).val() == 'cheque'){
                 document.getElementById('transfer_number').style.display = 'none';
                 document.getElementById('cheque_number').style.display = 'block';
@@ -579,8 +660,10 @@
                 document.getElementById('cheque_number').style.display = 'none';
             }
         });
+
         $(".product_id").change(function () {
             var wahda = $(this).val();
+            var type = '{{$type}}';
             var num = $(this).data('num');
             if (wahda != '') {
                 $.get("{{ URL::to('/get-Shapes')}}" + '/' + wahda, function ($data) {
@@ -591,12 +674,31 @@
                     });
                     $('#shape_id').html(outs);
                 });
-                $.get("{{ url('/get-products')}}" + '/' + wahda, function ($data) {
+                $.get("{{ url('/get-products')}}" + '/' + wahda , function ($data , $storage_quantity) {
                     var outs = "";
                     console.log($data)
-                    outs += '<label class="required fw-bold fs-6 mb-2">الوحدة</label>' +
-                        '<input value="'+$data+'" type="text"' +
+                    console.log($storage_quantity)
+                    var sell_price = "";
+                    @if($type == 'income')
+                        outs += '<label class="required fw-bold fs-6 mb-2">الوحدة</label>' +
+                        '<input value="'+$data[0]+'" type="text"' +
                         'class="form-control form-control-solid mb-3 mb-lg-0 purchase_price" id="unit_id" disabled>'
+                        @else
+                            outs += '<label class="required fw-bold fs-6 mb-2">الوحدة</label>' +
+                            '<input value="'+$data[0]+'" type="text"' +
+                            'class="form-control form-control-solid mb-3 mb-lg-0 purchase_price" id="unit_id" disabled>'+
+                            '<input value="'+$data[1]+'" type="text"' +
+                            'class="form-control form-control-solid mb-3 mb-lg-0 purchase_price" id="storage_quantity" hidden>'+
+                            '<input value="'+$data[2]+'" type="text"' +
+                            'class="form-control form-control-solid mb-3 mb-lg-0 purchase_price" id="purchase_price" name="purchase_price" hidden>'
+
+
+                    sell_price += '<label class="required fw-bold fs-6 mb-2">سعر البيع</label>' +
+                        '<input value="'+$data[3]+'" type="text"' +
+                        'class="form-control form-control-solid mb-3 mb-lg-0 sell_price" id="sell_price" name="sell_price">'
+                        $('#sell_price_label').html(sell_price);
+                    @endif
+
                     $('#units_id').html(outs);
                 });
             }
@@ -604,4 +706,4 @@
     </script>
 
 @endsection
-        
+

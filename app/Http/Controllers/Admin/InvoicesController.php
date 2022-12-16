@@ -110,7 +110,7 @@ class InvoicesController extends Controller
     public function store(Request $request)
     {
         $data = $this->validate(request(), [
-            'date' => 'date',
+            'date' => 'string',
 
         ]);
 
@@ -132,7 +132,7 @@ class InvoicesController extends Controller
             $purchase_price = $request->purchase_price;
             $add_to_storage = $request->add_to_storage;
             $sell_price = $request->sell_price;
-
+            $total_details = [];
             foreach ($request->product_id as $key => $product){
                 $invoiceDetails = new InvoiceDetails();
                 $invoiceDetails->invoice_id = $invoice->id;
@@ -144,6 +144,11 @@ class InvoicesController extends Controller
                 $invoiceDetails->sell_price = $sell_price[$key];
                 $invoiceDetails->save();
 
+                if($request->type == 'outcome'){
+                    $total_details[] = $quantity[$key]  * $sell_price[$key];
+                }else{
+                    $total_details[] = $quantity[$key]  * $purchase_price[$key];
+                }
             }
             // end list of invoices details
 
@@ -154,6 +159,26 @@ class InvoicesController extends Controller
             $invoiceAdditions->coupon_id = $request->coupon_id;
             $invoiceAdditions->invoice_id = $invoice->id;
             $invoiceAdditions->save();
+
+         
+
+            $subtotal = array_sum($total_details); 
+
+         
+            if(isset($request->discount) && $request->discount != 0){
+                $total = $subtotal - ( ( $subtotal * $request->discount ) / 100 );
+            }else{
+                $total = $subtotal - ( ( $subtotal * $request->tax ) / 100 );
+            }
+
+            if(isset($request->tax) && $request->tax != 0 ){
+                $TotalWithTax = $total + ( ( $total * $request->tax ) / 100 );
+            }else{
+                $TotalWithTax = $total;
+            }
+            
+            $invoice->total_price=$TotalWithTax + $request->delivery_fees;
+            $invoice->save();
 
         }
 
@@ -265,19 +290,21 @@ class InvoicesController extends Controller
         $total_price = $request->total_price;
         $add_to_storage = $request->add_to_storage;
         $unit_name = $request->unit_id;
-        $purchase_price = $request->purchase_price;
-            return view('Admin.Invoices.invoiceitemsjson',compact(['product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
-
-            if ($request->type == 'income'){
+        $type = $request->type;
+        if ($request->type == 'income'){
             $purchase_price = $request->purchase_price;
+            return view('Admin.Invoices.invoiceitemsjson',compact(['type','product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
 
         }else{
             $storage = Storage::where('product_id',$request->product_id)->first();
-            if ($storage !=null && $storage->quantity <= $quantity){
+            if ($storage !=null ){
                 $purchase_price = $storage->purchase_price;
-                return view('Admin.Invoices.invoiceitemsjson',compact(['product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
+                return view('Admin.Invoices.invoiceitemsjson',compact(['type','product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
 
             }else{
+                $purchase_price = $request->purchase_price;
+                return view('Admin.Invoices.invoiceitemsjson',compact(['type','product','unit_name','shape_title','add_to_storage','shape','quantity','sell_price','purchase_price','total_price']));
+
                 return response()->json(['message' => 'Failed']);
             }
 
