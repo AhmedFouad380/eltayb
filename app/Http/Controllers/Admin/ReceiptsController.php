@@ -195,7 +195,7 @@ class ReceiptsController extends Controller
     public function details($id)
     {
         $employee = Receipt::findOrFail($id);
-        return view('admin.receipts.details', compact('employee'));
+        return view('admin.receipts.index-receipt', compact('employee'));
     }
     public function print_receipt($id)
     {

@@ -4,8 +4,71 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2763c9a9d64bf533adbc6fdeffc4f15f",
+    "content-hash": "8ac621df21b734ebce0f4528eecfb6d4",
     "packages": [
+        {
+            "name": "alkoumi/laravel-arabic-tafqeet",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alkoumi/laravel-arabic-tafqeet.git",
+                "reference": "0859768ac074cffb02972d5c7485528cda99d493"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alkoumi/laravel-arabic-tafqeet/zipball/0859768ac074cffb02972d5c7485528cda99d493",
+                "reference": "0859768ac074cffb02972d5c7485528cda99d493",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Alkoumi\\LaravelArabicTafqeet\\LaravelArabicTafqeetServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Alkoumi\\LaravelArabicTafqeet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mohammed Alkoumi",
+                    "email": "komy66@gmail.com"
+                }
+            ],
+            "description": "a package to translate money numbers to our Amazing 💝 Arabic language TAFQEET . to look like [فقط تسعمائة ألف ريال و أربعة و ثلاثون هللة لاغير]",
+            "homepage": "https://be.net/komy",
+            "keywords": [
+                "arabic",
+                "arabic numbers",
+                "arabic-date-tafqeet",
+                "numbers",
+                "tafqeet"
+            ],
+            "support": {
+                "issues": "https://github.com/alkoumi/laravel-arabic-tafqeet/issues",
+                "source": "https://github.com/alkoumi/laravel-arabic-tafqeet/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/mohammadelkoumi",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-02-04T15:20:30+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.1.1",
@@ -7780,12 +7843,14 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "alkoumi/laravel-arabic-tafqeet": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }

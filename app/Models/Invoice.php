@@ -33,6 +33,12 @@ class Invoice extends Model
     public function supplier(){
         return $this->belongsTo(Supplier::class , 'supplier_id');
     }
+    public function invoicesDetails(){
+        return $this->hasMany(InvoiceDetails::class , 'invoice_id');
+    }
+    public function additions(){
+        return $this->hasMany(InvoiceAddition::class , 'invoice_id');
+    }
     public function user(){
         return $this->belongsTo(User::class , 'user_id');
     }

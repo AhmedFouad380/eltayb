@@ -176,6 +176,7 @@ class ComposerStaticInitc55526542e76b73808502ebe88493e5b
         array (
             'Asm89\\Stack\\' => 12,
             'App\\' => 4,
+            'Alkoumi\\LaravelArabicTafqeet\\' => 29,
         ),
     );
 
@@ -498,6 +499,10 @@ class ComposerStaticInitc55526542e76b73808502ebe88493e5b
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
+        'Alkoumi\\LaravelArabicTafqeet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alkoumi/laravel-arabic-tafqeet/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -511,12 +516,20 @@ class ComposerStaticInitc55526542e76b73808502ebe88493e5b
     );
 
     public static $classMap = array (
+        'Alkoumi\\LaravelArabicTafqeet\\Helpers\\App' => __DIR__ . '/..' . '/alkoumi/laravel-arabic-tafqeet/src/Helpers/App.php',
+        'Alkoumi\\LaravelArabicTafqeet\\Helpers\\Calculators' => __DIR__ . '/..' . '/alkoumi/laravel-arabic-tafqeet/src/Helpers/Calculators.php',
+        'Alkoumi\\LaravelArabicTafqeet\\Helpers\\Digit' => __DIR__ . '/..' . '/alkoumi/laravel-arabic-tafqeet/src/Helpers/Digit.php',
+        'Alkoumi\\LaravelArabicTafqeet\\Helpers\\Handler' => __DIR__ . '/..' . '/alkoumi/laravel-arabic-tafqeet/src/Helpers/Handler.php',
+        'Alkoumi\\LaravelArabicTafqeet\\Helpers\\Validation' => __DIR__ . '/..' . '/alkoumi/laravel-arabic-tafqeet/src/Helpers/Validation.php',
+        'Alkoumi\\LaravelArabicTafqeet\\LaravelArabicTafqeetServiceProvider' => __DIR__ . '/..' . '/alkoumi/laravel-arabic-tafqeet/src/LaravelArabicTafqeetServiceProvider.php',
+        'Alkoumi\\LaravelArabicTafqeet\\Tafqeet' => __DIR__ . '/..' . '/alkoumi/laravel-arabic-tafqeet/src/Tafqeet.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AddressController' => __DIR__ . '/../..' . '/app/Http/Controllers/AddressController.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
         'App\\Http\\Controllers\\Admin\\BranchesConroller' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BranchesConroller.php',
         'App\\Http\\Controllers\\Admin\\CategoriesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoriesController.php',
+        'App\\Http\\Controllers\\Admin\\ClientsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ClientsController.php',
         'App\\Http\\Controllers\\Admin\\CouponController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CouponController.php',
         'App\\Http\\Controllers\\Admin\\InvoicesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/InvoicesController.php',
         'App\\Http\\Controllers\\Admin\\OrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/OrderController.php',
@@ -552,6 +565,7 @@ class ComposerStaticInitc55526542e76b73808502ebe88493e5b
         'App\\Models\\Branch' => __DIR__ . '/../..' . '/app/Models/Branch.php',
         'App\\Models\\Cart' => __DIR__ . '/../..' . '/app/Models/Cart.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\Client' => __DIR__ . '/../..' . '/app/Models/Client.php',
         'App\\Models\\ContactForm' => __DIR__ . '/../..' . '/app/Models/ContactForm.php',
         'App\\Models\\Coupon' => __DIR__ . '/../..' . '/app/Models/Coupon.php',
         'App\\Models\\Invoice' => __DIR__ . '/../..' . '/app/Models/Invoice.php',

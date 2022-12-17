@@ -249,7 +249,7 @@
                                             <label class="required fw-bold fs-6 mb-2">اسم العميل </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-single" name="supplier_id"
+                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-single" name="client_id"
                                             >
                                                 <option value="">اختار العميل</option>
 
@@ -266,7 +266,7 @@
                                             <label class="required fw-bold fs-6 mb-2">اسم مستخدم الموقع </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-single" name="supplier_id"
+                                            <select class="form-control form-select form-control-solid mb-3 mb-lg-0" id="js-example-basic-single" name="user_id"
                                             >
                                                 <option value="">اختار مستخدم الموقع</option>
 

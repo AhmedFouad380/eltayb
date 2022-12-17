@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="invoice">
-                                    <h2 class="text-end">رقم الفاتورة: #45613</h2>
+                                    <h2 class="text-end">رقم الفاتورة: #{{$employee->id}}</h2>
                                 </div>
                             </div>
 
@@ -50,30 +50,56 @@
                 <div class="invoice-top" style="margin-bottom: 10px;margin-top: 10px;">
                     <div class="row" style="margin-bottom: 10px;margin-top: 10px;">
                         <div class="invoice" >
+                            @if($type == 'income')
                             <h2 style="text-align: center;">فاتورة شراء</h2>
+                            @else
+                                <h2 style="text-align: center;">فاتورة بيع</h2>
+                            @endif
                         </div>
 
                     </div>
                     <div class="row" >
-                        <div class="col-sm-6 mb-30 border" >
+                        @if($type == 'outcome')
+                            @if($employee->client_id != null)
+                                <div class="col-sm-6 mb-30 border" >
                             <div class="invoice-number" style="margin-bottom: 15px;margin-top: 10px;">
                                 <div class="inv-title-1" style="text-align: center;">الى السيد</div>
                                 <div class="inv-title-1" >
-                                   اسم السيد: احمد حسانين
+                                   اسم السيد: {{$employee->client->name}}
                                 </div>
                                 <div class="inv-title-1" >
-                                   رقم الجوال: 96062755
+                                   رقم الجوال: {{$employee->client->phone}}
                                 </div>
                                 <div class="inv-title-1" >
-                                    العنوان: الفروانية
+                                    العنوان: {{$employee->client->address}}
                                 </div>
                                 <div class="inv-title-1" >
-                                    التاريخ: 26/10/2022
+                                    التاريخ: {{$employee->date}}
                                 </div>
 
                             </div>
                         </div>
-                        <div class="col-sm-6 mb-30 border" >
+                            @elseif($employee->user_id != null)
+                                <div class="col-sm-6 mb-30 border" >
+                                    <div class="invoice-number" style="margin-bottom: 15px;margin-top: 10px;">
+                                        <div class="inv-title-1" style="text-align: center;">الى السيد</div>
+                                        <div class="inv-title-1" >
+                                            اسم السيد: {{$employee->user->name}}
+                                        </div>
+                                        <div class="inv-title-1" >
+                                            رقم الجوال: {{$employee->user->phone}}
+                                        </div>
+                                        <div class="inv-title-1" >
+                                            العنوان: {{$employee->user->address}}
+                                        </div>
+                                        <div class="inv-title-1" >
+                                            التاريخ: {{$employee->date}}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @endif
+                                <div class="col-sm-6 mb-30 border" >
                             <div class="invoice-number" style="margin-bottom: 15px;margin-top: 10px;">
                                 <div class="inv-title-1" style="text-align: center;">بيانات الفاتورة</div>
                                 <div class="inv-title-1" >
@@ -97,6 +123,50 @@
 
                             </div>
                         </div>
+                        @else
+                            <div class="col-sm-6 mb-30 border" >
+                                <div class="invoice-number" style="margin-bottom: 15px;margin-top: 10px;">
+                                    <div class="inv-title-1" style="text-align: center;">بيانات المورد</div>
+                                    <div class="inv-title-1" >
+                                        اسم الشركة: {{$employee->supplier->name}}
+                                    </div>
+                                    <div class="inv-title-1" >
+                                        رقم الجوال: {{$employee->supplier->phone}}
+                                    </div>
+                                    <div class="inv-title-1" >
+                                        العنوان: {{$employee->supplier->address}}
+                                    </div>
+                                    <div class="inv-title-1" >
+                                        التاريخ: {{$employee->date}}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-30 border" >
+                                <div class="invoice-number" style="margin-bottom: 15px;margin-top: 10px;">
+                                    <div class="inv-title-1" style="text-align: center;">بيانات الفاتورة</div>
+                                    <div class="inv-title-1" >
+                                        اسم الشركة: {{$settings->ar_name}}
+                                    </div>
+                                    <div class="inv-title-1" >
+                                        رقم الفاتورة: {{$employee->id}}
+                                    </div>
+                                    <div class="inv-title-1" >
+                                        رقم الجوال: {{$settings->phone}}
+                                    </div>
+                                    <div class="inv-title-1" >
+                                        العنوان: {{$settings->address}}
+                                    </div>
+                                    <div class="inv-title-1" >
+                                        الفرع: {{$employee->branch->ar_name}}
+                                    </div>
+                                    <div class="inv-title-1" >
+                                        التاريخ: {{$employee->date}}
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endif
                     </div>
 
                 </div>
@@ -125,7 +195,24 @@
                                     <!--end::Table head-->
                                     <!--begin::Table body-->
                                     <tbody id="questions" class="border">
+                                    @foreach($employee->invoicesDetails as $product)
                                     <tr class="fw-bolder border">
+                                        <td>{{$product->product->ar_title}}</td>
+                                        <td>{{$product->shape->ar_title}} </td>
+                                        <td>{{$product->product->units->ar_name}} </td>
+                                        <td>{{$product->quantity}}</td>
+                                        @if($type == 'income')
+                                        <td>{{$product->purchase_price}}</td>
+                                            <td>{{$product->purchase_price * $product->quantity}}</td>
+
+                                        @else
+                                            <td>{{$product->sell_price}}</td>
+                                            <td>{{$product->sell_price * $product->quantity}}</td>
+
+                                        @endif
+                                    </tr>
+                                    @endforeach
+                                    {{--<tr class="fw-bolder border">
                                         <td>Standard Plan</td>
                                         <td>$443.00 </td>
                                         <td>$921.80</td>
@@ -156,37 +243,29 @@
                                         <td>$9243</td>
                                         <td>$9243</td>
                                         <td>$9243</td>
-                                    </tr>
-                                    <tr class="fw-bolder border">
-                                        <td>Standard Plan</td>
-                                        <td>$443.00 </td>
-                                        <td>$921.80</td>
-                                        <td>$9243</td>
-                                        <td>$9243</td>
-                                        <td>$9243</td>
-                                    </tr>
+                                    </tr>--}}
                                     </tbody>
                                 <tfoot class="border">
                                     <tr  style="color:red!important;">
                                         <th colspan="4"> </th>
                                         <th colspan="1">  خصم  :</th>
-                                        <th colspan="2" > -20 </th>
+                                        <th colspan="2" > -{{$employee->additions[0]->discount}} </th>
                                     </tr>
 
                                 <tr>
                                     <th colspan="4"> </th>
                                     <th colspan="1">الضرائب </th>
-                                    <th colspan="2"> 50</th>
+                                    <th colspan="2"> {{$employee->additions[0]->tax}}</th>
                                 </tr>
                                 <tr>
                                     <th colspan="4"> </th>
                                     <th colspan="1">خدمة توصيل </th>
-                                    <th colspan="2">10</th>
+                                    <th colspan="2">{{$employee->additions[0]->delivery_fees}}</th>
                                 </tr>
                                 <tr>
                                     <th colspan="4"> </th>
                                     <th colspan="1">اجمالي الفاتورة </th>
-                                    <th colspan="2"></th>
+                                    <th colspan="2">{{$employee->total_price}}</th>
                                 </tr>
                                 </tfoot>
                                 <!--end::Table body-->
@@ -220,7 +299,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="inv-title-1" >
-                                            :اربعة الاف وربعمائة ومئتان واثنين وخمسون وسبعمائة وخمسة وخمسون دينار كويتى فقط لا غير
+                                            :{{$amount}}
                                         </div>
                                         <div class="inv-title-1" >
                                             :

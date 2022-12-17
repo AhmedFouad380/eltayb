@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Alkoumi\LaravelArabicTafqeet\Tafqeet;
 use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\InvoiceAddition;
 use App\Models\InvoiceDetails;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\Shape;
 use App\Models\Storage;
 use Illuminate\Http\Request;
@@ -81,8 +83,7 @@ class InvoicesController extends Controller
                 return $name;
             })
             ->addColumn('actions', function ($row) {
-                $actions = ' <a href="' . url("receipts-edit/" . $row->id) . '" class="btn btn-active-light-info"><i class="bi bi-pencil-fill"></i> تعديل </a>';
-                $actions .= ' <a href="' . url("receipts-details/" . $row->id) . '" class="btn btn-active-light-info"><i class="bi bi-pencil-fill"></i> تفاصيل </a>';
+                $actions = ' <a href="' . url("invoices-details/" . $row->id) . '" class="btn btn-active-light-info"><i class="bi bi-pencil-fill"></i> تفاصيل </a>';
                 return $actions;
 
             })
@@ -121,6 +122,8 @@ class InvoicesController extends Controller
             $invoice->date=$request->date;
             $invoice->image=$request->image;
             $invoice->supplier_id=$request->supplier_id;
+            $invoice->user_id=$request->user_id;
+            $invoice->client_id=$request->client_id;
             $invoice->branch_id=$request->branch_id;
             $invoice->created_by=Auth::guard('admin')->user()->id;
             $invoice->save();
@@ -144,6 +147,20 @@ class InvoicesController extends Controller
                 $invoiceDetails->sell_price = $sell_price[$key];
                 $invoiceDetails->save();
 
+                /*if ($request->type == 'income' && $add_to_storage[$key] == 1){
+                    $storage = Storage::where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->first()->quantity;
+                    $quantity_storage = $quantity[$key] + $storage;
+                    $storage->quantity = $quantity_storage;
+                    $storage->available_quantity = $quantity_storage;
+                    $storage->save();
+                }else if ($request->type == 'outcome'){
+                    $storage = Storage::where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->first()->quantity;
+                    $quantity_storage = $storage - $quantity[$key];
+                    $storage->quantity = $quantity_storage;
+                    $storage->available_quantity = $quantity_storage;
+                    $storage->save();
+                }*/
+
                 if($request->type == 'outcome'){
                     $total_details[] = $quantity[$key]  * $sell_price[$key];
                 }else{
@@ -160,11 +177,11 @@ class InvoicesController extends Controller
             $invoiceAdditions->invoice_id = $invoice->id;
             $invoiceAdditions->save();
 
-         
 
-            $subtotal = array_sum($total_details); 
 
-         
+            $subtotal = array_sum($total_details);
+
+
             if(isset($request->discount) && $request->discount != 0){
                 $total = $subtotal - ( ( $subtotal * $request->discount ) / 100 );
             }else{
@@ -176,7 +193,7 @@ class InvoicesController extends Controller
             }else{
                 $TotalWithTax = $total;
             }
-            
+
             $invoice->total_price=$TotalWithTax + $request->delivery_fees;
             $invoice->save();
 
@@ -214,7 +231,13 @@ class InvoicesController extends Controller
     public function details($id)
     {
         $employee = Invoice::findOrFail($id);
-        return view('admin.invoices.details', compact('employee'));
+        $type = $employee->type;
+        $settings = Setting::findOrFail(1);
+        $amount = $employee->total_price;
+/*        $price = Tafqeet::inArabic($amount,'kwd');*/
+
+
+        return view('admin.invoices.index-invoice', compact(['employee','type','settings','amount']));
     }
 
     /**
