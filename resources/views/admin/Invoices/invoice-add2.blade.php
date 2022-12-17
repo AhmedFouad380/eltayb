@@ -174,19 +174,25 @@
 
 
                                         </div>
+                                        @if($type == 'income')
                                         <div class="fv-row mb-7">
                                             <div class="card card-xl-stretch mb-xl-8">
 
                                                 <div class="form-check form-switch form-check-custom form-check-solid">
                                                     <label class="form-check-label" for="flexSwitchDefault">اضف الى المخزون</label>
+
+                                                    <input class="form-check-input" name="add_to_storage[]" type="hidden"
+                                           value="0" id="flexSwitchDefault"/>
+                                    
+
                                                     <input
                                                         class="form-check-input form-control form-control-solid mb-3 mb-lg-0"
-                                                        name="add_to_storage" type="checkbox"
+                                                        name="add_to_storage[]" type="checkbox"
                                                         value="1" id="add_to_storage" checked/>
                                                 </div>
                                             </div>
                                         </div>
-
+                                        @endif
                                     </div>
                                     <!--end::Scroll-->
                                     <!--begin::Actions-->
@@ -666,6 +672,7 @@
                     console.log($data)
                     console.log($storage_quantity)
                     var sell_price = "";
+
                     @if($type == 'income')
                         outs += '<label class="required fw-bold fs-6 mb-2">الوحدة</label>' +
                         '<input value="'+$data[0]+'" type="text"' +

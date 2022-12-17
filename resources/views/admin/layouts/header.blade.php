@@ -251,21 +251,7 @@
                                     <span class="menu-arrow d-lg-none"></span>
                                 </a>
                             </div>
-                        <div
-                            class="menu-item @if(Request::segment(1) == 'Storage_Setting' || Request::segment(1) == 'Storage-edit' ) here show @endif menu-lg-down-accordion me-lg-1">
-                            <a class="menu-link py-3" href="{{url('Storage_Setting')}}">
-                                <span class="menu-title"> المخزون </span>
-                                <span class="menu-arrow d-lg-none"></span>
-                            </a>
-                        </div>
-                        <div
-                            class="menu-item @if(Request::segment(1) == 'branches_Setting' || Request::segment(1) == 'Storage-edit' ) here show @endif menu-lg-down-accordion me-lg-1">
-                            <a class="menu-link py-3" href="{{url('branches_Setting')}}">
-                                <span class="menu-title"> الفروع </span>
-                                <span class="menu-arrow d-lg-none"></span>
-                            </a>
-                        </div>
-                        <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
+                            <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
                              class="menu-item menu-lg-down-accordion me-lg-1">
                             <span
                                 class="menu-link @if(Request::segment(1) == "Product_Reports"
@@ -350,12 +336,13 @@
                             </div>
                         </div>
 
+                        
                         <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
                              class="menu-item menu-lg-down-accordion me-lg-1">
                             <span
-                                class="menu-link @if(Request::segment(1) == "invoices_Setting_buy"
+                                class="menu-link @if(Request::segment(1) == "invoices_Setting_buy" || Request::segment(1) == 'Storage_Setting' || Request::segment(1) == "receipts_Setting" || Request::segment(1) == "receipts-edit"
                                  ) active @endif py-3">
-                                <span class="menu-title">الفواتير </span>
+                                <span class="menu-title">الحسابات    </span>
                                 <span class="menu-arrow d-lg-none"></span>
                             </span>
                             <div
@@ -431,7 +418,113 @@
                                     </span>
                                     </a>
                                 </div>
+                               
+                                <div data-kt-menu-placement="right-start"
+                                     class="menu-item menu-lg-down-accordion">
+                                    <a href="{{url('/receipts_Setting')}}">
+                                    <span
+                                        class="menu-link @if(Request::segment(1) == "receipts_Setting"  ) active @endif py-3">
+                                        <span class="menu-icon ">
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+                                                    <path
+                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                        fill="black"/>
+                                                    <path
+                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                        fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                          fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                          fill="black"/>
+                                                </svg>
+                                            </span>
 
+                                            <!--end::Svg Icon-->
+                                        </span>
+                                        <span
+                                            class="menu-title  @if(Request::segment(1) == "receipts_Setting") text-active-primary active @endif ">
+
+                                            السندات
+                                              </span>
+                                    </span>
+                                    </a>
+                                </div>
+
+                                <div data-kt-menu-placement="right-start"
+                                     class="menu-item menu-lg-down-accordion">
+                                    <a href="{{url('/Storage_Setting')}}">
+                                    <span
+                                        class="menu-link @if(Request::segment(1) == "Storage_Setting"  ) active @endif py-3">
+                                        <span class="menu-icon ">
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+                                                    <path
+                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                        fill="black"/>
+                                                    <path
+                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                        fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                          fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                          fill="black"/>
+                                                </svg>
+                                            </span>
+
+                                            <!--end::Svg Icon-->
+                                        </span>
+                                        <span
+                                            class="menu-title  @if(Request::segment(1) == "Storage_Setting") text-active-primary active @endif ">
+
+                                            المخزون
+                                              </span>
+                                    </span>
+                                    </a>
+                                </div>
+                                <div data-kt-menu-placement="right-start"
+                                     class="menu-item menu-lg-down-accordion">
+                                    <a href="{{url('/StorageTransaction_Setting')}}">
+                                    <span
+                                        class="menu-link @if(Request::segment(1) == "StorageTransaction_Setting"  ) active @endif py-3">
+                                        <span class="menu-icon ">
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+                                                    <path
+                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                        fill="black"/>
+                                                    <path
+                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                        fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                          fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                          fill="black"/>
+                                                </svg>
+                                            </span>
+
+                                            <!--end::Svg Icon-->
+                                        </span>
+                                        <span
+                                            class="menu-title  @if(Request::segment(1) == "StorageTransaction_Setting") text-active-primary active @endif ">
+
+                                            حركة المخزون
+                                              </span>
+                                    </span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
@@ -446,7 +539,10 @@
                                  Request::segment(1) == "General_Setting"||
                                   Request::segment(1) == "Page_Setting" ||
                                   Request::segment(1) == "units_Setting" ||
+                                  Request::segment(1) == "branches_Setting" ||
+                                  
                                 Request::segment(1) == "-edit" ||
+
                                   Request::segment(1) == "edit-page"
                                  ) active @endif py-3">
                                 <span class="menu-title">الاعدادات</span>
@@ -490,6 +586,44 @@
                                     </span>
                                     </a>
                                 </div>
+                                <div data-kt-menu-placement="right-start"
+                                     class="menu-item menu-lg-down-accordion">
+                                    <a href="{{url('/branches_Setting')}}">
+                                    <span
+                                        class="menu-link @if(Request::segment(1) == "branches_Setting"  ) active @endif py-3">
+                                        <span class="menu-icon ">
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+                                                    <path
+                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                        fill="black"/>
+                                                    <path
+                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                        fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                          fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                          fill="black"/>
+                                                </svg>
+                                            </span>
+
+                                            <!--end::Svg Icon-->
+                                        </span>
+                                        <span
+                                            class="menu-title  @if(Request::segment(1) == "branches_Setting" || Request::segment(1) == 'Storage-edit') text-active-primary active @endif ">
+
+                                            الفروع
+                                              </span>
+                                    </span>
+                                    </a>
+                                </div>
+                                
+                               
+
                                 <div data-kt-menu-placement="right-start"
                                      class="menu-item menu-lg-down-accordion">
                                     <a href="{{url('Coupons_Setting')}}">
@@ -557,42 +691,6 @@
                                             class="menu-title @if(Request::segment(1) == "units_Setting" ||Request::segment(1) == "units-edit")  text-active-primary active @endif ">
 
                                                 الوحدات
-
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('receipts_Setting')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "receipts_Setting" ||Request::segment(1) == "receipts-edit") active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
-
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title @if(Request::segment(1) == "receipts_Setting" ||Request::segment(1) == "receipts-edit")  text-active-primary active @endif ">
-
-                                                السندات
 
                                               </span>
                                     </span>

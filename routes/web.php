@@ -161,6 +161,16 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
             return view('admin/Storage/button', compact('id'));
         });
 
+        Route::get('StorageTransaction_Setting', [\App\Http\Controllers\Admin\StorageTransactionController::class, 'index']);
+        Route::get('StorageTransaction_datatable', [\App\Http\Controllers\Admin\StorageTransactionController::class, 'datatable'])->name('StorageTransaction.datatable.data');
+        Route::get('delete-StorageTransaction', [\App\Http\Controllers\Admin\StorageTransactionController::class, 'destroy']);
+        Route::post('store-StorageTransaction', [\App\Http\Controllers\Admin\StorageTransactionController::class, 'store']);
+        Route::get('StorageTransaction-edit/{id}', [\App\Http\Controllers\Admin\StorageTransactionController::class, 'edit']);
+        Route::post('update-StorageTransaction', [\App\Http\Controllers\Admin\StorageTransactionController::class, 'update']);
+        Route::get('/add-button-StorageTransaction/{id?}', function ($id = null) {
+            return view('admin/StorageTransaction/button', compact('id'));
+        });
+
 
         Route::get('get-Shapes/{id}', [\App\Http\Controllers\Admin\ShapeController::class, 'getShapes']);
         Route::get('Shapes/{id}', [\App\Http\Controllers\Admin\ShapeController::class, 'index']);

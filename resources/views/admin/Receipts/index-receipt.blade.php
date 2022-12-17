@@ -207,7 +207,7 @@
                                         <a class="text-black fs-2">:{{$employee->value}}</a>
                                     </div>
                                     <div class="invoice-title-1" style="margin-top:5px;">
-                                        <a class="text-black fs-2">:</a>
+                                        <a class="text-black fs-2" id="demo" >:</a>
                                     </div>
                                 </div>
                                 <div class="col-sm-1 text-end">
@@ -346,6 +346,23 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="txt" value="{{$employee->value}}">
+    <script src="{{asset('admin/Tafqeet.js')}}"></script>
+
+<script>
+    function main (){
+        var fraction = document.getElementById("txt").value.split(".");
+
+        if (fraction.length == 2){
+            document.getElementById ("demo").innerHTML   =  tafqeet (fraction[0]) + " دينار و" + tafqeet (fraction[1]) + ' فلس  فقط لاغير ';
+        }
+        else if (fraction.length == 1){
+            document.getElementById ("demo").innerHTML =  tafqeet (fraction[0]) + ' دينار  فقط لاغير ';
+        }
+    }
+    main();
+    window.print()
+</script>   
 
 
 <!--end::Main-->

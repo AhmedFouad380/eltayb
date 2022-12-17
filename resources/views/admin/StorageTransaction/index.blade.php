@@ -34,7 +34,7 @@
 
         <!--end::Item-->
         <!--begin::Item-->
-        <li class="breadcrumb-item text-gray-500">قائمة المخزون
+        <li class="breadcrumb-item text-gray-500">قائمة حركة المخزون
             @if(isset($id))
                  : {{$data->ar_title}}
                 @endif
@@ -70,8 +70,10 @@
                             </th>
 
                             <th class="min-w-125px">الاسم المنتج  </th>
-                            <th class="min-w-125px"> الكمية المتاحة  </th>
-                            <th class="min-w-125px"> سعر البيع   </th>
+                            <th class="min-w-125px">الحجم  </th>
+                            <th class="min-w-125px"> الكمية   </th>
+                            <th class="min-w-125px"> النوع   </th>
+                            <th class="min-w-125px"> الملاحظات   </th>
                             <th class="min-w-125px">  الفرع  </th>
                         </tr>
                         <!--end::Table row-->
@@ -121,7 +123,7 @@
                     // {extend: 'colvis', className: 'btn secondary', text: 'إظهار / إخفاء الأعمدة '}
                 ],
                 ajax: {
-                    url: '{{ route('Storage.datatable.data') }}',
+                    url: '{{ route('StorageTransaction.datatable.data') }}',
                     data: {
                         @if(Request::get('product_id'))
                         id:"{{Request::get('product_id')}}",
@@ -132,32 +134,29 @@
                         @if(Request::get('shape_id'))
                         shape_id:"{{Request::get('shape_id')}}",
                         @endif
+                        @if(Request::get('type'))
+                        shape_id:"{{Request::get('type')}}",
+                        @endif
                     }
                 },
                 columns: [
                     {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
                     {data: 'Product', name: 'Product', "searchable": true, "orderable": true},
+                    {data: 'Shape', name: 'Shape', "searchable": true, "orderable": true},
                     {data: 'quantity', name: 'quantity', "searchable": true, "orderable": true},
-                    {data: 'sell_price', name: 'purchase_price', "searchable": true, "orderable": true},
+                    {data: 'type', name: 'type', "searchable": true, "orderable": true},
                     {data: 'branch_id', name: 'branch_id', "searchable": true, "orderable": true},
                    // {data: 'is_available', name: 'is_available', "searchable": true, "orderable": true},
                     // {data: 'actions', name: 'actions', "searchable": false, "orderable": false},
 
                 ]
             });
-            @if(isset($id))
             $.ajax({
-                url: "{{ URL::to('/add-button-Storage')}}",
+                url: "{{ URL::to('/add-button-StorageTransaction')}}",
                 success: function (data) { $('.add_button').append(data); },
                 dataType: 'html'
             });
-            @else
-            $.ajax({
-                url: "{{ URL::to('/add-button-Storage',$id)}}",
-                success: function (data) { $('.add_button').append(data); },
-                dataType: 'html'
-            });
-            @endif
+            
         });
     </script>
     <?php

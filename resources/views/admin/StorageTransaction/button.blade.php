@@ -58,6 +58,19 @@
 
                              <div class="fv-row mb-7">
                                 <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">النوع </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <select class="form-control form-select form-control-solid mb-3 mb-lg-0" name="type"
+                                >
+                                <option value="0">الكل </option>
+                                        <option value="income">وارد</option>
+                                        <option value="outcome">صادر</option>
+                                </select>
+                                <!--end::Input-->
+                            </div>
+                             <div class="fv-row mb-7">
+                                <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">الفرع </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
@@ -79,8 +92,7 @@
                                     <!--end::Label-->
                                     <!--begin::Input-->
                                     <select class="form-control" name="product_id" id="product_id">
-                                    <option value="0">الكل </option>
-
+                                <option value="0">الكل </option>
                                         @foreach(\App\Models\Product::all() as $product)
                                             <option value="{{$product->id}}">{{$product->ar_title}}</option>
                                         @endforeach

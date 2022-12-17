@@ -18,10 +18,11 @@ class CreateStorageTransactionsTable extends Migration
             $table->enum('type',['income','outcome']);
             $table->text('note');
             $table->integer('quantity')->default(0);
+            $table->double('purchase_price')->default(0);
+            $table->double('sell_price')->default(0);
             $table->foreignId('product_id')->constrained('products')->restrictOnDelete();
             $table->foreignId('shape_id')->constrained('shapes')->restrictOnDelete();
-            $table->foreignId('branch_id_from')->nullable()->constrained('branches')->restrictOnDelete();
-            $table->foreignId('branch_id_to')->nullable()->constrained('branches')->restrictOnDelete();
+            $table->foreignId('branch_id')->nullable()->constrained('branches')->restrictOnDelete();
             $table->foreignId('invoice_id')->nullable()->constrained('invoices')->cascadeOnDelete();
             $table->foreignId('admin_id')->nullable()->constrained('admins')->restrictOnDelete();
             $table->timestamps();

@@ -22,10 +22,18 @@ class StorageController extends Controller
     }
     public function datatable(Request $request)
     {
-        $data = Storage::orderBy('id', 'desc');
-        if($request->id){
-            $data->where('product_id',$request->id);
+        $data = Storage::orderBy('branch_id', 'asc');
+        if($request->product_id  && $request->product_id != 0){
+            $data->where('product_id',$request->product_id);
         }
+        if($request->branch_id && $request->branch_id != 0){
+            $data->where('branch_id',$request->branch_id);
+        }
+        if($request->shape_id && $request->shape_id != 0){
+            $data->where('shape_id',$request->shape_id);
+        }
+       
+
         return DataTables::of($data)
             ->addColumn('checkbox', function ($row) {
                 $checkbox = '';
@@ -37,25 +45,13 @@ class StorageController extends Controller
             ->AddColumn('Product', function ($row) {
                 return $row->Product->ar_title;
             })
-            ->AddColumn('SellQuantity', function ($row) {
-                return $row->quantity - $row->available_quantity;
+           
+            ->editColumn('branch_id', function ($row) {
+                return $row->Branch->ar_name;
             })
-            ->editColumn('is_available', function ($row) {
-                $is_active = '<div class="badge badge-light-success fw-bolder">متاح </div>';
-                $not_active = '<div class="badge badge-light-danger fw-bolder">غير متاح</div>';
-                if ($row->is_available == 'active') {
-                    return $is_active;
-                } else {
-                    return $not_active;
-                }
-            })
-
-            ->addColumn('actions', function ($row) {
-                $actions = ' <a href="' . url("Storage-edit/" . $row->id) . '" class="btn btn-active-light-info"><i class="bi bi-pencil-fill"></i> تعديل </a>';
-                return $actions;
-
-            })
-            ->rawColumns(['actions', 'checkbox', 'name', 'is_available'])
+           
+    
+            ->rawColumns(['checkbox', 'name'])
             ->make();
 
     }

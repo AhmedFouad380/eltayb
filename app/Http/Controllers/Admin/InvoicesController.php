@@ -11,6 +11,8 @@ use App\Models\Product;
 use App\Models\Setting;
 use App\Models\Shape;
 use App\Models\Storage;
+use App\Models\Branch;
+use App\Models\StorageTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
@@ -114,11 +116,10 @@ class InvoicesController extends Controller
             'date' => 'string',
 
         ]);
-
+       $branch =   Branch::findOrFail($request->branch_id);
         if ($request->product_id != null){
             $invoice = new Invoice();
             $invoice->type=$request->type;
-            $invoice->date=$request->date;
             $invoice->date=$request->date;
             $invoice->image=$request->image;
             $invoice->supplier_id=$request->supplier_id;
@@ -135,6 +136,7 @@ class InvoicesController extends Controller
             $purchase_price = $request->purchase_price;
             $add_to_storage = $request->add_to_storage;
             $sell_price = $request->sell_price;
+
             $total_details = [];
             foreach ($request->product_id as $key => $product){
                 $invoiceDetails = new InvoiceDetails();
@@ -148,17 +150,52 @@ class InvoicesController extends Controller
                 $invoiceDetails->save();
 
                 if ($request->type == 'income' && $add_to_storage[$key] == 1){
-                    $storage = Storage::where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->first()->quantity;
-                    $quantity_storage = $quantity[$key] + $storage;
-                    $storage->quantity = $quantity_storage;
-                    $storage->available_quantity = $quantity_storage;
-                    $storage->save();
+                    if(Storage::where('branch_id',$request->branch_id)->where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->count() > 0){
+                        $storage = Storage::where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->first();
+                        $quantity_storage = $quantity[$key] + $storage->quantity;
+                        $storage->quantity = $quantity_storage;
+                        $storage->available_quantity = $quantity_storage;
+                        $storage->save();
+                    }else{
+                        $storage = new Storage;
+                        $storage->quantity = $quantity[$key] ;
+                        $storage->product_id = $product_id[$key];
+                        $storage->shape_id = $shape_id[$key];
+                        $storage->branch_id=$request->branch_id;
+                        $storage->save();
+                    }
+                    $pro = Product::findOrFail($product_id[$key]);
+                    $storageTransaction = new StorageTransaction;
+                    $storageTransaction->type=$request->type;
+                    $storageTransaction->note = 'تم توريد عدد ' . $quantity[$key] . " من المنتج " .  $pro->ar_title . 'لفرع '. $branch->ar_name;
+                    $storageTransaction->branch_id=$request->branch_id;
+                    $storageTransaction->purchase_price=$purchase_price[$key];
+                    $storageTransaction->quantity=$quantity[$key];
+                    $storageTransaction->shape_id=$shape_id[$key];
+                    $storageTransaction->product_id=$product_id[$key];
+                    $storageTransaction->invoice_id=$invoice->id;
+                    $storageTransaction->admin_id=Auth::guard('admin')->id();
+                    $storageTransaction->save();
+
                 }else if ($request->type == 'outcome'){
-                    $storage = Storage::where('available_quantity','!=',0)->where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->first()->quantity;
-                    $quantity_storage = $storage - $quantity[$key];
+
+                    $storage = Storage::where('branch_id',$request->branch_id)->where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->first();
+                    $quantity_storage = $storage->quantity - $quantity[$key];
                     $storage->quantity = $quantity_storage;
-                    $storage->available_quantity = $quantity_storage;
                     $storage->save();
+
+                    $pro = Product::findOrFail($product_id[$key]);
+                    $storageTransaction = new StorageTransaction;
+                    $storageTransaction->type=$request->type;
+                    $storageTransaction->note = 'تم بيع عدد ' . $quantity[$key] . " من المنتج " .  $pro->ar_title . ' من فرع ' . $branch->ar_name;
+                    $storageTransaction->sell_price=$sell_price[$key];
+                    $storageTransaction->quantity=$quantity[$key];
+                    $storageTransaction->branch_id=$request->branch_id;
+                    $storageTransaction->shape_id=$shape_id[$key];
+                    $storageTransaction->product_id=$product_id[$key];
+                    $storageTransaction->invoice_id=$invoice->id;
+                    $storageTransaction->admin_id=Auth::guard('admin')->id();
+                    $storageTransaction->save();
                 }
 
                 if($request->type == 'outcome'){
@@ -176,8 +213,6 @@ class InvoicesController extends Controller
             $invoiceAdditions->coupon_id = $request->coupon_id;
             $invoiceAdditions->invoice_id = $invoice->id;
             $invoiceAdditions->save();
-
-
 
             $subtotal = array_sum($total_details);
 
@@ -199,9 +234,14 @@ class InvoicesController extends Controller
 
         }
 
+        if($request->type == 'income'){
+            return redirect('invoices_Setting/income')->with('message', 'تم الاضافة بنجاح ');
 
+        }else{
+            return redirect('invoices_Setting/outcome')->with('message', 'تم الاضافة بنجاح ');
 
-        return redirect()->back()->with('message', 'تم الاضافة بنجاح ');
+        }
+
 
 
     }

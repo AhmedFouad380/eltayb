@@ -14,4 +14,14 @@ class Storage extends Model
             'ar_title'=>'',
         ]);
     }
+    public function Shape(){
+        return $this->belongsTo(Shape::class ,'shape_id')->withDefault([
+            'ar_title'=>'',
+        ]);
+    }
+    public function Branch(){
+        return $this->belongsTo(Branch::class ,'branch_id')->withDefault([
+            'id'=>'0'
+        ]);
+    }
 }
