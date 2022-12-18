@@ -131,13 +131,100 @@
                                 <span class="menu-arrow d-lg-none"></span>
                             </a>
                         </div>
-                        <div
-                            class="menu-item   @if(Request::segment(1) == 'Admin_setting' || Request::segment(1) == 'Admin-edit' ) here show @endif menu-lg-down-accordion me-lg-1">
-                            <a class="menu-link py-3" href="{{url('Admin_setting')}}">
-                                <span class="menu-title">قائمة مستخدمي النظام</span>
+                        @if(auth::guard('admin')->user()->can('view Admin') || auth::guard('admin')->user()->can('view Permissions'))
+
+                            <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
+                                 class="menu-item menu-lg-down-accordion me-lg-1">
+                            <span
+                                class="menu-link @if( Request::segment(1) == 'Admin_setting' || Request::segment(1) == 'Admin-edit' || Request::segment(1) == "Permissions" || Request::segment(1) == 'edit-Permission'
+                                 ) active @endif py-3">
+                                <span class="menu-title">قائمة مستخدمي النظام </span>
                                 <span class="menu-arrow d-lg-none"></span>
-                            </a>
-                        </div>
+                            </span>
+                                <div
+                                    class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
+                                    @if( auth::guard('admin')->user()->can('view Admin'))
+
+                                        <div data-kt-menu-placement="right-start"
+                                             class="menu-item menu-lg-down-accordion">
+                                            <a href="{{url('/Admin_setting')}}">
+                                    <span
+                                        class="menu-link @if(Request::segment(1) == "Admin_setting"  ) active @endif py-3">
+                                        <span class="menu-icon ">
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+                                                    <path
+                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                        fill="black"/>
+                                                    <path
+                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                        fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                          fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                          fill="black"/>
+                                                </svg>
+                                            </span>
+
+                                            <!--end::Svg Icon-->
+                                        </span>
+                                        <span
+                                            class="menu-title  @if(Request::segment(1) == "Admin_setting") text-active-primary active @endif ">
+
+                                                مستخدمي النظام
+                                              </span>
+                                    </span>
+                                            </a>
+                                        </div>
+                                    @endif
+                                    @if(auth::guard('admin')->user()->can('view Permissions') )
+
+                                        <div data-kt-menu-placement="right-start"
+                                             class="menu-item menu-lg-down-accordion">
+                                            <a href="{{url('/Permissions')}}">
+                                    <span
+                                        class="menu-link @if(Request::segment(1) == "Permissions" || Request::segment(1) == 'edit-Permissions' ) active @endif py-3">
+                                        <span class="menu-icon ">
+                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+                                                    <path
+                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                        fill="black"/>
+                                                    <path
+                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                        fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                          fill="black"/>
+                                                    <path opacity="0.3"
+                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                          fill="black"/>
+                                                </svg>
+                                            </span>
+
+                                            <!--end::Svg Icon-->
+                                        </span>
+                                        <span
+                                            class="menu-title  @if(Request::segment(1) == "Permissions") text-active-primary active @endif ">
+
+                                                الصلاحيات
+                                              </span>
+                                    </span>
+                                            </a>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+
+                        @endif
+                        @if(auth::guard('admin')->user()->can('view clients') || auth::guard('admin')->user()->can('view User'))
+
                         <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
                              class="menu-item menu-lg-down-accordion me-lg-1">
                             <span
@@ -148,6 +235,7 @@
                             </span>
                             <div
                                 class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
+                                @if( auth::guard('admin')->user()->can('view User'))
 
                                 <div data-kt-menu-placement="right-start"
                                      class="menu-item menu-lg-down-accordion">
@@ -184,7 +272,10 @@
                                     </span>
                                     </a>
                                 </div>
-                                <div data-kt-menu-placement="right-start"
+                                @endif
+                                    @if(auth::guard('admin')->user()->can('view clients') )
+
+                                    <div data-kt-menu-placement="right-start"
                                      class="menu-item menu-lg-down-accordion">
                                     <a href="{{url('/clients_Setting')}}">
                                     <span
@@ -219,9 +310,11 @@
                                     </span>
                                     </a>
                                 </div>
-
+                                @endif
                             </div>
                         </div>
+                        @endif
+                        @if(auth::guard('admin')->user()->can('view suppliers') )
                         <div
                             class="menu-item   @if(Request::segment(1) == 'suppliers_setting' || Request::segment(1) == 'suppliers-edit' ) here show @endif menu-lg-down-accordion me-lg-1">
                             <a class="menu-link py-3" href="{{url('suppliers_Setting')}}">
@@ -229,6 +322,8 @@
                                 <span class="menu-arrow d-lg-none"></span>
                             </a>
                         </div>
+                        @endif
+                        @if(auth::guard('admin')->user()->can('view Orders') )
                         <div
                             class="menu-item   @if(Request::segment(1) == 'Orders' || Request::segment(1) == 'Order_detail' ) here show @endif menu-lg-down-accordion me-lg-1">
                             <a class="menu-link py-3" href="{{url('Orders')}}">
@@ -236,14 +331,19 @@
                                 <span class="menu-arrow d-lg-none"></span>
                             </a>
                         </div>
+                        @endif
+                        @if(auth::guard('admin')->user()->can('view Categories') )
 
-                            <div
+                        <div
                                 class="menu-item   @if(Request::segment(1) == 'Categories_Setting' || Request::segment(1) == 'Categories-edit' ) here show @endif menu-lg-down-accordion me-lg-1">
                                 <a class="menu-link py-3" href="{{url('Categories_Setting')}}">
                                     <span class="menu-title">الاقسام</span>
                                     <span class="menu-arrow d-lg-none"></span>
                                 </a>
                             </div>
+                        @endif
+                        @if(auth::guard('admin')->user()->can('view Product') )
+
                             <div
                                 class="menu-item @if(Request::segment(1) == 'Product_Setting' || Request::segment(1) == 'Product-edit' ) here show @endif menu-lg-down-accordion me-lg-1">
                                 <a class="menu-link py-3" href="{{url('Product_Setting')}}">
@@ -251,7 +351,11 @@
                                     <span class="menu-arrow d-lg-none"></span>
                                 </a>
                             </div>
-                            <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
+
+                        @endif
+                        @if(auth::guard('admin')->user()->can('view Product_Reports') || auth::guard('admin')->user()->can('view Order_Reports')  )
+
+                        <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
                              class="menu-item menu-lg-down-accordion me-lg-1">
                             <span
                                 class="menu-link @if(Request::segment(1) == "Product_Reports"
@@ -261,7 +365,7 @@
                             </span>
                             <div
                                 class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
-
+                                @if(auth::guard('admin')->user()->can('view Product_Reports')  )
                                 <div data-kt-menu-placement="right-start"
                                      class="menu-item menu-lg-down-accordion">
                                     <a href="{{url('/Product_Reports')}}">
@@ -297,7 +401,9 @@
                                     </span>
                                     </a>
                                 </div>
-                                <div data-kt-menu-placement="right-start"
+                                @endif
+                                @if(auth::guard('admin')->user()->can('view Order_Reports')  )
+                                    <div data-kt-menu-placement="right-start"
                                      class="menu-item menu-lg-down-accordion">
                                     <a href="{{url('/Order_Reports')}}">
                                     <span
@@ -332,11 +438,14 @@
                                     </span>
                                     </a>
                                 </div>
+                                @endif
 
                             </div>
                         </div>
+                        @endif
+                        @if(auth::guard('admin')->user()->can('view invoices') || auth::guard('admin')->user()->can('view receipts')
+  || auth::guard('admin')->user()->can('view StorageTransaction') || auth::guard('admin')->user()->can('view Storage'))
 
-                        
                         <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
                              class="menu-item menu-lg-down-accordion me-lg-1">
                             <span
@@ -347,436 +456,468 @@
                             </span>
                             <div
                                 class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
+        @if(auth::guard('admin')->user()->can('view invoices'))
+                                       <div data-kt-menu-placement="right-start"
+                                            class="menu-item menu-lg-down-accordion">
+                                           <a href="{{url('/invoices_Setting/'. 'income')}}">
+                                           <span
+                                               class="menu-link @if(Request::segment(1) == "invoices_Setting_buy"  ) active @endif py-3">
+                                               <span class="menu-icon ">
+                                                   <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                   <span class="svg-icon svg-icon-2">
+                                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none">
+                                                           <path
+                                                               d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                               fill="black"/>
+                                                           <path
+                                                               d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                               fill="black"/>
+                                                           <path opacity="0.3"
+                                                                 d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                 fill="black"/>
+                                                           <path opacity="0.3"
+                                                                 d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                 fill="black"/>
+                                                       </svg>
+                                                   </span>
 
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('/invoices_Setting/'. 'income')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "invoices_Setting_buy"  ) active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
+                                                   <!--end::Svg Icon-->
+                                               </span>
+                                               <span
+                                                   class="menu-title  @if(Request::segment(1) == "invoices_Setting_buy") text-active-primary active @endif ">
 
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title  @if(Request::segment(1) == "invoices_Setting_buy") text-active-primary active @endif ">
+                                                       فواتير الشراء
+                                                     </span>
+                                           </span>
+                                           </a>
+                                       </div>
+                                       <div data-kt-menu-placement="right-start"
+                                            class="menu-item menu-lg-down-accordion">
+                                           <a href="{{url('/invoices_Setting/outcome')}}">
+                                           <span
+                                               class="menu-link @if(Request::segment(1) == "invoices_Setting_sell"  ) active @endif py-3">
+                                               <span class="menu-icon ">
+                                                   <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                   <span class="svg-icon svg-icon-2">
+                                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none">
+                                                           <path
+                                                               d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                               fill="black"/>
+                                                           <path
+                                                               d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                               fill="black"/>
+                                                           <path opacity="0.3"
+                                                                 d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                 fill="black"/>
+                                                           <path opacity="0.3"
+                                                                 d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                 fill="black"/>
+                                                       </svg>
+                                                   </span>
 
-                                                فواتير الشراء
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('/invoices_Setting/outcome')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "invoices_Setting_sell"  ) active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
+                                                   <!--end::Svg Icon-->
+                                               </span>
+                                               <span
+                                                   class="menu-title  @if(Request::segment(1) == "invoices_Setting_sell") text-active-primary active @endif ">
 
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title  @if(Request::segment(1) == "invoices_Setting_sell") text-active-primary active @endif ">
+                                                       فواتير البيع
+                                                     </span>
+                                           </span>
+                                           </a>
+                                       </div>
+        @endif
+            @if(auth::guard('admin')->user()->can('view receipts'))
 
-                                                فواتير البيع
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
-                               
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('/receipts_Setting')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "receipts_Setting"  ) active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
+            <div data-kt-menu-placement="right-start"
+                                            class="menu-item menu-lg-down-accordion">
+                                           <a href="{{url('/receipts_Setting')}}">
+                                           <span
+                                               class="menu-link @if(Request::segment(1) == "receipts_Setting"  ) active @endif py-3">
+                                               <span class="menu-icon ">
+                                                   <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                   <span class="svg-icon svg-icon-2">
+                                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none">
+                                                           <path
+                                                               d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                               fill="black"/>
+                                                           <path
+                                                               d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                               fill="black"/>
+                                                           <path opacity="0.3"
+                                                                 d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                 fill="black"/>
+                                                           <path opacity="0.3"
+                                                                 d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                 fill="black"/>
+                                                       </svg>
+                                                   </span>
 
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title  @if(Request::segment(1) == "receipts_Setting") text-active-primary active @endif ">
+                                                   <!--end::Svg Icon-->
+                                               </span>
+                                               <span
+                                                   class="menu-title  @if(Request::segment(1) == "receipts_Setting") text-active-primary active @endif ">
 
-                                            السندات
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
+                                                   السندات
+                                                     </span>
+                                           </span>
+                                           </a>
+                                       </div>
+            @endif
+            @if(auth::guard('admin')->user()->can('view Storage'))
 
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('/Storage_Setting')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "Storage_Setting"  ) active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
+            <div data-kt-menu-placement="right-start"
+                                            class="menu-item menu-lg-down-accordion">
+                                           <a href="{{url('/Storage_Setting')}}">
+                                           <span
+                                               class="menu-link @if(Request::segment(1) == "Storage_Setting"  ) active @endif py-3">
+                                               <span class="menu-icon ">
+                                                   <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                   <span class="svg-icon svg-icon-2">
+                                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none">
+                                                           <path
+                                                               d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                               fill="black"/>
+                                                           <path
+                                                               d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                               fill="black"/>
+                                                           <path opacity="0.3"
+                                                                 d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                 fill="black"/>
+                                                           <path opacity="0.3"
+                                                                 d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                 fill="black"/>
+                                                       </svg>
+                                                   </span>
 
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title  @if(Request::segment(1) == "Storage_Setting") text-active-primary active @endif ">
+                                                   <!--end::Svg Icon-->
+                                               </span>
+                                               <span
+                                                   class="menu-title  @if(Request::segment(1) == "Storage_Setting") text-active-primary active @endif ">
 
-                                            المخزون
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('/StorageTransaction_Setting')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "StorageTransaction_Setting"  ) active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
+                                                   المخزون
+                                                     </span>
+                                           </span>
+                                           </a>
+                                       </div>
+            @endif
+            @if(auth::guard('admin')->user()->can('view StorageTransaction'))
 
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title  @if(Request::segment(1) == "StorageTransaction_Setting") text-active-primary active @endif ">
+            <div data-kt-menu-placement="right-start"
+                                            class="menu-item menu-lg-down-accordion">
+                                           <a href="{{url('/StorageTransaction_Setting')}}">
+                                           <span
+                                               class="menu-link @if(Request::segment(1) == "StorageTransaction_Setting"  ) active @endif py-3">
+                                               <span class="menu-icon ">
+                                                   <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                   <span class="svg-icon svg-icon-2">
+                                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none">
+                                                           <path
+                                                               d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                               fill="black"/>
+                                                           <path
+                                                               d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                               fill="black"/>
+                                                           <path opacity="0.3"
+                                                                 d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                 fill="black"/>
+                                                           <path opacity="0.3"
+                                                                 d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                 fill="black"/>
+                                                       </svg>
+                                                   </span>
 
-                                            حركة المخزون
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                                                   <!--end::Svg Icon-->
+                                               </span>
+                                               <span
+                                                   class="menu-title  @if(Request::segment(1) == "StorageTransaction_Setting") text-active-primary active @endif ">
+
+                                                   حركة المخزون
+                                                     </span>
+                                           </span>
+                                           </a>
+                                       </div>
+
+                @endif
+                                   </div>
+                               </div>
+
+                               @endif
+
+                        @if(auth::guard('admin')->user()->can('view General_Setting') || auth::guard('admin')->user()->can('view branches')
+  || auth::guard('admin')->user()->can('view units') || auth::guard('admin')->user()->can('view Shapes')
+    || auth::guard('admin')->user()->can('view Slider') || auth::guard('admin')->user()->can('view Pages')
+    || auth::guard('admin')->user()->can('view Coupons')
+    )
+                               <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
+                                    class="menu-item menu-lg-down-accordion me-lg-1">
+                                   <span
+                                       class="menu-link @if(Request::segment(1) == "Coupons_Setting" ||
+                                       Request::segment(1) == "Coupons-edit" ||
+                                       Request::segment(1) == "Slider_Setting" ||
+                                        Request::segment(1) == "Slider-edit" ||
+                                        Request::segment(1) == "General_Setting"||
+                                         Request::segment(1) == "Page_Setting" ||
+                                         Request::segment(1) == "units_Setting" ||
+                                         Request::segment(1) == "branches_Setting" ||
+
+                                       Request::segment(1) == "-edit" ||
+
+                                         Request::segment(1) == "edit-page"
+                                        ) active @endif py-3">
+                                       <span class="menu-title">الاعدادات</span>
+                                       <span class="menu-arrow d-lg-none"></span>
+                                   </span>
+                                   <div
+                                       class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
+                                            @if(auth::guard('admin')->user()->can('view General_Setting') )
+                                               <div data-kt-menu-placement="right-start"
+                                                    class="menu-item menu-lg-down-accordion">
+                                                   <a href="{{url('/General_Setting')}}">
+                                                   <span
+                                                       class="menu-link @if(Request::segment(1) == "General_Setting"  ) active @endif py-3">
+                                                       <span class="menu-icon ">
+                                                           <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                           <span class="svg-icon svg-icon-2">
+                                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none">
+                                                                   <path
+                                                                       d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                                       fill="black"/>
+                                                                   <path
+                                                                       d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                                       fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                         fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                         fill="black"/>
+                                                               </svg>
+                                                           </span>
+
+                                                           <!--end::Svg Icon-->
+                                                       </span>
+                                                       <span
+                                                           class="menu-title  @if(Request::segment(1) == "General_Setting") text-active-primary active @endif ">
+
+                                                               الاعدادات العامة
+                                                             </span>
+                                                   </span>
+                                                   </a>
+                                               </div>
+                                            @endif
+                                                @if(auth::guard('admin')->user()->can('view branches') )
+                                                <div data-kt-menu-placement="right-start"
+                                                    class="menu-item menu-lg-down-accordion">
+                                                   <a href="{{url('/branches_Setting')}}">
+                                                   <span
+                                                       class="menu-link @if(Request::segment(1) == "branches_Setting"  ) active @endif py-3">
+                                                       <span class="menu-icon ">
+                                                           <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                           <span class="svg-icon svg-icon-2">
+                                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none">
+                                                                   <path
+                                                                       d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                                       fill="black"/>
+                                                                   <path
+                                                                       d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                                       fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                         fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                         fill="black"/>
+                                                               </svg>
+                                                           </span>
+
+                                                           <!--end::Svg Icon-->
+                                                       </span>
+                                                       <span
+                                                           class="menu-title  @if(Request::segment(1) == "branches_Setting" || Request::segment(1) == 'Storage-edit') text-active-primary active @endif ">
+
+                                                           الفروع
+                                                             </span>
+                                                   </span>
+                                                   </a>
+                                               </div>
+                                                @endif
+
+                                                @if(auth::guard('admin')->user()->can('view Coupons') )
+
+                                                <div data-kt-menu-placement="right-start"
+                                                    class="menu-item menu-lg-down-accordion">
+                                                   <a href="{{url('Coupons_Setting')}}">
+                                                   <span
+                                                       class="menu-link @if(Request::segment(1) == "Coupons_Setting" ||Request::segment(1) == "Coupons-edit") active @endif py-3">
+                                                       <span class="menu-icon ">
+                                                           <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                           <span class="svg-icon svg-icon-2">
+                                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none">
+                                                                   <path
+                                                                       d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                                       fill="black"/>
+                                                                   <path
+                                                                       d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                                       fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                         fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                         fill="black"/>
+                                                               </svg>
+                                                           </span>
+
+                                                           <!--end::Svg Icon-->
+                                                       </span>
+                                                       <span
+                                                           class="menu-title @if(Request::segment(1) == "Coupons_Setting" ||Request::segment(1) == "Coupons-edit")  text-active-primary active @endif ">
+
+                                                               اكود الخصم
+
+                                                             </span>
+                                                   </span>
+                                                   </a>
+                                               </div>
+                                                @endif
+
+                                                @if(auth::guard('admin')->user()->can('view units') )
+
+                                               <div data-kt-menu-placement="right-start"
+                                                    class="menu-item menu-lg-down-accordion">
+                                                   <a href="{{url('units_Setting')}}">
+                                                   <span
+                                                       class="menu-link @if(Request::segment(1) == "units_Setting" ||Request::segment(1) == "units-edit") active @endif py-3">
+                                                       <span class="menu-icon ">
+                                                           <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                           <span class="svg-icon svg-icon-2">
+                                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none">
+                                                                   <path
+                                                                       d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                                       fill="black"/>
+                                                                   <path
+                                                                       d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                                       fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                         fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                         fill="black"/>
+                                                               </svg>
+                                                           </span>
+
+                                                           <!--end::Svg Icon-->
+                                                       </span>
+                                                       <span
+                                                           class="menu-title @if(Request::segment(1) == "units_Setting" ||Request::segment(1) == "units-edit")  text-active-primary active @endif ">
+
+                                                               الوحدات
+
+                                                             </span>
+                                                   </span>
+                                                   </a>
+                                               </div>
+                                                @endif
+
+                                                @if(auth::guard('admin')->user()->can('view Slider') )
+
+                                                <div data-kt-menu-placement="right-start"
+                                                    class="menu-item menu-lg-down-accordion">
+                                                   <a href="{{url('Slider_Setting')}}">
+                                                   <span
+                                                       class="menu-link @if(Request::segment(1) == "Slider_Setting" ||Request::segment(1) == "edit-Slider") active @endif py-3">
+                                                       <span class="menu-icon ">
+                                                           <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                           <span class="svg-icon svg-icon-2">
+                                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none">
+                                                                   <path
+                                                                       d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                                       fill="black"/>
+                                                                   <path
+                                                                       d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                                       fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                         fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                         fill="black"/>
+                                                               </svg>
+                                                           </span>
+
+                                                           <!--end::Svg Icon-->
+                                                       </span>
+                                                       <span
+                                                           class="menu-title  @if(Request::segment(1) == "Slider_Setting" ||Request::segment(1) == "edit-Slider") text-active-primary active @endif ">
+
+                                                               السليدر
+
+                                                             </span>
+                                                   </span>
+                                                   </a>
+                                               </div>
+                                                @endif
+
+                                                @if(auth::guard('admin')->user()->can('view Page') )
+
+                                                <div data-kt-menu-placement="right-start"
+                                                    class="menu-item menu-lg-down-accordion">
+                                                   <a href="{{url('Page_Setting')}}">
+                                                   <span
+                                                       class="menu-link @if(Request::segment(1) == "Page_Setting" ||Request::segment(1) == "edit-Page") active @endif py-3">
+                                                       <span class="menu-icon ">
+                                                           <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
+                                                           <span class="svg-icon svg-icon-2">
+                                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                                    viewBox="0 0 24 24" fill="none">
+                                                                   <path
+                                                                       d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
+                                                                       fill="black"/>
+                                                                   <path
+                                                                       d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
+                                                                       fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
+                                                                         fill="black"/>
+                                                                   <path opacity="0.3"
+                                                                         d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
+                                                                         fill="black"/>
+                                                               </svg>
+                                                           </span>
+
+                                                           <!--end::Svg Icon-->
+                                                       </span>
+                                                       <span
+                                                           class="menu-title  @if(Request::segment(1) == "Page_Setting" ||Request::segment(1) == "edit-Page") text-active-primary active @endif ">
+
+                                                               الصفحات التعريفية
+
+                                                             </span>
+                                                   </span>
+                                                   </a>
+                                               </div>
+                                                @endif
 
 
-                        <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
-                             class="menu-item menu-lg-down-accordion me-lg-1">
-                            <span
-                                class="menu-link @if(Request::segment(1) == "Coupons_Setting" ||
-                                Request::segment(1) == "Coupons-edit" ||
-                                Request::segment(1) == "Slider_Setting" ||
-                                 Request::segment(1) == "Slider-edit" ||
-                                 Request::segment(1) == "General_Setting"||
-                                  Request::segment(1) == "Page_Setting" ||
-                                  Request::segment(1) == "units_Setting" ||
-                                  Request::segment(1) == "branches_Setting" ||
-                                  
-                                Request::segment(1) == "-edit" ||
-
-                                  Request::segment(1) == "edit-page"
-                                 ) active @endif py-3">
-                                <span class="menu-title">الاعدادات</span>
-                                <span class="menu-arrow d-lg-none"></span>
-                            </span>
-                            <div
-                                class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
-
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('/General_Setting')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "General_Setting"  ) active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
-
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title  @if(Request::segment(1) == "General_Setting") text-active-primary active @endif ">
-
-                                                الاعدادات العامة
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('/branches_Setting')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "branches_Setting"  ) active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
-
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title  @if(Request::segment(1) == "branches_Setting" || Request::segment(1) == 'Storage-edit') text-active-primary active @endif ">
-
-                                            الفروع
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
-                                
-                               
-
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('Coupons_Setting')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "Coupons_Setting" ||Request::segment(1) == "Coupons-edit") active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
-
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title @if(Request::segment(1) == "Coupons_Setting" ||Request::segment(1) == "Coupons-edit")  text-active-primary active @endif ">
-
-                                                اكود الخصم
-
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('units_Setting')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "units_Setting" ||Request::segment(1) == "units-edit") active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
-
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title @if(Request::segment(1) == "units_Setting" ||Request::segment(1) == "units-edit")  text-active-primary active @endif ">
-
-                                                الوحدات
-
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('Slider_Setting')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "Slider_Setting" ||Request::segment(1) == "edit-Slider") active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
-
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title  @if(Request::segment(1) == "Slider_Setting" ||Request::segment(1) == "edit-Slider") text-active-primary active @endif ">
-
-                                                السليدر
-
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
-                                <div data-kt-menu-placement="right-start"
-                                     class="menu-item menu-lg-down-accordion">
-                                    <a href="{{url('Page_Setting')}}">
-                                    <span
-                                        class="menu-link @if(Request::segment(1) == "Page_Setting" ||Request::segment(1) == "edit-Page") active @endif py-3">
-                                        <span class="menu-icon ">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                     viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z"
-                                                        fill="black"/>
-                                                    <path
-                                                        d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z"
-                                                        fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z"
-                                                          fill="black"/>
-                                                    <path opacity="0.3"
-                                                          d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z"
-                                                          fill="black"/>
-                                                </svg>
-                                            </span>
-
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                        <span
-                                            class="menu-title  @if(Request::segment(1) == "Page_Setting" ||Request::segment(1) == "edit-Page") text-active-primary active @endif ">
-
-                                                الصفحات التعريفية
-
-                                              </span>
-                                    </span>
-                                    </a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <!--end::Menu-->
-                </div>
-                <!--end::Menu wrapper-->
-            </div>
-            <!--end::Container-->
-        </div>
-        <!--end::Header-->
+                                           </div>
+                                       </div>
+                                    @endif
+                                   </div>
+                                   <!--end::Menu-->
+                               </div>
+                               <!--end::Menu wrapper-->
+                           </div>
+                           <!--end::Container-->
+                       </div>
+                       <!--end::Header-->

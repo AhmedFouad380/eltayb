@@ -442,6 +442,5 @@ return [
     'Already have an account'=>'لديك حساب بالفعل ',
     'Quantity'=>'العدد',
     'Unit Price'=>'سعر القطعة',
-    'Wishlist'=>' المفضلة'
-
+    'Wishlist'=>' المفضلة',
 ];
