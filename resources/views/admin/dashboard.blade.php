@@ -17,6 +17,7 @@
         <div class="content flex-row-fluid" id="kt_content">
             <!--begin::Row-->
             <div class="row g-5 ">
+                @if(Auth::guard('admin')->user()->hasPermissionTo('view Admin','admin'))
                 <div class="col-xl-3">
                     <!--begin::Stats Widget 29-->
                     <div style="background-color:#FFF!important; border-radius: 35px; "
@@ -51,6 +52,7 @@
                     </div>
                     <!--end::Stats Widget 29-->
                 </div>
+                @endif
                 <div class="col-xl-3">
                     <!--begin::Stats Widget 31-->
                     <div style="background-color:#FFF!important; border-radius: 35px; "

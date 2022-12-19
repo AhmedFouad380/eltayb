@@ -92,6 +92,18 @@
                             </div>
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">الصلاحية </label>
+                                <!--end::Label-->
+                                <select class="form-control form-select form-control-solid mb-3 mb-lg-0" name="role_id"
+                                >
+                                    @foreach(\Spatie\Permission\Models\Role::all() as $role)
+                                        <option value="{{$role->id}}"      >{{$role->name}}</option>
+                                    @endforeach
+                                </select>
+                                <!--end::Input-->
+                            </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">الفرع </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
