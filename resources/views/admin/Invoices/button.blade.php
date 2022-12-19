@@ -77,7 +77,7 @@
                                 <input type="date" name="to" class="form-control">
                                 <!--end::Input-->
                             </div>
-
+                            @if($type == 'income')
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class=" fw-bold fs-6 mb-2"> المورد</label>
@@ -92,23 +92,24 @@
                                 </select>
                                 <!--end::Input-->
                             </div>
-
-
+                            @elseif($type == 'outcome')
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
-                                <label class=" fw-bold fs-6 mb-2"> طريقة الدفع</label>
+                                <label class=" fw-bold fs-6 mb-2"> العميل</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select class="form-control" name="payment_type">
+                                <select class="form-control js-example-basic-single" name="client_id">
                                     <option value="0">الكل</option>
-                                    @foreach(config('enum.payment_type') as $key => $value)
-                                        <option value="{{ $key }}">
-                                            {{ $value }}
-                                        </option>
+                                    @inject('clients','App\Models\Client')
+                                    @foreach($clients->all() as $client)
+                                        <option value="{{$client->id}}">{{$client->name}}</option>
                                     @endforeach
                                 </select>
                                 <!--end::Input-->
                             </div>
+                            @endif
+
+
 
 
 

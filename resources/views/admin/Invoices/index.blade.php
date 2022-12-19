@@ -72,6 +72,7 @@
                             @else
                                 <th class="min-w-125px">اسم العميل  </th>
                             @endif
+                            <th class="min-w-100px">التاريخ  </th>
                             <th class="min-w-100px">رقم الفاتورة  </th>
                             <th class="min-w-125px">قيمة الفاتورة  </th>
                             <th class="min-w-100px">بواسطة  </th>
@@ -131,20 +132,24 @@
                             @if(Request::get('to'))
                         to:"{{Request::get('to')}}",
                         @endif
-                            @if(Request::get('payment_type'))
-                        payment_type:"{{Request::get('payment_type')}}",
-                        @endif
                             @if(isset($type))
                         type:"{{$type}}",
                         @endif
+                            @if(Request::get('client_id'))
+                        client_id:"{{Request::get('client_id')}}",
+                        @endif
                             @if(Request::get('supplier_id'))
                         supplier_id:"{{Request::get('supplier_id')}}",
+                        @endif
+                            @if(Request::get('user_id'))
+                        user_id:"{{Request::get('user_id')}}",
                         @endif
                     }
                 },
                 columns: [
                     {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
                     {data: 'supplier', name: 'supplier', "searchable": true, "orderable": true},
+                    {data: 'date', name: 'date', "searchable": false, "orderable": false},
                     {data: 'num', name: 'num', "searchable": false, "orderable": false},
                     {data: 'value', name: 'value', "searchable": false, "orderable": false},
                     {data: 'created_by', name: 'created_by', "searchable": false, "orderable": false},

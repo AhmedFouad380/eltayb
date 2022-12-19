@@ -16,7 +16,11 @@
 @endsection
 
 @section('breadcrumb')
+    @if($type == 'income')
     <h1 class="d-flex text-dark fw-bolder my-1 fs-3">اضافة فاتورة شراء</h1>
+    @else
+    <h1 class="d-flex text-dark fw-bolder my-1 fs-3">اضافة فاتورة بيع</h1>
+    @endif
     <!--end::Title-->
     <!--begin::Breadcrumb-->
     <ul class="breadcrumb breadcrumb-dot fw-bold text-gray-600 fs-7 my-1">
@@ -26,7 +30,11 @@
         </li>
         <!--end::Item-->
         <!--begin::Item-->
+        @if($type == 'income')
         <li class="breadcrumb-item text-gray-500">اضافة فاتورة شراء</li>
+        @else
+        <li class="breadcrumb-item text-gray-500">اضافة فاتورة بيع</li>
+    @endif
         <!--end::Item-->
     </ul>
     <!--end::Breadcrumb-->
@@ -46,7 +54,11 @@
                      aria-controls="kt_account_profile_details">
                     <!--begin::Card title-->
                     <div class="card-title m-0">
+                        @if($type == 'income')
                         <h3 class="fw-bolder m-0">اضافة فاتورة شراء</h3>
+                        @else
+                        <h3 class="fw-bolder m-0">اضافة فاتورة بيع</h3>
+                        @endif
                     </div>
                     <!--end::Card title-->
                 </div>
@@ -183,7 +195,7 @@
 
                                                     <input class="form-check-input" name="add_to_storage[]" type="hidden"
                                            value="0" id="flexSwitchDefault"/>
-                                    
+
 
                                                     <input
                                                         class="form-check-input form-control form-control-solid mb-3 mb-lg-0"
@@ -624,7 +636,6 @@
             var   purchase_price= $('#quantity').val();
             var total = quantity * purchase_price;
             document.getElementById("total_price").value = total;
-
         })
         @endif
 

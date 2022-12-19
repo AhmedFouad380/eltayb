@@ -248,6 +248,17 @@
                                 </select>
                                 <!--end::Input-->
                             </div>
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">الرصيد الافتتاحى </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="number" name="opening_balance"
+                                       class="form-control form-control-solid mb-3 mb-lg-0"
+                                />
+                                <!--end::Input-->
+                            </div>
+
 
                         </div>
                         <!--end::Scroll-->
