@@ -173,7 +173,7 @@
                                     </div>
                                     <div class="invoice-title-1" style="margin-top:5px;">
                                         <a class="text-black fs-2">
-                                            الى شركة/السيد
+                                            الى
 
                                         </a>
 
@@ -238,7 +238,7 @@
                                     </div>
                                     <div class="invoice-title-1" style="margin-top:5px;">
                                         <a class="text-black fs-2">
-                                            To Mr/Company
+                                            To
 
                                         </a>
 
@@ -354,15 +354,15 @@
         var fraction = document.getElementById("txt").value.split(".");
 
         if (fraction.length == 2){
-            document.getElementById ("demo").innerHTML   =  tafqeet (fraction[0]) + " دينار و" + tafqeet (fraction[1]) + ' فلس  فقط لاغير ';
+            document.getElementById ("demo").innerHTML   =  tafqeet (fraction[0]) + " دينار كويتى و" + tafqeet (fraction[1]) + ' فلس  فقط لاغير ';
         }
         else if (fraction.length == 1){
-            document.getElementById ("demo").innerHTML =  tafqeet (fraction[0]) + ' دينار  فقط لاغير ';
+            document.getElementById ("demo").innerHTML =  tafqeet (fraction[0]) + ' دينار كويتى  فقط لاغير ';
         }
     }
     main();
     window.print()
-</script>   
+</script>
 
 
 <!--end::Main-->

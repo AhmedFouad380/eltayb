@@ -32,16 +32,22 @@ class InvoicesController extends Controller
             $data->where('type',$request->type);
         }
         if(isset($request->from)) {
-            $data->whereDate('created_at', '<=', $request->from);
+            $data->whereDate('date', '<=', $request->from);
         }
         if(isset($request->to)){
-            $data->whereDate('created_at','>=',$request->to);
+            $data->whereDate('date','<=',$request->to);
         }
         if($request->payment_type && $request->payment_type != 0){
             $data->where('payment_type',$request->payment_type);
         }
         if(isset($request->supplier_id)){
-            $data->where('supplier_id',$request->id);
+            $data->where('supplier_id',$request->supplier_id);
+        }
+        if(isset($request->user_id)){
+            $data->where('user_id',$request->user_id);
+        }
+        if(isset($request->client_id)){
+            $data->where('client_id',$request->client_id);
         }
         return DataTables::of($data)
             ->addColumn('checkbox', function ($row) {
@@ -58,7 +64,6 @@ class InvoicesController extends Controller
 
                 }elseif ($row->user_id !=null){
                     $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->user->name . '</span>';
-
                 }elseif ($row->client_id !=null){
                     $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->client->name . '</span>';
 
@@ -69,6 +74,12 @@ class InvoicesController extends Controller
             ->editColumn('num', function ($row) {
                 $name = '';
                 $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->id . '</span>';
+
+                return $name;
+            })
+            ->editColumn('date', function ($row) {
+                $name = '';
+                $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->date . '</span>';
 
                 return $name;
             })
@@ -89,7 +100,7 @@ class InvoicesController extends Controller
                 return $actions;
 
             })
-            ->rawColumns(['actions', 'checkbox', 'supplier','value','num','created_by'])
+            ->rawColumns(['actions', 'checkbox', 'supplier','value','num','created_by','date'])
             ->make();
 
     }

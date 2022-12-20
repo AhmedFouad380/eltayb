@@ -121,6 +121,8 @@
                                 </select>
                                 <!--end::Input-->
                             </div>
+
+
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">الوصف باللغة العربية</label>
