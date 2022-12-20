@@ -354,7 +354,17 @@
         }
     }
     main();
-    window.print()
+    window.onafterprint = function(e){
+        closePrintView();
+    };
+
+        window.print();
+
+    function closePrintView() {
+        document.location.href  = "{{url('PointOfSale')}}";
+    }
+
+
 </script>
 
 <!--end::Main-->

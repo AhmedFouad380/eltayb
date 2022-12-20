@@ -107,7 +107,20 @@
                                 </select>
                                 <!--end::Input-->
                             </div>
-
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">الوحدة  </label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <select name="unit_id"
+                                        class="form-control form-control-solid mb-3 mb-lg-0"
+                                        required>
+                                    @foreach(\App\Models\Unit::all() as $unit)
+                                        <option value="{{$unit->id}}">{{$unit->ar_name}}</option>
+                                    @endforeach
+                                </select>
+                                <!--end::Input-->
+                            </div>
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">الوصف باللغة العربية</label>
@@ -234,20 +247,7 @@
                                 <!--end::Input-->
                             </div>
 
-                            <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fw-bold fs-6 mb-2">الوحدة  </label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <select name="unit_id"
-                                        class="form-control form-control-solid mb-3 mb-lg-0"
-                                        required>
-                                    @foreach(\App\Models\Unit::all() as $unit)
-                                        <option value="{{$unit->id}}">{{$unit->ar_name}}</option>
-                                    @endforeach
-                                </select>
-                                <!--end::Input-->
-                            </div>
+
 
                         </div>
                         <!--end::Scroll-->

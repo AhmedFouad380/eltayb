@@ -44,6 +44,18 @@
                         <!--begin::inbox-->
 
                         <!--end::inbox-->
+                        <div class="d-flex align-items-center ms-2 ms-lg-3" id="kt_header_user_menu_toggle">
+                            <!--begin::Menu wrapper-->
+                            <a  href="{{url('PointOfSale')}}" target="_blank">
+                            <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click"
+                                 data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+                                <img src="{{asset('cashier-svgrepo-com.svg')}}" alt="user"/>
+                            </div>
+                            </a>
+                            <!--begin::Menu-->
+                            <!--end::Menu-->
+                            <!--end::Menu wrapper-->
+                        </div>
 
                         <!--begin::Quick links-->
                         <!--end::Quick links-->

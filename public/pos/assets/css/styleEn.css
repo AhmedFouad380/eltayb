@@ -67,7 +67,7 @@ body {
   overflow-y:scroll ;
 }
 
-.box1 span {
+.box1 .span-box {
   border: 1px solid #ddd;
   width: 60px;
   height: 30px;

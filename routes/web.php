@@ -177,6 +177,7 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
 
 
         Route::get('get-Shapes/{id}', [\App\Http\Controllers\Admin\ShapeController::class, 'getShapes']);
+
         Route::get('Shapes/{id}', [\App\Http\Controllers\Admin\ShapeController::class, 'index'])->middleware('permission:view Shapes,admin');
         Route::get('Shapes_datatable', [\App\Http\Controllers\Admin\ShapeController::class, 'datatable'])->name('Shapes.datatable.data')->middleware('permission:view Shapes,admin');
         Route::get('delete-Shapes', [\App\Http\Controllers\Admin\ShapeController::class, 'destroy'])->middleware('permission:delete Shapes,admin');
@@ -211,8 +212,15 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
         });
         Route::post('update-Order-states', [\App\Http\Controllers\Admin\OrderController::class, 'updateOrderStates'])->middleware('permission:update Orders,admin');
 
-        Route::get('PointOfSale', [\App\Http\Controllers\Admin\PosController::class, 'index']);
-        Route::get('POSProducts', [\App\Http\Controllers\Admin\PosController::class, 'POSProducts']);
+        Route::get('PointOfSale', [\App\Http\Controllers\Admin\PosController::class, 'index'])->middleware('permission:view Pos,admin');
+        Route::get('POSProducts', [\App\Http\Controllers\Admin\PosController::class, 'POSProducts'])->middleware('permission:view Pos,admin');
+        Route::get('getShapesPos', [\App\Http\Controllers\Admin\PosController::class, 'getShapesPos'])->middleware('permission:view Pos,admin');
+        Route::get('add-item', [\App\Http\Controllers\Admin\PosController::class, 'addItem'])->middleware('permission:view Pos,admin');
+        Route::get('delete-item', [\App\Http\Controllers\Admin\PosController::class, 'deleteItem'])->middleware('permission:view Pos,admin');
+        Route::get('update-count', [\App\Http\Controllers\Admin\PosController::class, 'updateDelete'])->middleware('permission:view Pos,admin');
+        Route::get('getDataPos', [\App\Http\Controllers\Admin\PosController::class, 'getDataPos'])->middleware('permission:view Pos,admin');
+        Route::get('PosDetails/{id}', [\App\Http\Controllers\Admin\PosController::class, 'details'])->middleware('permission:view Pos,admin');
+        Route::post('StoreInvoice', [\App\Http\Controllers\Admin\PosController::class, 'StoreInvoice'])->middleware('permission:view Pos,admin');
 
 
         Route::get('General_Setting', [\App\Http\Controllers\Admin\SettingController::class, 'index'])->middleware('permission:view General_Setting,admin');

@@ -37,7 +37,11 @@ class Invoice extends Model
         return $this->hasMany(InvoiceDetails::class , 'invoice_id');
     }
     public function additions(){
-        return $this->hasMany(InvoiceAddition::class , 'invoice_id');
+        return $this->hasOne(InvoiceAddition::class , 'invoice_id')->withDefault([
+            'tax'=>0,
+            'discount'=>0,
+            'delivery_fees'=>0,
+        ]);
     }
     public function user(){
         return $this->belongsTo(User::class , 'user_id');
