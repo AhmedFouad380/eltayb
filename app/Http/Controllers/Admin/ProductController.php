@@ -140,7 +140,7 @@ class ProductController extends Controller
 //        $user->opening_balance=$request->opening_balance;
         $user->save();
 
-
+      $opening_balance =  $request->opening_balance;
 
         if($request->shape_price){
 
@@ -155,15 +155,13 @@ class ProductController extends Controller
                 $shapes->product_id=$user->id;
                 $shapes->save();
 
-//                $storage = new Storage();
-//                $storage->is_available=$request->is_available;
-//                $storage->available_quantity=$request->opening_balance;
-//                $storage->quantity=$request->opening_balance;
-//                $storage->sell_price=$price;
-//                $storage->is_available='active';
-//                $storage->product_id=$user->id;
-//                $storage->shape_id=$shapes->id;
-//                $storage->save();
+                $storage = new Storage();
+                $storage->quantity=$opening_balance[$key];
+                $storage->sell_price=$price;
+                $storage->is_available='active';
+                $storage->product_id=$user->id;
+                $storage->shape_id=$shapes->id;
+                $storage->save();
             }
         }
 

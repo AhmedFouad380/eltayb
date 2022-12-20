@@ -245,6 +245,12 @@
                                         <input type="text" name="shape_en_title[]"
                                                class=" form-control col-6 form-control-solid mb-3 mb-lg-0" placeholder="" required/>
                                     </div>
+                                    <div class="col-6"><label>الرصيد الافتتاحي  </label>
+                                        <input value="0" type="number" name="opening_balance[]"
+                                               class="values form-control col-6 form-control-solid mb-3 mb-lg-0"
+                                               placeholder="" />
+                                    </div>
+
                                 </div>
                                 <!--end::Input-->
                             </div>
@@ -311,13 +317,19 @@
             '                                                       class=" form-control col-6 form-control-solid mb-3 mb-lg-0"' +
             '                                                       placeholder="" required/>' +
             '                                            </div>' +
+            '                                            <div class="col-6">' + '<label>الرصيد الافتتاحي  </label>'+
+            '                                                <input value="0" type="number" name="opening_balance[]"' +
+            '                                                       class="values form-control col-6 form-control-solid mb-3 mb-lg-0"' +
+            '                                                       placeholder="" />' +
+            '                                             </div>' +
             '                                            <div class="col-3">' +
             '                                                     <button type="button"' +
             '                                                        class="btn btn-light-danger me-3 delete_question">' +
             '                                                    <i class="bi bi-trash-fill fs-2x fs-2x"></i>' +
             '                                                </button>' +
             '                                             </div>' +
-            '                                        </div>');
+            '                                        </div>'
+        );
     });
 
     $(document).on('click', '.delete_question', function () {
