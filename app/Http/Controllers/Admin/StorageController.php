@@ -106,7 +106,7 @@ class StorageController extends Controller
         }
 
         $pro = Product::find($request->product_id);
-        $branch = Product::find($request->branch_id);
+        $branch = Branch::find($request->branch_id);
         $storageTransaction = new StorageTransaction;
         $storageTransaction->type='income';
         $storageTransaction->note = 'تم توريد عدد ' . $request->quantity . " من المنتج " .  $pro->ar_title . 'لفرع '. $branch->ar_name;
