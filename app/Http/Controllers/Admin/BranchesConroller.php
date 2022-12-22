@@ -12,7 +12,7 @@ class BranchesConroller extends Controller
     //
     public function index()
     {
-        return view('admin.branches.index');
+        return view('admin.Branches.index');
     }
     public function datatable(Request $request)
     {
@@ -155,7 +155,7 @@ class BranchesConroller extends Controller
     public function edit($id)
     {
         $employee = Branch::findOrFail($id);
-        return view('admin.branches.edit', compact('employee'));
+        return view('admin.Branches.edit', compact('employee'));
     }
 
     /**

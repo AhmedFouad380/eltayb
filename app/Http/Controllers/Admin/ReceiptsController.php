@@ -14,7 +14,7 @@ class ReceiptsController extends Controller
     //
     public function index()
     {
-        return view('admin.receipts.index');
+        return view('admin.Receipts.index');
     }
     public function datatable(Request $request)
     {
@@ -190,18 +190,18 @@ class ReceiptsController extends Controller
     public function edit($id)
     {
         $employee = Receipt::findOrFail($id);
-        return view('admin.receipts.edit', compact('employee'));
+        return view('admin.Receipts.edit', compact('employee'));
     }
     public function details($id)
     {
         $employee = Receipt::findOrFail($id);
-        return view('admin.receipts.index-receipt', compact('employee'));
+        return view('admin.Receipts.index-receipt', compact('employee'));
     }
     public function print_receipt($id)
     {
         $employee = Receipt::findOrFail($id);
         $settings = Setting::findOrFail(1);
-        return view('admin.receipts.print2', compact(['employee','settings']));
+        return view('admin.Receipts.print2', compact(['employee','settings']));
     }
     /**
      * Update the specified resource in storage.
