@@ -12,7 +12,7 @@ class SuppliersController extends Controller
     //
     public function index()
     {
-        return view('admin.suppliers.index');
+        return view('admin.Suppliers.index');
     }
     public function datatable(Request $request)
     {
@@ -139,7 +139,7 @@ class SuppliersController extends Controller
     public function edit($id)
     {
         $employee = Supplier::findOrFail($id);
-        return view('admin.suppliers.edit', compact('employee'));
+        return view('admin.Suppliers.edit', compact('employee'));
     }
 
     /**
