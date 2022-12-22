@@ -281,7 +281,7 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
         Route::get('suppliers-edit/{id}', [\App\Http\Controllers\Admin\SuppliersController::class, 'edit'])->middleware('permission:edit suppliers,admin');
         Route::post('update-suppliers', [\App\Http\Controllers\Admin\SuppliersController::class, 'update'])->middleware('permission:edit suppliers,admin');
         Route::get('/add-button-suppliers', function () {
-            return view('admin/suppliers/button');
+            return view('admin/Suppliers/button');
         });
         /* Suppliers Routes End*/
 
