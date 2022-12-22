@@ -91,6 +91,19 @@
                                       <span class="text-capitalize">الاجمالي : </span>
                                       <span id="SubTotal">0</span>
                                  </div>
+                              {{--   <div class="col-md-12 col-12 col-lg-3 mb-3">
+                                     <span class="text-capitalize">الضريبة : </span>
+                                     <input type="number" name="tax" class="form-control"  value="0">
+                                 </div>
+                                 <div class="col-md-12 col-12 col-lg-3 mb-3">
+                                     <span class="text-capitalize">خصم : </span>
+                                     <input type="number" name="tax" class="form-control" value="0">
+                                 </div>
+                                 <div class="col-md-12 col-12 col-lg-3 mb-3">
+                                     <span class="text-capitalize">مصاريف شحن  : </span>
+                                     <input type="number" name="tax" class="form-control" value="0">
+                                 </div> --}}
+
                              </div>
                         </div>
                     </div>
@@ -397,40 +410,42 @@
                     }
                 });
 
+
                 $(".update-count").click(function () {
                     var id = $(this).data('id');
                     var count= $('.inputcount-'+id).val();
-                    alert(count);
-                    if (id != '') {
-                        $.ajax({
-                            type: "GET",
-                            url: "{{url('update-count')}}",
-                            data: {
-                                'id': id,
-                                count: count
-                            },
-                            error: function (xhr, status, error) {
-                                alert(xhr.responseText);
-                            },
-                            success: function (data) {
-                                $("#table-data").html(data);
-                                getData()
+                    var type = $(this).data('type');
+                        if(count == 1 && type == 'minus'){
+                            Swal.fire({
+                                icon: 'error',
+                                title: "عفوا!",
+                                text: " اقل قيمة ممكنه هي 1",
+                                type: "error",
+                                timer: 3000,
+                                showConfirmButton: false
+                            });
 
-                            }
-                        })
-                    } else{
-                        Swal.fire({
-                            icon: 'error',
-                            title: "عفوا!",
-                            text: "يجب اختيار العميل اولا",
-                            type: "error",
-                            timer: 3000,
-                            showConfirmButton: false
-                        });
+                        }else{
+                            $.ajax({
+                                type: "GET",
+                                url: "{{url('update-count')}}",
+                                data: {
+                                    'id': id,
+                                    'count': count,
+                                    'type':type
+                                },
+                                error: function (xhr, status, error) {
+                                    alert(xhr.responseText);
+                                },
+                                success: function (data) {
+                                    $("#table-data").html(data);
+                                    getData()
+                                }
+                            })
 
-                    }
+                        }
+
                 });
-
 
                 function getData() {
                     $.ajax({

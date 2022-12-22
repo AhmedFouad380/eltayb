@@ -130,7 +130,7 @@
                         @endif
                         @if(Request::get('branch_id'))
                         branch_id:"{{Request::get('branch_id')}}",
-                        @endif  
+                        @endif
                         @if(Request::get('shape_id'))
                         shape_id:"{{Request::get('shape_id')}}",
                         @endif
@@ -145,6 +145,7 @@
                     {data: 'Shape', name: 'Shape', "searchable": true, "orderable": true},
                     {data: 'quantity', name: 'quantity', "searchable": true, "orderable": true},
                     {data: 'type', name: 'type', "searchable": true, "orderable": true},
+                    {data: 'note', name: 'note', "searchable": true, "orderable": true},
                     {data: 'branch_id', name: 'branch_id', "searchable": true, "orderable": true},
                    // {data: 'is_available', name: 'is_available', "searchable": true, "orderable": true},
                     // {data: 'actions', name: 'actions', "searchable": false, "orderable": false},
@@ -156,7 +157,7 @@
                 success: function (data) { $('.add_button').append(data); },
                 dataType: 'html'
             });
-            
+
         });
     </script>
     <?php

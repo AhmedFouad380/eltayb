@@ -70,6 +70,7 @@
                             </th>
 
                             <th class="min-w-125px">الاسم المنتج  </th>
+                            <th class="min-w-125px"> الحجم   </th>
                             <th class="min-w-125px"> الكمية المتاحة  </th>
                             <th class="min-w-125px"> سعر البيع   </th>
                             <th class="min-w-125px">  الفرع  </th>
@@ -128,7 +129,7 @@
                         @endif
                         @if(Request::get('branch_id'))
                         branch_id:"{{Request::get('branch_id')}}",
-                        @endif  
+                        @endif
                         @if(Request::get('shape_id'))
                         shape_id:"{{Request::get('shape_id')}}",
                         @endif
@@ -137,6 +138,7 @@
                 columns: [
                     {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
                     {data: 'Product', name: 'Product', "searchable": true, "orderable": true},
+                    {data: 'shape_id', name: 'shape_id', "searchable": true, "orderable": true},
                     {data: 'quantity', name: 'quantity', "searchable": true, "orderable": true},
                     {data: 'sell_price', name: 'purchase_price', "searchable": true, "orderable": true},
                     {data: 'branch_id', name: 'branch_id', "searchable": true, "orderable": true},

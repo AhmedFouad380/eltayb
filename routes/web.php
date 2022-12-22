@@ -159,11 +159,15 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
         Route::get('Storage_datatable', [\App\Http\Controllers\Admin\StorageController::class, 'datatable'])->name('Storage.datatable.data')->middleware('permission:view Storage,admin');
         Route::get('delete-Storage', [\App\Http\Controllers\Admin\StorageController::class, 'destroy'])->middleware('permission:delete Storage,admin');
         Route::post('store-Storage', [\App\Http\Controllers\Admin\StorageController::class, 'store'])->middleware('permission:add Storage,admin');
+        Route::post('Transfer-Storage', [\App\Http\Controllers\Admin\StorageController::class, 'TransferStorage'])->middleware('permission:add Storage,admin');
         Route::get('Storage-edit/{id}', [\App\Http\Controllers\Admin\StorageController::class, 'edit'])->middleware('permission:view Permissions,admin');
         Route::post('update-Storage', [\App\Http\Controllers\Admin\StorageController::class, 'update'])->middleware('permission:view Permissions,admin');
         Route::get('/add-button-Storage/{id?}', function ($id = null) {
             return view('admin/Storage/button', compact('id'));
         });
+        Route::get('get-Avaliablbe-Storage/{id?}', [\App\Http\Controllers\Admin\StorageController::class, 'getAvaliablbeStorage'])->middleware('permission:view Storage,admin');
+        Route::get('get-Shape-Storage/{id}/{product}', [\App\Http\Controllers\Admin\StorageController::class, 'getShapeStorage'])->middleware('permission:view Storage,admin');
+
 
         Route::get('StorageTransaction_Setting', [\App\Http\Controllers\Admin\StorageTransactionController::class, 'index'])->middleware('permission:view StorageTransaction,admin');
         Route::get('StorageTransaction_datatable', [\App\Http\Controllers\Admin\StorageTransactionController::class, 'datatable'])->name('StorageTransaction.datatable.data')->middleware('permission:view StorageTransaction,admin');

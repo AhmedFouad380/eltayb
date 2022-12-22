@@ -196,6 +196,9 @@ class BranchesConroller extends Controller
      */
     public function destroy(Request $request)
     {
+        if($request->id == 1){
+            return response()->json(['message' => 'Failed']);
+        }
         try {
             Branch::whereIn('id', $request->id)->delete();
         } catch (\Exception $e) {

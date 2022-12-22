@@ -137,10 +137,8 @@ class ProductController extends Controller
         $user->is_new=$request->is_new;
         $user->unit_id=$request->unit_id;
         $user->is_hot=$request->is_hot;
-//        $user->opening_balance=$request->opening_balance;
         $user->save();
 
-      $opening_balance =  $request->opening_balance;
 
         if($request->shape_price){
 
@@ -155,13 +153,6 @@ class ProductController extends Controller
                 $shapes->product_id=$user->id;
                 $shapes->save();
 
-                $storage = new Storage();
-                $storage->quantity=$opening_balance[$key];
-                $storage->sell_price=$price;
-                $storage->is_available='active';
-                $storage->product_id=$user->id;
-                $storage->shape_id=$shapes->id;
-                $storage->save();
             }
         }
 

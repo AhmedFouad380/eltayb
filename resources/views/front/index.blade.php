@@ -231,7 +231,7 @@
                                         <div class="product-cart-wrap">
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
-                                                    <a href="shop-product-right.html">
+                                                    <a href="{{url('product_details',$Product->id)}}">
                                                         <img class="default-img"  src="{{$Product->image}}" alt="{{$Product->title}}"  />
 {{--                                                        <img class="hover-img" src="assets/imgs/shop/product-2-2.jpg" alt="" />--}}
                                                     </a>

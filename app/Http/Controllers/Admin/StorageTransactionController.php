@@ -11,13 +11,13 @@ class StorageTransactionController extends Controller
 {
     public function index($id = null)
     {
-       
+
         return view('admin.StorageTransaction.index',compact('id'));
 
     }
     public function datatable(Request $request)
     {
-        $data = StorageTransaction::orderBy('branch_id', 'asc');
+        $data = StorageTransaction::orderBy('id', 'desc');
         if($request->product_id  && $request->product_id != 0){
             $data->where('product_id',$request->product_id);
         }
@@ -55,7 +55,7 @@ class StorageTransactionController extends Controller
                     return 'صادر';
                 }
             })
-    
+
             ->rawColumns(['checkbox', 'name'])
             ->make();
 

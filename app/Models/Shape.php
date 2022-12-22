@@ -28,12 +28,9 @@ class Shape extends Model
     }
     public  function StorageAvaliable()
     {
-        return $this->hasOne(Storage::class ,'shape_id')
-            ->where('is_available','active')->where('available_quantity','!=',0)
+        return $this->hasOne(Storage::class ,'shape_id')->where('branch_id',1)
             ->withDefault([
                 'sell_price'=>0,
-                'available_quantity'=>0,
-                'purchase_price'=>0
             ]);
     }
 }

@@ -26,9 +26,9 @@
         <td>
             <!-- this is Quantity -->
             <div class="qty-input d-flex">
-                <button class="qty-count update-count qty-count--minus"  data-id="{{$data->id}}"  data-action="minus" type="button">-</button>
-                <input class="product-qty form-control inputcount-{{$data->id}}" type="number" name="count[]" min="0" value="{{$data->count}}">
-                <button class="qty-count update-count qty-count--add" data-id="{{$data->id}}" data-action="add" type="button">+</button>
+                <button class="qty-count update-count qty-count--minus"  data-id="{{$data->id}}" data-type="minus"  data-action="minus" type="button">-</button>
+                <input readonly class="product-qty form-control inputcount-{{$data->id}}" type="number" name="count[]" min="0" value="{{$data->count}}">
+                <button class="qty-count update-count qty-count--add" data-type="add" data-id="{{$data->id}}" data-action="add" type="button">+</button>
             </div>
             <!-- end Quantity -->
             <div class="mt-3">
@@ -59,33 +59,37 @@
     $(".update-count").click(function () {
         var id = $(this).data('id');
         var count= $('.inputcount-'+id).val();
-            if (id != '') {
-                $.ajax({
-                    type: "GET",
-                    url: "{{url('update-count')}}",
-                    data: {
-                        'id': id,
-                        count: count
-                    },
-                    error: function (xhr, status, error) {
-                        alert(xhr.responseText);
-                    },
-                    success: function (data) {
-                        $("#table-data").html(data);
-                        getData()
-                    }
-                })
-            } else{
+        var type = $(this).data('type');
+        if(count == 1 && type == 'minus'){
             Swal.fire({
                 icon: 'error',
                 title: "عفوا!",
-                text: "يجب اختيار العميل اولا",
+                text: " اقل قيمة ممكنه هي 1",
                 type: "error",
                 timer: 3000,
                 showConfirmButton: false
             });
 
+        }else{
+            $.ajax({
+                type: "GET",
+                url: "{{url('update-count')}}",
+                data: {
+                    'id': id,
+                    'count': count,
+                    'type':type
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                },
+                success: function (data) {
+                    $("#table-data").html(data);
+                    getData()
+                }
+            })
+
         }
+
     });
 
     $(".delete").click(function () {
@@ -137,69 +141,5 @@
         }
     });
 
-    var QtyInput = (function () {
-        var $qtyInputs = $(".qty-input");
-
-        if (!$qtyInputs.length) {
-            return;
-        }
-
-        var $inputs = $qtyInputs.find(".product-qty");
-        var $countBtn = $qtyInputs.find(".qty-count");
-        var qtyMin = parseInt($inputs.attr("min"));
-        var qtyMax = parseInt($inputs.attr("max"));
-
-        $inputs.change(function () {
-            var $this = $(this);
-            var $minusBtn = $this.siblings(".qty-count--minus");
-            var $addBtn = $this.siblings(".qty-count--add");
-            var qty = parseInt($this.val());
-
-            if (isNaN(qty) || qty <= qtyMin) {
-                $this.val(qtyMin);
-                $minusBtn.attr("disabled", true);
-            } else {
-                $minusBtn.attr("disabled", false);
-
-                if(qty >= qtyMax){
-                    $this.val(qtyMax);
-                    $addBtn.attr('disabled', true);
-                } else {
-                    $this.val(qty);
-                    $addBtn.attr('disabled', false);
-                }
-            }
-        });
-
-        $countBtn.click(function () {
-            var operator = this.dataset.action;
-            var $this = $(this);
-            var $input = $this.siblings(".product-qty");
-            var qty = parseInt($input.val());
-
-            if (operator == "add") {
-                qty += 1;
-                if (qty >= qtyMin + 1) {
-                    $this.siblings(".qty-count--minus").attr("disabled", false);
-                }
-
-                if (qty >= qtyMax) {
-                    $this.attr("disabled", true);
-                }
-            } else {
-                qty = qty <= qtyMin ? qtyMin : (qty -= 1);
-
-                if (qty == qtyMin) {
-                    $this.attr("disabled", true);
-                }
-
-                if (qty < qtyMax) {
-                    $this.siblings(".qty-count--add").attr("disabled", false);
-                }
-            }
-
-            $input.val(qty);
-        });
-    })();
 
 </script>

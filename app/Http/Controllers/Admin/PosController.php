@@ -115,7 +115,11 @@ class PosController extends Controller
     {
 
         $data = Pos::Find($request->id);
-        $data->count = $request->count;
+        if($request->type =='add'){
+            $data->count = $request->count + 1;
+        }else{
+            $data->count = $request->count - 1;
+        }
         $data->save();
 
         $pos = Pos::where('admin_id', Auth::guard('admin')->id())->get();
