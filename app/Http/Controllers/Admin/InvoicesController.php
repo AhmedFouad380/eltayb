@@ -23,7 +23,7 @@ class InvoicesController extends Controller
     public function index($type = null)
     {
 
-        return view('admin.invoices.index',compact('type'));
+        return view('admin.Invoices.index',compact('type'));
     }
     public function datatable(Request $request)
     {
@@ -277,7 +277,7 @@ class InvoicesController extends Controller
     public function edit($id)
     {
         $employee = Invoice::findOrFail($id);
-        return view('admin.invoices.edit', compact('employee'));
+        return view('admin.Invoices.edit', compact('employee'));
     }
     public function details($id)
     {
@@ -288,7 +288,7 @@ class InvoicesController extends Controller
 /*        $price = Tafqeet::inArabic($amount,'kwd');*/
 
 
-        return view('admin.invoices.index-invoice', compact(['employee','type','settings','amount']));
+        return view('admin.Invoices.index-invoice', compact(['employee','type','settings','amount']));
     }
 
     /**
