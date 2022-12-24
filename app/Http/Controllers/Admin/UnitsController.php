@@ -12,7 +12,7 @@ class UnitsController extends Controller
     //
     public function index()
     {
-        return view('admin.units.index');
+        return view('admin.Units.index');
     }
     public function datatable(Request $request)
     {
@@ -118,7 +118,7 @@ class UnitsController extends Controller
     public function edit($id)
     {
         $employee = Unit::findOrFail($id);
-        return view('admin.units.edit', compact('employee'));
+        return view('admin.Units.edit', compact('employee'));
     }
 
     /**
