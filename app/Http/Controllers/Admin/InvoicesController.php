@@ -223,6 +223,7 @@ class InvoicesController extends Controller
             $invoiceAdditions->discount = $request->discount;
             $invoiceAdditions->coupon_id = $request->coupon_id;
             $invoiceAdditions->invoice_id = $invoice->id;
+            $invoiceAdditions->payment_type = $request->payment_type;
             $invoiceAdditions->save();
 
             $subtotal = array_sum($total_details);

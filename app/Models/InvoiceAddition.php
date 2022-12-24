@@ -15,6 +15,7 @@ class InvoiceAddition extends Model
         'delivery_fees',
         'discount',
         'coupon_id',
+        'payment_type',
         'invoice_id',
         'created_at',
         'updated_at',

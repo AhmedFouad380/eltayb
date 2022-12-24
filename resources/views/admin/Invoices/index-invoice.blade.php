@@ -285,6 +285,9 @@
                                             السعر بالكلمات
                                         </div>
                                         <div class="inv-title-1" >
+                                            طريقة الدفع
+                                        </div>
+                                        <div class="inv-title-1" >
                                             تم استلام البضاعة بواسطة
                                         </div>
                                         <div class="inv-title-1" >
@@ -300,6 +303,22 @@
                                     <div class="col-sm-8">
                                         <div class="inv-title-1" id="demo" >
 
+                                        </div>
+                                        @if($employee->additions->payment_type == 'cash')
+                                            <div class="inv-title-1" >
+                                               : نقدا
+                                            </div>
+                                        @elseif($employee->additions->payment_type == 'visa')
+                                            <div class="inv-title-1" >
+                                                 : فيزا
+                                            </div>
+                                        @elseif($employee->additions->payment_type == 'kent')
+                                            <div class="inv-title-1" >
+                                                : كى نت
+                                            </div>
+                                        @endif
+                                        <div class="inv-title-1" >
+                                            :
                                         </div>
                                         <div class="inv-title-1" >
                                             :

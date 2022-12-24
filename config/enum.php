@@ -15,6 +15,12 @@ return [
         'cheque' => "شيك",
 
     ],
+    'payment_type_invoices' => [
+        'cash' => "نقدا",
+        'visa' => "فيزا كارد",
+        'kent' => "كى نت",
+
+    ],
     'sub_category_project' => [
         'hvac' => "تبريد و تكييف",
         'firefighting' => "حريق",

@@ -41,6 +41,7 @@ class Invoice extends Model
             'tax'=>0,
             'discount'=>0,
             'delivery_fees'=>0,
+            'payment_type'=> 'visa',
         ]);
     }
     public function user(){

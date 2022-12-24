@@ -468,6 +468,26 @@
                                     </div>
 
                                 </div>
+                                <!--end::Input group-->
+                                <div class="col-md-6 col-xl-2" >
+                                    <div class="card card-xl-stretch mb-xl-8">
+                                        <!--begin::Label-->
+                                        <label class="required fw-bold fs-6 mb-2">طريقة الدفع</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                        <select id="payment_type" class="form-control form-control-solid mb-3 mb-lg-0" name="payment_type"
+                                                required
+                                        >
+                                            @foreach(config('enum.payment_type_invoices') as $key => $value)
+                                                <option value="{{ $key }}">
+                                                    {{ $value }}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+
+                                </div>
                                 <div class="col-md-6 col-xl-2">
                                     <div class="card card-xl-stretch mb-xl-8">
                                         <!--begin::Label-->
