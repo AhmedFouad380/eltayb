@@ -257,7 +257,7 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
         Route::get('units-edit/{id}', [\App\Http\Controllers\Admin\UnitsController::class, 'edit'])->middleware('permission:edit units,admin');
         Route::post('update-units', [\App\Http\Controllers\Admin\UnitsController::class, 'update'])->middleware('permission:edit units,admin');
         Route::get('/add-button-units', function () {
-            return view('admin/units/button');
+            return view('admin/Units/button');
         });
         /* Units Routes End*/
 
