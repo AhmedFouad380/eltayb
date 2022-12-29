@@ -180,6 +180,27 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
         });
 
 
+        
+        Route::get('ExpensesTypes_Setting', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'index'])->middleware('permission:view ExpensesTypes,admin');
+        Route::get('ExpensesTypes_datatable', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'datatable'])->name('ExpensesTypes.datatable.data')->middleware('permission:view ExpensesTypes,admin');
+        Route::get('delete-ExpensesTypes', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'destroy'])->middleware('permission:delete ExpensesTypes,admin');
+        Route::post('store-ExpensesTypes', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'store'])->middleware('permission:add ExpensesTypes,admin');
+        Route::get('ExpensesTypes-edit/{id}', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'edit'])->middleware('permission:edit ExpensesTypes,admin');
+        Route::post('update-ExpensesTypes', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'update'])->middleware('permission:edit ExpensesTypes,admin');
+        Route::get('/add-button-ExpensesTypes', function () {
+            return view('admin/ExpensesTypes/button');
+        });
+        Route::get('Expenses_Setting', [\App\Http\Controllers\Admin\ExpensesController::class, 'index'])->middleware('permission:view Expenses,admin');
+        Route::get('Expenses_datatable', [\App\Http\Controllers\Admin\ExpensesController::class, 'datatable'])->name('Expenses.datatable.data')->middleware('permission:view Expenses,admin');
+        Route::get('delete-Expenses', [\App\Http\Controllers\Admin\ExpensesController::class, 'destroy'])->middleware('permission:delete Expenses,admin');
+        Route::post('store-Expenses', [\App\Http\Controllers\Admin\ExpensesController::class, 'store'])->middleware('permission:add Expenses,admin');
+        Route::get('Expenses-edit/{id}', [\App\Http\Controllers\Admin\ExpensesController::class, 'edit'])->middleware('permission:edit Expenses,admin');
+        Route::post('update-Expenses', [\App\Http\Controllers\Admin\ExpensesController::class, 'update'])->middleware('permission:edit Expenses,admin');
+        Route::get('/add-button-Expenses', function () {
+            return view('admin/Expenses/button');
+        });
+
+
         Route::get('get-Shapes/{id}', [\App\Http\Controllers\Admin\ShapeController::class, 'getShapes']);
 
         Route::get('Shapes/{id}', [\App\Http\Controllers\Admin\ShapeController::class, 'index'])->middleware('permission:view Shapes,admin');

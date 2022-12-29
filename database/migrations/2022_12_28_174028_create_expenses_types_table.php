@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCountToPos extends Migration
+class CreateExpensesTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddCountToPos extends Migration
      */
     public function up()
     {
-        Schema::table('pos', function (Blueprint $table) {
-            $table->integer('count')->after('id')->default(1);
+        Schema::create('expenses_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->foreignId('admin_id')->nullable()->constrained('admins')->restrictOnDelete();
+            $table->timestamps();
         });
     }
 
@@ -25,9 +28,6 @@ class AddCountToPos extends Migration
      */
     public function down()
     {
-        Schema::table('pos', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('expenses_types');
     }
 }
-    
