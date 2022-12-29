@@ -19,6 +19,20 @@
                     width: 100%;
                 }
             </style>
+
+
+
+          {{--  edit style css by mohamed
+            <!--begin::Global Stylesheets Bundle(used by all pages)-->
+            <link href="{{asset('admin/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+            <link href="{{asset('admin/assets/css/style.bundlee.rtl.css')}}" rel="stylesheet" type="text/css" />
+            <!--end::Global Stylesheets Bundle-->
+            edit style css by mohamed
+--}}
+
+
+
+
         </head>
         <body>
         <form action="{{url('StoreInvoice')}}" method="post">
@@ -61,7 +75,7 @@
                                            data-bs-target="#exampleModalToggle"></i>
                                         </span>
                                 </div>
-                                <div class="col-md-7 col-lg-6 col-7 d-flex justify-content-end mb-4">
+                               {{-- <div class="col-md-5 col-12 col-lg-5 d-flex mb-4">
                                     <span>
                                         <i class="fa-solid fa-magnifying-glass-plus"></i>
                                      </span>
@@ -70,6 +84,21 @@
                                     <span>
                                         <i class=" blue fa-solid fa-circle-plus"></i>
                                     </span>
+                                </div>--}}
+                                <div class="col-md-5 col-12 col-lg-5 d-flex mb-4">
+                                    <label class="required fw-bold fs-6 mb-2">طريقة الدفع</label>
+
+                                    <select id="payment_type" class="form-control form-control-solid mb-3 mb-lg-0" name="payment_type"
+                                            style="padding-bottom: 0px;padding-top: 0px;"
+                                            required
+                                    >
+                                        @foreach(config('enum.payment_type_invoices') as $key => $value)
+                                            <option value="{{ $key }}">
+                                                {{ $value }}
+                                            </option>
+                                        @endforeach
+
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
@@ -111,7 +140,7 @@
 
                     <!-- ---------- this is categories ---------- -->
                     <div class="col-md-5 col-lg-5 col-12">
-                        <div class="box2">
+                        <div class="box2" style="padding:10px;">
                             <div class="my-4">
                                 <select class="form-control js-example-basic-single category_id" name="category_id" >
                                     @foreach(\App\Models\Category::all() as $Cat)
@@ -140,8 +169,6 @@
                     </div>
                 </div>
             </div>
-
-
 
 
         </form>

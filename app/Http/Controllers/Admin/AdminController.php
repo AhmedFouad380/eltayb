@@ -79,7 +79,7 @@ class AdminController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
-            'phone' => 'required|unique:admins|min:11',
+            'phone' => 'required|unique:admins|min:8',
             'is_active' => 'nullable|string',
 
         ]);
@@ -139,7 +139,7 @@ class AdminController extends Controller
             'id' => 'required|exists:users,id',
             'email' => 'required|email|unique:admins,email,' . $request->id,
             'password' => 'nullable|confirmed',
-            'phone' => 'required|min:11|unique:admins,phone,' . $request->id,
+            'phone' => 'required|min:8|unique:admins,phone,' . $request->id,
             'is_active' => 'nullable|string',
 
         ]);

@@ -84,7 +84,7 @@
                                 <label class="required fw-bold fs-6 mb-2"> رقم الهاتف</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="tel" name="phone" id="phone" maxlength="11" minlength="11"
+                                <input type="tel" name="phone" id="phone" maxlength="8" minlength="8"
                                        class="form-control form-control-solid mb-3 mb-lg-0"
                                        placeholder="رقم الهاتف" value="" required/>
                                 <!--end::Input-->
