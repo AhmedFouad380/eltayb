@@ -95,9 +95,17 @@ class PermissionSeeder extends Seeder
             'add Permissions',
             'edit Permissions',
             'view Pos',
-
+            'view ExpensesTypes',
+            'delete ExpensesTypes',
+            'add ExpensesTypes',
+            'edit ExpensesTypes',
+            'view Expenses',
+            'delete Expenses',
+            'add Expenses',
+            'edit Expenses',
 
         ];
+
 
         if(Permission::count() == 0){
             $role1 = Role::create(['name' => 'superAdmin','guard_name'=>'admin']);
