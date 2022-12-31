@@ -488,6 +488,50 @@
                                     </div>
 
                                 </div>
+                                @if($type == 'income')
+                                    <div class="col-md-6 col-xl-2">
+                                        <div class="card card-xl-stretch mb-xl-8">
+                                            <!--begin::Label-->
+                                            <label class="required fw-bold fs-6 mb-2">المبلغ المدفوع</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="number" step="0.001" name="paid_value"
+                                                   class="form-control form-control-solid mb-3 mb-lg-0"
+                                                   placeholder="0" value="{{old('delivery_fees')}}" />
+                                            <!--end::Input-->
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-xl-2">
+                                        <div class="card card-xl-stretch mb-xl-8">
+                                            <!--begin::Label-->
+                                            <label class="required fw-bold fs-6 mb-2">المبلغ المتبقى</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="number" step="0.001" name="remaining_amount"
+                                                   class="form-control form-control-solid mb-3 mb-lg-0"
+                                                   placeholder="0" value="{{old('delivery_fees')}}" />
+                                            <!--end::Input-->
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-xl-2">
+                                        <div class="card card-xl-stretch mb-xl-8">
+                                            <!--begin::Label-->
+                                            <label class="required fw-bold fs-6 mb-2">تاريخ الاستحقاق</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="date" name="paid_date"
+                                                   class="form-control form-control-solid mb-3 mb-lg-0"
+                                                   placeholder="0" value="{{old('delivery_fees')}}" />
+                                            <!--end::Input-->
+
+                                        </div>
+
+                                    </div>
+                                @endif
                                 <div class="col-md-6 col-xl-2">
                                     <div class="card card-xl-stretch mb-xl-8">
                                         <!--begin::Label-->

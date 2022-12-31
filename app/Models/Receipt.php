@@ -13,6 +13,7 @@ class Receipt extends Model
 
     protected $fillable = [
         'supplier_id',
+        'invoice_id',
         'created_by',
         'updated_by',
         'value',
@@ -55,5 +56,8 @@ class Receipt extends Model
     }
     public function updator(){
         return $this->belongsTo(Admin::class , 'updated_by');
+    }
+    public function invoice(){
+        return $this->hasOne(Invoice::class , 'invoice_id');
     }
 }

@@ -65,9 +65,10 @@
                                 </div>
                             </th>
 
-                            <th class="min-w-125px">الاسم   </th>
-                            <th class="min-w-125px">الكمية المباعة  </th>
+                            <th class="min-w-125px">اسم المنتج   </th>
+                            <th class="min-w-125px">الحجم  </th>
                             <th class="min-w-125px"> الكمية المتاحة  </th>
+                            <th class="min-w-125px"> الفرع  </th>
                         </tr>
                         <!--end::Table row-->
                         </thead>
@@ -122,9 +123,8 @@
                 },
                 columns: [
                     {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
-                    {data: 'ar_title', name: 'ar_title', "searchable": true, "orderable": true},
-                    {data: 'SellCount', name: 'SellCount', "searchable": true, "orderable": true},
-                    {data: 'availableCount', name: 'availableCount', "searchable": true, "orderable": true},
+                    {data: 'name', name: 'name', "searchable": true, "orderable": true},
+                    {data: 'shape', name: 'shape', "searchable": true, "orderable": true},
 
                 ]
             });

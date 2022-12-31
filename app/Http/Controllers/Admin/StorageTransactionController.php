@@ -42,6 +42,9 @@ class StorageTransactionController extends Controller
             ->AddColumn('Product', function ($row) {
                 return $row->Product->ar_title;
             })
+            ->AddColumn('unit', function ($row) {
+                return $row->Product->units->ar_name;
+            })
             ->AddColumn('Shape', function ($row) {
                 return $row->Shape->ar_title;
             })

@@ -180,7 +180,7 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
         });
 
 
-        
+
         Route::get('ExpensesTypes_Setting', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'index'])->middleware('permission:view ExpensesTypes,admin');
         Route::get('ExpensesTypes_datatable', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'datatable'])->name('ExpensesTypes.datatable.data')->middleware('permission:view ExpensesTypes,admin');
         Route::get('delete-ExpensesTypes', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'destroy'])->middleware('permission:delete ExpensesTypes,admin');
@@ -323,6 +323,34 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
         });
 
         /* Receipts Routes End*/
+
+        /* start expenses types controller*/
+
+        Route::get('expenses-types_Setting', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'index'])->middleware('permission:view Categories,admin');
+        Route::get('expenses-types_datatable', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'datatable'])->name('expenses-types.datatable.data')->middleware('permission:view Categories,admin');
+        Route::get('delete-expenses-types', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'destroy'])->middleware('permission:delete Categories,admin');
+        Route::post('store-expenses-types', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'store'])->middleware('permission:add Categories,admin');
+        Route::get('expenses-types-edit/{id}', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'edit'])->middleware('permission:edit Categories,admin');
+        Route::post('update-expenses-types', [\App\Http\Controllers\Admin\ExpensesTypesController::class, 'update'])->middleware('permission:edit Categories,admin');
+        Route::get('/add-button-expenses-types', function () {
+            return view('admin/expenses-types/button');
+        });
+
+        /* end expenses types controller*/
+
+        /* start expenses types controller*/
+
+        Route::get('expenses_Setting', [\App\Http\Controllers\Admin\ExpensesController::class, 'index'])->middleware('permission:view Categories,admin');
+        Route::get('expenses_datatable', [\App\Http\Controllers\Admin\ExpensesController::class, 'datatable'])->name('expenses.datatable.data')->middleware('permission:view Categories,admin');
+        Route::get('delete-expenses', [\App\Http\Controllers\Admin\ExpensesController::class, 'destroy'])->middleware('permission:delete Categories,admin');
+        Route::post('store-expenses', [\App\Http\Controllers\Admin\ExpensesController::class, 'store'])->middleware('permission:add Categories,admin');
+        Route::get('expenses-edit/{id}', [\App\Http\Controllers\Admin\ExpensesController::class, 'edit'])->middleware('permission:edit Categories,admin');
+        Route::post('update-expenses', [\App\Http\Controllers\Admin\ExpensesController::class, 'update'])->middleware('permission:edit Categories,admin');
+        Route::get('/add-button-expenses', function () {
+            return view('admin/expenses/button');
+        });
+
+        /* end expenses types controller*/
 
         /* Invoices Routes Start*/
         Route::get('invoices_Setting/{type?}', [\App\Http\Controllers\Admin\InvoicesController::class, 'index'])->middleware('permission:view invoices,admin');

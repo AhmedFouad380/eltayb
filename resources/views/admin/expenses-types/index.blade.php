@@ -34,11 +34,7 @@
 
         <!--end::Item-->
         <!--begin::Item-->
-        <li class="breadcrumb-item text-gray-500">قائمة حركة المخزون
-            @if(isset($id))
-                 : {{$data->ar_title}}
-                @endif
-        </li>
+        <li class="breadcrumb-item text-gray-500">انواع المصروفات </li>
         <!--end::Item-->
     </ul>
     <!--end::Breadcrumb-->
@@ -69,13 +65,8 @@
                                 </div>
                             </th>
 
-                            <th class="min-w-125px">الاسم المنتج  </th>
-                            <th class="min-w-125px">الحجم  </th>
-                            <th class="min-w-125px"> الكمية   </th>
-                            <th class="min-w-125px"> النوع   </th>
-                            <th class="min-w-125px"> الوحدة   </th>
-                            <th class="min-w-125px"> الملاحظات   </th>
-                            <th class="min-w-125px">  الفرع  </th>
+                            <th class="min-w-125px">اسم نوع المصروفات  </th>
+                            <th class=" min-w-100px">الاجراءات</th>
                         </tr>
                         <!--end::Table row-->
                         </thead>
@@ -98,7 +89,6 @@
 @section('script')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js" integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
 
     <script src="{{ URL::asset('admin/assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
 
@@ -124,42 +114,22 @@
                     // {extend: 'colvis', className: 'btn secondary', text: 'إظهار / إخفاء الأعمدة '}
                 ],
                 ajax: {
-                    url: '{{ route('StorageTransaction.datatable.data') }}',
+                    url: '{{ url('/expenses-types_datatable') }}',
                     data: {
-                        @if(Request::get('product_id'))
-                        id:"{{Request::get('product_id')}}",
-                        @endif
-                        @if(Request::get('branch_id'))
-                        branch_id:"{{Request::get('branch_id')}}",
-                        @endif
-                        @if(Request::get('shape_id'))
-                        shape_id:"{{Request::get('shape_id')}}",
-                        @endif
-                        @if(Request::get('type'))
-                        shape_id:"{{Request::get('type')}}",
-                        @endif
                     }
                 },
                 columns: [
                     {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
-                    {data: 'Product', name: 'Product', "searchable": true, "orderable": true},
-                    {data: 'Shape', name: 'Shape', "searchable": true, "orderable": true},
-                    {data: 'quantity', name: 'quantity', "searchable": true, "orderable": true},
-                    {data: 'type', name: 'type', "searchable": true, "orderable": true},
-                    {data: 'unit', name: 'unit', "searchable": false, "orderable": false},
-                    {data: 'note', name: 'note', "searchable": true, "orderable": true},
-                    {data: 'branch_id', name: 'branch_id', "searchable": true, "orderable": true},
-                   // {data: 'is_available', name: 'is_available', "searchable": true, "orderable": true},
-                    // {data: 'actions', name: 'actions', "searchable": false, "orderable": false},
+                    {data: 'name', name: 'name', "searchable": true, "orderable": true},
+                    {data: 'actions', name: 'actions', "searchable": false, "orderable": false},
 
                 ]
             });
             $.ajax({
-                url: "{{ URL::to('/add-button-StorageTransaction')}}",
+                url: "{{ URL::to('/add-button-expenses-types')}}",
                 success: function (data) { $('.add_button').append(data); },
                 dataType: 'html'
             });
-
         });
     </script>
     <?php
