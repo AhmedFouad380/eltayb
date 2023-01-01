@@ -3,17 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ExpensesType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
 
 class ExpensesTypesController extends Controller
 {
     public function index()
     {
-        return view('admin.Categories.index');
+        return view('admin.expenses-types.index');
     }
     public function datatable(Request $request)
     {
-        $data = Category::orderBy('id', 'desc');
+        $data = ExpensesType::orderBy('id', 'desc');
 
         return DataTables::of($data)
             ->addColumn('checkbox', function ($row) {
@@ -25,27 +28,17 @@ class ExpensesTypesController extends Controller
             })
             ->editColumn('name', function ($row) {
                 $name = '';
-                $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->name . '</span>
-                                   <br> <small class="text-gray-600">' . $row->email . '</small>';
+                $name .= ' <span class="text-gray-800 text-hover-primary mb-1">' . $row->name . '</span>';
                 return $name;
             })
 
-            ->editColumn('is_active', function ($row) {
-                $is_active = '<div class="badge badge-light-success fw-bolder">مفعل</div>';
-                $not_active = '<div class="badge badge-light-danger fw-bolder">غير مفعل</div>';
-                if ($row->is_active == 'active') {
-                    return $is_active;
-                } else {
-                    return $not_active;
-                }
-            })
 
             ->addColumn('actions', function ($row) {
-                $actions = ' <a href="' . url("Categories-edit/" . $row->id) . '" class="btn btn-active-light-info"><i class="bi bi-pencil-fill"></i> تعديل </a>';
+                $actions = ' <a href="' . url("expenses-types-edit/" . $row->id) . '" class="btn btn-active-light-info"><i class="bi bi-pencil-fill"></i> تعديل </a>';
                 return $actions;
 
             })
-            ->rawColumns(['actions', 'checkbox', 'name', 'is_active'])
+            ->rawColumns(['actions', 'checkbox', 'name'])
             ->make();
 
     }
@@ -69,20 +62,15 @@ class ExpensesTypesController extends Controller
     public function store(Request $request)
     {
         $data = $this->validate(request(), [
-            'ar_title' => 'required|string',
-            'en_title' => 'required|string',
-            'icon' => 'required',
-            'is_active' => 'nullable|string',
+            'name' => 'required|string',
 
         ]);
 
 
-        $user = new Category;
-        $user->ar_title=$request->ar_title;
-        $user->en_title=$request->en_title;
-        $user->icon=$request->icon;
-        $user->is_active=$request->is_active;
-        $user->save();
+        $expensesType = new ExpensesType();
+        $expensesType->name=$request->name;
+        $expensesType->admin_id=Auth::guard('admin')->id();
+        $expensesType->save();
 
         return redirect()->back()->with('message', 'تم الاضافة بنجاح ');
 
@@ -108,8 +96,8 @@ class ExpensesTypesController extends Controller
      */
     public function edit($id)
     {
-        $employee = Category::findOrFail($id);
-        return view('admin.Categories.edit', compact('employee'));
+        $employee = ExpensesType::findOrFail($id);
+        return view('admin.expenses-types.edit', compact('employee'));
     }
 
     /**
@@ -122,24 +110,19 @@ class ExpensesTypesController extends Controller
     public function update(Request $request)
     {
         $data = $this->validate(request(), [
-            'ar_title' => 'required|string',
-            'en_title' => 'required|string',
-            'icon' => '',
-            'is_active' => 'nullable|string',
+            'name' => 'required|string',
+
         ]);
 
 
-        $user = Category::whereId($request->id)->firstOrFail();
-        $user->ar_title=$request->ar_title;
-        $user->en_title=$request->en_title;
-        if($request->icon){
-        $user->icon=$request->icon;
-        }
-        $user->is_active=$request->is_active;
-        $user->save();
+        $expensesType = ExpensesType::whereId($request->id)->firstOrFail();
+        $expensesType->name=$request->name;
+        $expensesType->admin_id=Auth::guard('admin')->id();
+        $expensesType->save();
 
 
-        return redirect(url('Categories_Setting'))->with('message', 'تم التعديل بنجاح ');
+
+        return redirect(url('expenses-types_Setting'))->with('message', 'تم التعديل بنجاح ');
     }
 
     /**
@@ -151,7 +134,7 @@ class ExpensesTypesController extends Controller
     public function destroy(Request $request)
     {
         try {
-            Category::whereIn('id', $request->id)->delete();
+            ExpensesType::whereIn('id', $request->id)->delete();
         } catch (\Exception $e) {
             return response()->json(['message' => 'Failed']);
         }

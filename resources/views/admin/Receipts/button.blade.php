@@ -306,7 +306,17 @@
                                        placeholder="" value="{{old('cheque_number')}}" />
                                 <!--end::Input-->
                             </div>
-
+                            <!--end::Input group-->
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2">رقم الفاتورة</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="number" name="invoice_id"
+                                       class="form-control form-control-solid mb-3 mb-lg-0"
+                                       placeholder="0" value="{{old('notes')}}" />
+                                <!--end::Input-->
+                            </div>
                             <!--end::Input group-->
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->

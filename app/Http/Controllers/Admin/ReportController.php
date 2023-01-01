@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\InvoiceDetails;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class ReportController extends Controller
@@ -17,7 +19,7 @@ class ReportController extends Controller
 
     public function datatableOrderReports(Request $request)
     {
-        $data = Order::orderBy('id', 'desc');
+        $data = InvoiceDetails::orderBy('id', 'desc')->where('type','outcome')->get();
         if($request->type && $request->type != 0){
             $data->where('type',$request->type);
         }
@@ -46,56 +48,38 @@ class ReportController extends Controller
                 return $checkbox;
             })
 
-            ->AddColumn('user_name', function ($row) {
-                $name = $row->User->name;
+            ->AddColumn('product', function ($row) {
+                $name = $row->Product->ar_title;
                 return $name;
             })
-            ->AddColumn('user_phone', function ($row) {
-                $name = $row->User->phone;
+            ->AddColumn('shape', function ($row) {
+                $name = $row->Shape->ar_title;
                 return $name;
             })
-
-
-            ->editColumn('payment_type', function ($row) {
-                if($row->payment_type == 'credit'){
-                    $type = '<div class="badge badge-info fw-bolder"> فيزا </div>';
-                }elseif($row->payment_type == 'cash'){
-                    $type = '<div class="badge badge-light-success fw-bolder"> كاش</div>';
-                }
-
-                return $type;
-            })
-            ->editColumn('is_payed', function ($row) {
-                if($row->is_payed == 0){
-                    $type = '<div class="badge badge-info fw-bolder"> لم يتم الدفع </div>';
-                }elseif($row->is_payed == 1){
-                    $type = '<div class="badge badge-light-success fw-bolder"> تم الدفع</div>';
-                }
-
-                return $type;
-            })
-            ->editColumn('type', function ($row) {
-                if($row->type == 'pending'){
-                    $type = '<div class="badge badge-warning fw-bolder"> طلب جديد</div>';
-                }elseif($row->type == 'preparing'){
-                    $type = '<div class="badge badge-warning fw-bolder"> جاري التجهير</div>';
-                } elseif($row->type == 'on_way'){
-                    $type = '<div class="badge badge-info fw-bolder"> جاري التوصيل</div>';
-                }elseif($row->type == 'delivered'){
-                    $type = '<div class="badge badge-light-success fw-bolder"> تم التوصيل</div>';
-                }elseif($row->type == 'canceled'){
-                    $type = '<div class="badge badge-danger fw-bolder"> تم الالغاء</div>';
-                }
-
+            ->editColumn('invoice_number', function ($row) {
+                $type = '<div class="fw-bolder"> '.$row->invoice->id .'</div>';
                 return $type;
             })
 
+            ->editColumn('quantity', function ($row) {
+                $type = '<div class="fw-bolder"> '.$row->quantity .'</div>';
+                return $type;
+            })
+            ->editColumn('unit', function ($row) {
+                $type = '<div class="fw-bolder"> '.$row->product->units->ar_name .'</div>';
+                return $type;
+            })
+            ->editColumn('sell_price', function ($row) {
+                $type = '<div class="fw-bolder"> '.$row->sell_price .'</div>';
+                return $type;
+            })
 
+            ->editColumn('branch_name', function ($row) {
+                $type = '<div class="fw-bolder"> '.$row->invoice->branch->ar_name .'</div>';
+                return $type;
+            })
 
-
-
-
-            ->rawColumns([ 'checkbox', 'name', 'type','payment_type','is_payed'])
+            ->rawColumns([ 'checkbox', 'shape', 'product','branch_name','sell_price','quantity','invoice_number','unit'])
             ->make();
 
     }

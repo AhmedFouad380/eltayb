@@ -91,11 +91,14 @@
                                 </div>
                             </th>
 
-                            <th class="min-w-125px">رقم الطلب  </th>
-                            <th class="min-w-125px">اسم العميل </th>
-                            <th class="min-w-125px">رقم الجوال العميل</th>
-                            <th class="min-w-125px">طريقة الدفع </th>
-                            <th class="min-w-125px">اجمالي المبلغ  </th>
+                            <th class="min-w-125px">اسم المنتج  </th>
+                            <th class="min-w-125px">الحجم </th>
+                            <th class="min-w-125px">الوحدة </th>
+                            <th class="min-w-125px">سعر البيع </th>
+                            <th class="min-w-125px">الكمية </th>
+                            <th class="min-w-125px">رقم الفاتورة </th>
+                            <th class="min-w-125px">اسم الفرع </th>
+
                         </tr>
                         <!--end::Table row-->
                         </thead>
@@ -178,11 +181,13 @@
                 },
                 columns: [
                     {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
-                    {data: 'order_num', name: 'order_num', "searchable": true, "orderable": true},
-                    {data: 'user_name', name: 'user_name', "searchable": true, "orderable": true},
-                    {data: 'user_phone', name: 'user_phone', "searchable": true, "orderable": true},
-                    {data: 'payment_type', name: 'payment_type', "searchable": true, "orderable": true},
-                    {data: 'total_price', name: 'payment_type', "searchable": true, "orderable": true},
+                    {data: 'product', name: 'product', "searchable": true, "orderable": true},
+                    {data: 'shape', name: 'shape', "searchable": true, "orderable": true},
+                    {data: 'unit', name: 'unit', "searchable": true, "orderable": true},
+                    {data: 'sell_price', name: 'sell_price', "searchable": true, "orderable": true},
+                    {data: 'quantity', name: 'quantity', "searchable": true, "orderable": true},
+                    {data: 'invoice_number', name: 'invoice_number', "searchable": true, "orderable": true},
+                    {data: 'branch_name', name: 'branch_name', "searchable": true, "orderable": true},
 
                 ]
             });

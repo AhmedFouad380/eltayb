@@ -184,7 +184,7 @@ class ProductController extends Controller
             ->AddColumn('availableCount', function ($row) {
                 return $row->Storage->quantity;
             })
-            ->rawColumns(['actions', 'checkbox', 'SellCount','availableCount'])
+            ->rawColumns(['actions', 'checkbox', 'name','shape'])
             ->make();
 
     }

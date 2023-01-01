@@ -277,7 +277,7 @@
                 </div>
                 <div class="invoice-bottom">
                     <div class="row">
-                        <div class="col-sm-10 mb-30 border" >
+                        <div class="col-sm-12 mb-30 border" >
                             <div class="invoice-number" style="margin-bottom: 15px;margin-top: 10px;">
                                 <div class="row">
                                     <div class="col-sm-4">
@@ -338,20 +338,30 @@
 
                             </div>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <div class="important-note mb-30">
                                 <h3 class="inv-title-1">ملاحظات مهمة</h3>
                                 <ul class="important-notes-list-1">
                                     <li>بمجرد تسليم الطلب لا يوجد استرجاع</li>
                                     <li>يجب معيانة البضاعة قبل استلامها وغير مسئولين عن اى تلفيات</li>
+                                    @if($employee->type == 'income')
+                                    <li>المبلغ المدفوع: {{$employee->paid_value}}</li>
+                                    <li>المبلغ المتبقى:{{$employee->remaining_amount}}</li>
+                                    <li>تاريخ الاستحقاق:{{$employee->paid_date}}</li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-sm-4 col-offsite">
-                            <div class="text-end payment-info mb-30">
-                                <h3 class="inv-title-1">Payment Info</h3>
-                                <p class="mb-0 text-13">This payment made by BRAC BANK master card without any problem</p>
-                            </div>
+                        <div class="col-sm-6 col-offsite">
+                            <div class=" payment-info mb-30">
+                                <h3 class="inv-title-1">تفاصيل الدفع</h3>
+                                <ul class="important-notes-list-1">
+                                    @if($employee->type == 'income')
+                                        <li>المبلغ المدفوع: {{$employee->paid_value}}</li>
+                                        <li>المبلغ المتبقى:{{$employee->remaining_amount}}</li>
+                                        <li>تاريخ الاستحقاق:{{$employee->paid_date}}</li>
+                                    @endif
+                                </ul>                            </div>
                         </div>
                     </div>
                 </div>

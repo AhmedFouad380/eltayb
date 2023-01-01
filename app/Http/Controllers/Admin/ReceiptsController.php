@@ -157,7 +157,13 @@ class ReceiptsController extends Controller
         $receipt->photo=$request->photo;
         $receipt->transfer_number=$request->transfer_number;
         $receipt->cheque_number=$request->cheque_number;
-        $receipt->receipt_type=$request->receipt_type;
+        if ($request->receipt_type == 'out'){
+            $receipt->receipt_type=$request->receipt_type;
+            $receipt->invoice_id = $request->invoice_id;
+
+        }else{
+            $receipt->receipt_type=$request->receipt_type;
+        }
         $receipt->payment_type=$request->payment_type;
         $receipt->created_by=Auth::guard('admin')->user()->id;
 

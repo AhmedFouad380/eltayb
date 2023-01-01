@@ -69,6 +69,7 @@
                             <th class="min-w-125px">الحجم   </th>
                             <th class="min-w-125px">الكمية المباعة  </th>
                             <th class="min-w-125px"> الكمية المتاحة  </th>
+                            <th class="min-w-125px"> الفرع  </th>
                         </tr>
                         <!--end::Table row-->
                         </thead>

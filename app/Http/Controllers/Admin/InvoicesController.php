@@ -138,6 +138,11 @@ class InvoicesController extends Controller
             $invoice->client_id=$request->client_id;
             $invoice->branch_id=$request->branch_id;
             $invoice->created_by=Auth::guard('admin')->user()->id;
+            if ($request->type == 'income'){
+                $invoice->paid_value = $request->paid_value;
+                $invoice->remaining_amount = $request->remaining_amount;
+                $invoice->paid_date = $request->paid_date;
+            }
             $invoice->save();
 
             // start list of invoices details
@@ -155,6 +160,7 @@ class InvoicesController extends Controller
                 $invoiceDetails->product_id = $product_id[$key];
                 $invoiceDetails->shape_id = $shape_id[$key];
                 $invoiceDetails->quantity = $quantity[$key];
+                $invoiceDetails->type = $request->type;
                 $invoiceDetails->purchase_price = $purchase_price[$key];
                 $invoiceDetails->add_to_storage = $add_to_storage[$key];
                 $invoiceDetails->sell_price = $sell_price[$key];
@@ -164,8 +170,9 @@ class InvoicesController extends Controller
                     if(Storage::where('branch_id',$request->branch_id)->where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->count() > 0){
                         $storage = Storage::where('product_id',$product_id[$key])->where('shape_id',$shape_id[$key])->first();
                         $quantity_storage = $quantity[$key] + $storage->quantity;
+                        $storage->branch_id=$request->branch_id;
                         $storage->quantity = $quantity_storage;
-                        $storage->available_quantity = $quantity_storage;
+                        $storage->sell_price = $sell_price[$key];
                         $storage->save();
                     }else{
                         $storage = new Storage;
@@ -173,6 +180,8 @@ class InvoicesController extends Controller
                         $storage->product_id = $product_id[$key];
                         $storage->shape_id = $shape_id[$key];
                         $storage->branch_id=$request->branch_id;
+                        $storage->sell_price = $sell_price[$key];
+
                         $storage->save();
                     }
                     $pro = Product::findOrFail($product_id[$key]);
