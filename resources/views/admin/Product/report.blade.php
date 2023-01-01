@@ -66,6 +66,7 @@
                             </th>
 
                             <th class="min-w-125px">الاسم   </th>
+                            <th class="min-w-125px">الحجم   </th>
                             <th class="min-w-125px">الكمية المباعة  </th>
                             <th class="min-w-125px"> الكمية المتاحة  </th>
                         </tr>
@@ -122,6 +123,7 @@
                 },
                 columns: [
                     {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
+                    {data: 'Product', name: 'Product', "searchable": true, "orderable": true},
                     {data: 'ar_title', name: 'ar_title', "searchable": true, "orderable": true},
                     {data: 'SellCount', name: 'SellCount', "searchable": true, "orderable": true},
                     {data: 'availableCount', name: 'availableCount', "searchable": true, "orderable": true},

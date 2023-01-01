@@ -24,7 +24,12 @@ class Shape extends Model
     }
     public  function Storage()
     {
-        return $this->HasMany(Storage::class ,'shape_id');
+        return $this->HasOne(Storage::class ,'shape_id')->withDefault([
+            'quantity'=>0,
+        ]);
+    }
+    public function InvoiceDetailt(){
+        return $this->HasMany(InvoiceDetails::class ,'shape_id');
     }
     public  function StorageAvaliable()
     {

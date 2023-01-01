@@ -164,7 +164,7 @@ class ProductController extends Controller
 
     public function datatableProduct_Reports(Request $request)
     {
-        $data = Product::orderBy('id', 'asc');
+        $data = Shape::orderBy('id', 'asc');
         return DataTables::of($data)
             ->addColumn('checkbox', function ($row) {
                 $checkbox = '';
@@ -174,11 +174,15 @@ class ProductController extends Controller
                 return $checkbox;
             })
 
-            ->AddColumn('SellCount', function ($row) {
-                return $row->OrderDetails->sum('count');
+            ->AddColumn('Product', function ($row) {
+                return $row->Product->title;
             })
+            ->AddColumn('SellCount', function ($row) {
+                return $row->InvoiceDetailt->sum('quantity');
+            })
+
             ->AddColumn('availableCount', function ($row) {
-                return $row->Storage->sum('available_quantity');
+                return $row->Storage->quantity;
             })
             ->rawColumns(['actions', 'checkbox', 'SellCount','availableCount'])
             ->make();

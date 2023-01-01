@@ -79,6 +79,9 @@ class Product extends Model
     public function Shapes(){
         return $this->hasMany(Shape::class ,'product_id');
     }
+    public function InvoiceDetailt(){
+        return $this->hasMany(Product::class ,'product_id');
+    }
     public function units(){
         return $this->belongsTo(Unit::class ,'unit_id')->Withdefault([
             'ar_name'=>''
