@@ -9,7 +9,7 @@
                 <div class="container">
                     <div class="breadcrumb">
                         <a href="{{url('/')}}" rel="nofollow"><i class="fi-rs-home mr-5"></i>{{__('lang.Home')}}</a>
-                        <span></span> <a href="{{url('Category',$data->Category->title)}}">{{$data->Category->title}}</a> <span></span> {{$data->title}}
+                        <span></span> <a href="{{url('Category',$data->Category->id)}}">{{$data->Category->title}}</a> <span></span> {{$data->title}}
                     </div>
                 </div>
             </div>

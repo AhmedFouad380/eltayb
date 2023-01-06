@@ -155,13 +155,13 @@
                                         <input type="hidden" name="coupon_id" class="form-control" value="{{$coupon->id}}">
                                         <input type="hidden" name="payment_type" class="form-control" value="cash">
                                         <div class="mobile-menu-close close-style-wrap close-style-position-inherit">
-                                            <a href="{{url('removeCoupon')}}" style="
-    padding: 0;
-    border: none;
-    width: 146px;
-    height: 26px;
-    background-color: #DEF9EC ; border-radius: 10%"> {{__('lang.Delete')}}
-                                            </a>
+                                                <a href="{{url('removeCoupon')}}" style="
+        padding: 0;
+        border: none;
+        width: 146px;
+        height: 26px;
+        background-color: #DEF9EC ; border-radius: 10%"> {{__('lang.Delete')}}
+                                                </a>
                                         </div>
                                     </td>
                                     <td class="cart_total_amount">

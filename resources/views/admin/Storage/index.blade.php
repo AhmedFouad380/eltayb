@@ -107,6 +107,7 @@
                 serverSide: true,
                 autoWidth: false,
                 responsive: true,
+                searching: false,
                 aaSorting: [],
                 "dom": "<'card-header border-0 p-0 pt-6'<'card-title' <'d-flex align-items-center position-relative my-1'f> r> <'card-toolbar' <'d-flex justify-content-end add_button'B> r>>  <'row'l r> <''t><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
                  lengthMenu: [[10, 25, 50, 100, 250, -1], [10, 25, 50, 100, 250, "الكل"]],
@@ -138,10 +139,10 @@
                 columns: [
                     {data: 'checkbox', name: 'checkbox', "searchable": false, "orderable": false},
                     {data: 'Product', name: 'Product', "searchable": true, "orderable": true},
-                    {data: 'shape_id', name: 'shape_id', "searchable": true, "orderable": true},
-                    {data: 'quantity', name: 'quantity', "searchable": true, "orderable": true},
-                    {data: 'sell_price', name: 'purchase_price', "searchable": true, "orderable": true},
-                    {data: 'branch_id', name: 'branch_id', "searchable": true, "orderable": true},
+                    {data: 'shape_id', name: 'shape_id', "searchable": false, "orderable": true},
+                    {data: 'quantity', name: 'quantity', "searchable": false, "orderable": true},
+                    {data: 'sell_price', name: 'sell_price', "searchable": false, "orderable": true},
+                    {data: 'branch_id', name: 'branch_id', "searchable": false, "orderable": true},
                    // {data: 'is_available', name: 'is_available', "searchable": true, "orderable": true},
                     // {data: 'actions', name: 'actions', "searchable": false, "orderable": false},
 

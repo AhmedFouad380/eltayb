@@ -376,7 +376,7 @@
                             </li>
                         @endforeach
                         <li class="menu-item-has-children">
-                            <a href="index.html">{{__('lang.BrowseCategories')}}</a>
+                            <a >{{__('lang.BrowseCategories')}}</a>
                             <ul class="dropdown">
                                 @foreach(\App\Models\Category::where('is_active','active')->limit(8)->get() as $Cat)
                                     <li><a href="{{url('/Category',$Cat->id)}}">
@@ -398,6 +398,23 @@
                         <li>
                             <a href="{{url('Contact')}}">{{__('lang.Contact')}}</a>
                         </li>
+                        @if(Session('lang') == 'en')
+                            <li>
+                                <ul class="language-dropdown"   >
+                                    <li>
+                                        <a href="{{url('lang/ar')}}">العربية</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @else
+                            <li>
+                                <ul class="language-dropdown">
+                                    <li>
+                                        <a href="{{url('lang/en')}}">English</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                     </ul>
                 </nav>
                 <!-- mobile menu end -->
@@ -413,10 +430,10 @@
             </div>
             <div class="mobile-social-icon mb-50">
                 <h6 class="mb-15">Follow Us</h6>
-                <a href="{{\App\Models\Setting::findOrFail(1)->facebook}}"><img src="{{asset('website/assets/imgs/theme/icons/icon-facebook-white.svg')}}" alt="" /></a>
-                <a href="{{\App\Models\Setting::findOrFail(1)->twitters}}"><img src="{{asset('website/assets/imgs/theme/icons/icon-twitter-white.svg')}}" alt="" /></a>
-                <a href="{{\App\Models\Setting::findOrFail(1)->instagram}}"><img src="{{asset('website/assets/imgs/theme/icons/icon-instagram-white.svg')}}" alt="" /></a>
-                <a href="{{\App\Models\Setting::findOrFail(1)->youtube}}"><img src="{{asset('website/assets/imgs/theme/icons/icon-youtube-white.svg')}}" alt="" /></a>
+                <a href="{{\App\Models\Setting::findOrFail(1)->facebook}}" target="_blank" ><img src="{{asset('website/assets/imgs/theme/icons/icon-facebook-white.svg')}}" alt="" /></a>
+                <a href="{{\App\Models\Setting::findOrFail(1)->twitters}}" target="_blank"><img src="{{asset('website/assets/imgs/theme/icons/icon-twitter-white.svg')}}" alt="" /></a>
+                <a href="{{\App\Models\Setting::findOrFail(1)->instagram}}" target="_blank"><img src="{{asset('website/assets/imgs/theme/icons/icon-instagram-white.svg')}}" alt="" /></a>
+                <a href="{{\App\Models\Setting::findOrFail(1)->youtube}}" target="_blank"><img src="{{asset('website/assets/imgs/theme/icons/icon-youtube-white.svg')}}" alt="" /></a>
             </div>
             <div class="site-copyright">Copyright 2021 © <a href="https://corebugs.com"> CoreBugs </a> All rights reserved.</div>
         </div>
