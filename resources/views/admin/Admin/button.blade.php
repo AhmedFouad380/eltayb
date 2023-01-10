@@ -90,6 +90,18 @@
                                 <!--end::Input-->
                                 <span id="error-validation" style="color:red"></span>
                             </div>
+                            <!--end::Input group-->
+                            <div class="fv-row mb-7">
+                                <!--begin::Label-->
+                                <label class="required fw-bold fs-6 mb-2"> نسبة الربح</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input type="number" name="percentage" maxlength="2" minlength="1"
+                                       class="form-control form-control-solid mb-3 mb-lg-0"
+                                       placeholder="نسبة الربح" value="" required/>
+                                <!--end::Input-->
+                                <span id="error-validation" style="color:red"></span>
+                            </div>
                             <div class="fv-row mb-7">
                                 <!--begin::Label-->
                                 <label class="required fw-bold fs-6 mb-2">الصلاحية </label>

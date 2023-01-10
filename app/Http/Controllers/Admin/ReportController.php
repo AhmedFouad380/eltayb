@@ -32,7 +32,6 @@ class ReportController extends Controller
         if($request->is_payed && $request->payment_type != 3){
             $data->where('is_payed',$request->is_payed);
         }
-
         if($request->from) {
             $data->whereDate('created_at', '>=', $request->from);
         }
@@ -83,6 +82,4 @@ class ReportController extends Controller
             ->make();
 
     }
-
-
 }

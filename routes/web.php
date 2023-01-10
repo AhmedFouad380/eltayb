@@ -85,11 +85,15 @@ Route::group(['middleware' => ['HttpsProtocolMiddleware']], function () {
         Route::get('delete-Admin', [\App\Http\Controllers\Admin\AdminController::class, 'destroy'])->middleware('permission:delete Admin,admin');
         Route::post('store-Admin', [\App\Http\Controllers\Admin\AdminController::class, 'store'])->middleware('permission:add Admin,admin');
         Route::get('Admin-edit/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'edit'])->middleware('permission:edit Admin,admin');
+        Route::get('Admin-details/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'details'])->middleware('permission:edit Admin,admin');
+        Route::get('Admin_datatable_invoice', [\App\Http\Controllers\Admin\AdminController::class, 'datatable_admin'])->name('Admin.datatable.invoice')->middleware('permission:view Admin,admin');
         Route::post('update-Admin', [\App\Http\Controllers\Admin\AdminController::class, 'update'])->middleware('permission:edit Admin,admin');
         Route::get('/add-button-Admin', function () {
             return view('admin/Admin/button');
         });
-
+        Route::get('/search-button-Admin', function () {
+            return view('admin/Admin/search');
+        });
         //employee settings
 
         Route::get('User_setting', [\App\Http\Controllers\Admin\UsersController::class, 'index'])->middleware('permission:view User,admin');
