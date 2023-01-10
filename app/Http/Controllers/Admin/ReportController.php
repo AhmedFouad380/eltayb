@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\InvoiceDetails;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Shape;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
+use function MongoDB\BSON\fromJSON;
 
 class ReportController extends Controller
 {

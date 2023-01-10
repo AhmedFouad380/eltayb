@@ -38,4 +38,7 @@ class Shape extends Model
                 'sell_price'=>0,
             ]);
     }
+    public function invoiceDetail(){
+        return $this->hasMany(InvoiceDetails::class , 'shape_id');
+    }
 }
